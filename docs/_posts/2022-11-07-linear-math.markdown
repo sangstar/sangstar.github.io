@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "Linear math and the perceptron"
+title:  "Demystifying Schrödinger's Cat"
 date:   2022-11-07 20:30:51 -0500
-categories: ml
+categories: physics
 usemathjax: true
 ---
 
@@ -17,3 +17,5 @@ usemathjax: true
 {% endif %}
 
 $$E=mc^2$$
+
+\\( 1/x^{2} \\)
