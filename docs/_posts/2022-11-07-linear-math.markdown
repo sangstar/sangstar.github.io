@@ -2,7 +2,7 @@
 layout: post
 title:  "Linear math and the perceptron"
 date:   2022-11-07 20:30:51 -0500
-categories: basic-ml
+categories: ml
 usemathjax: true
 ---
 
