@@ -12,5 +12,5 @@ In my free time I enjoy walks, playing video games, and pampering my cats, Tiki 
 
 
 <p align="center">
-  <img width="700" height="525" src="/assets/tiki&mona.jpg">
+  <img width="auto" height="auto" src="/assets/tiki&mona.jpg">
 </p>

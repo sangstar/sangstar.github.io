@@ -22,14 +22,14 @@ Ever since studying quantum mechanics, I've noticed that Schrödinger's cat is m
 
 > The cat is in a box and you can't see him. Because you can't see him, you can never know for sure he's alive or dead. So you can never tell if something really exists unless you observe it.
 
-Maybe it's not actually a big misconception and I've just got an unrepresentative sample of point of views. Regardless, it's made me want to clear up what actually this thought experiment is all about, and how it ultimately tries to explain the concept of *superposition states*.
+Maybe it's not actually a big misconception and I've just got an unrepresentative sample of point of views. Regardless, it's made me want to clear up what this thought experiment is actually all about, and how it ultimately tries to explain the concept of *superposition states*.
 
 ## The thought experiment
-Schrödinger's cat involves a cat in a box built in such a way where any outside observer has no way of seeing inside it. Then, the thought experiment involves some way of killing the cat, typically by way of a Geiger counter shattering some poisonous jar that kills the cat if the counter detects a single atomic decay. The details don't really matter, though, as long as the chances for the cat to be alive and dead are equally likely. This allows us to represent the cat's fate with a *quantum state* that can be written below.
+Schrödinger's cat involves a cat in a box built in such a way where any outside observer has no way of seeing inside it. Then, the thought experiment involves some way of killing the cat, typically by way of a Geiger counter shattering some poisonous jar that kills the cat if the counter detects a single atomic decay. The details don't really matter, though, as long as the the observer is unable to know when the cat may or may not die. If the cat has a 50% chance at any given instance in time, this allows us to represent the cat's fate with a *quantum state* that can be written below.
 
 $$\psi = \frac{1}{\sqrt{2}} |0 \rangle + \frac{1}{\sqrt{2}} |1 \rangle$$
 
-This is known as bra-ket or Dirac notation, and is commonly used to denote what's called a *state vector* which is a basis vector in its associated Hilbert space, and more plainly something that is independent or unique from the other state vectors, such that you can't describe it using other state vectors (a concept known as linear independence). In this instance, I've denoted the 0 to refer to the state where the cat is dead and 1 to refer to where the cat is alive. Alive and dead are mutually exclusive, and cannot be used to describe eachother, so are appropriate choices for state vectors. 
+This is known as bra-ket or Dirac notation, and is commonly used to denote what's called a *state vector* which is a basis vector in a special kind of vector space called a Hilbert Space, and more plainly something that is independent or unique from the other state vectors, such that you can't describe it using other state vectors (a concept known as linear independence). In this instance, I've denoted the 0 to refer to the state where the cat is dead and 1 to refer to where the cat is alive. Alive and dead are mutually exclusive, and cannot be used to describe eachother, so are appropriate choices for state vectors. 
 
 The equation in one line describes what the entire thought experiment tries to describe: since the fate of the cat isn't deterministic due to the fact that we don't know when the cat will die, it cannot be described as alive or dead. A dead cat would be
 

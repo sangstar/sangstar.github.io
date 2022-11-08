@@ -1,7 +1,7 @@
 ---
 layout: page
 permalink: /blog/
-title: Blog
+title: Ramblings
 ---
 
 <div id="archives">
