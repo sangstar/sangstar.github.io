@@ -30,7 +30,7 @@ where $$x_i$$ is often called an *input* or a *feature*, and $$y_i$$ is often ca
 
 $$\bar f \left(\{x_i\}_{i=1}^{k}\right) = \{\bar y_i\}_{i=1}^{k}$$
 
-where $$\bar y_i$$ is called a *prediction*. In order to find our $$\bar f$$, we need to minimize a *loss function*.
+where $$\bar y_i$$ is called a *prediction*. In order to find our $$\bar f$$, we need to minimize a *loss function* with *backpropagation*. 
 
 # Loss functions
 A loss function is a function that helps us to uncover $$\bar f$$ by ideally finding its global minimum. A common loss funciton is called the *residual sum of squares*:
@@ -39,7 +39,7 @@ $$\mathcal{L} = \sum_{i=1}^n \left(y_i - f(x_i))^2\right)$$
 
 where $$f$$ is a candidate predictor. $$f$$ will depend on all weights and biases between all gaps in neuronal layers. Therefore, so will the cost function. In order to minimize the cost function, you'll naturally need to look for trivial $$\nabla \mathcal{L}$$. This is known as gradient descent, and will inform you on how to adjust you weights and biases.
 
-This is called backpropogation, or backprop. Whether we choose to update the weights after one iteration or after going through all datapoints $$\{x_i\}_{i=1}^{k}$$ (one epoch) is a question of whether you want to use stochastic or batch gradient descent. Stochastic gradient descent will look something like this in computer science terms:
+Whether we choose to update the weights after one iteration or after going through all datapoints $$\{x_i\}_{i=1}^{k}$$ (one epoch) is a question of whether you want to use stochastic or batch gradient descent. Stochastic gradient descent will look something like this in computer science terms:
 
 $$ w:= w - \gamma \nabla \mathcal{L_i}(w)$$
 
