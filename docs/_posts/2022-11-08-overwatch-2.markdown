@@ -1,9 +1,0 @@
----
-layout: post
-title:  "A Defense of Overwatch 2"
-date:   2022-11-08 10:23
-categories: media
-usemathjax: true
----
-
-Lorem ipsum
