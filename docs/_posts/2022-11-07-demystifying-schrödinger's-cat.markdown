@@ -22,7 +22,7 @@ Ever since studying quantum mechanics, I've noticed that Schrödinger's cat is m
 
 > The cat is in a box and you can't see him. Because you can't see him, you can never know for sure he's alive or dead. So you can never tell if something really exists unless you observe it.
 
-Maybe it's not actually a big misconception and I've just got an unrepresentative sample of point of views. Regardless, it's made me want to clear up what this thought experiment is actually all about, and how it ultimately tries to explain the concept of *superposition states*.
+Maybe it's not actually a big misconception and I've just got an unrepresentative sample of point of views, but it's made me want to clear up what this thought experiment is actually all about, and how it ultimately tries to explain the concept of *superposition states*.
 
 ## The thought experiment
 Schrödinger's cat involves a cat in a box built in such a way where any outside observer has no way of seeing inside it. Then, the thought experiment involves some way of killing the cat, typically by way of a Geiger counter shattering some poisonous jar that kills the cat if the counter detects a single atomic decay. The details don't really matter, though, as long as the the observer is unable to know when the cat may or may not die. If the cat has a 50% chance at any given instance in time, this allows us to represent the cat's fate with a *quantum state* that can be written below.
