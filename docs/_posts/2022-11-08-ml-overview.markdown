@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "A crash course on ML: the super basics"
+title:  "A crash course on ML 1: the super basics"
 date:   2022-11-08 10:15
 categories: ml
 usemathjax: true
@@ -51,7 +51,7 @@ which isn't as effected by stochastic gradient descent, as the bigger the batch 
 
 # The training process
 In order to train a model, say, a perceptron, you start with a dataset and with any luck some labeled data $$
-D = \{x_i,y_i\}_{i=1}^{k}$$. You then want to see how the model does on data it hasn't "seen" before (some values of $$y_i$$ that *haven't* influenced the loss function) to assess how well the trained model does on the dataset. This involves splitting $$D$$ into *training* and *test* sets. It would also be smart to split the data into a *validation* set, but I'm going to neglect going into cross-validation right now and probably talk about it in a different article. With your training data, you update the weights of your perceptron using gradient descent until you've reached some minimum of your loss function. After this is done, your model is trained, and you can see how the model's predictions $$\{\bar y_i\}_{i=1}^{k}$$ compares to $$\{y_i\}_{i=1}^{k}$$ in your test set.
+D = \{x_i,y_i\}_{i=1}^{k}$$. You then want to see how the model does on data it hasn't "seen" before (some values of $$y_i$$ that *haven't* influenced the loss function) to assess how well the trained model does on the dataset. This involves splitting $$D$$ into *training* and *test* sets. It would also be smart to split the data into a *validation* set, but I'm going to neglect going into cross-validation right now but you can read about it in the second part of this series. With your training data, you update the weights of your perceptron using gradient descent until you've reached some minimum of your loss function. After this is done, your model is trained, and you can see how the model's predictions $$\{\bar y_i\}_{i=1}^{k}$$ compares to $$\{y_i\}_{i=1}^{k}$$ in your test set.
 
 ## This is just the surface..
 A neural network is called a *linear classifier*, in that it involves some manipulation on a dot product of a feature vector with a weights vector (which, when wrapped up in an activation function represents the output of a neuron in a neural net). However, there are many other linear classifiers such as logistic regression (which funnily enough is a classifier), and support vector machines. And there are obviously many models that are not linear classifiers that you may want to consider using for your problem instead, like decision tree stuff or nerdy probabilistic classifiers like naive Bayes. The choice of what model to use is another article-worthy discussion and it encompasses several questions the data scientist must ask herself, such as how much data is available, the dimensionality of the data, the speed at which she needs training to be completed and predictions to be served, or whether she needs her model to be highly calibrated. 
