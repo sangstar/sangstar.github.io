@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Ramblings on ML 4: imbalanced datasets and the dangers of over and undersampling"
+title:  "Imbalanced datasets and the dangers of over and undersampling"
 date:   2022-11-08 10:15
 categories: ml
 usemathjax: true
