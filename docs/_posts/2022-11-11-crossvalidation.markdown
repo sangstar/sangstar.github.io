@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "A crash course on ML 2: learning curves and cross-validation"
+title:  "Ramblings on ML 2: learning curves and cross-validation"
 date:   2022-11-08 10:15
 categories: ml
 usemathjax: true
