@@ -35,7 +35,7 @@ where $$\bar y_i$$ is called a *prediction*. In order to find our $$\bar f$$, we
 # Loss functions
 A loss function is a function that helps us to uncover $$\bar f$$ by ideally finding its global minimum. A common loss function is called the *residual sum of squares*:
 
-$$\mathcal{L} = \sum_{i=1}^n \left(y_i - f(x_i)^2\right)$$
+$$\mathcal{L} = \sum_{i=1}^n \left(y_i - f(x_i)\right)^2$$
 
 where $$f$$ is a candidate predictor. $$f$$ will depend on all weights and biases between all gaps in neuronal layers. Therefore, so will the cost function. In order to minimize the cost function, you'll naturally need to look for trivial $$\nabla \mathcal{L}$$. This is known as gradient descent, and will inform you on how to adjust your weights and biases.
 
