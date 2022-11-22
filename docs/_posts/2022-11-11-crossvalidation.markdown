@@ -56,7 +56,18 @@ It's clear to see that to minimize loss, you need to minimize bias *and* varianc
 
 ## Bias and Variance
 
+As you might be able to tell by looking at the term above and noting that it's referring to the *squared* bias, bias is the average amount your estimator's prediction is off from your true value. On the other hand, variance is the average amount your predicted values are displaced from your *average* predicted value. 
+
+This may seem a bit vague, but it's analogous to *accuracy* and *precision*, which is one of the first things most physics undergraduates learn about when doing experiments. Both accuracy, bias, variance and precision can be really well described with a dartboard like in the image below (Dusen et al).
+
+<p align="center">
+  <img width="auto" height="auto" src="/assets/precisionaccuracy.jpg">
+</p>
+
+Bias, like accuracy, is concerned with, on average, how close darts (predicted values) are to the bullseye (true value), while variance, like precision, is concerned with how close darts (predicted values) are to *eachother*. Just like the image describes, under-fitting models lead to "low accuracy, but high precision" (Dusen et al) models
 
 ## References
 
 Henry (https://math.stackexchange.com/users/6460/henry), difference between bias vs variance, URL (version: 2020-05-10): https://math.stackexchange.com/q/3667818
+
+Van Dusen, Ben & Nissen, Jayson. (2022). How statistical model development can obscure inequities in STEM student outcomes. Journal of Women and Minorities in Science and Engineering. 28. 10.1615/JWomenMinorScienEng.2022036220. 
