@@ -49,6 +49,8 @@ and there's actually a way of rewriting this equation:
 
 $$\mathbb{E}\left[\left(y_i - f(x_i)^2\right)\right] = \mathbb{E}\left[\left(y_i - f(x_i)\right)\right]^2 + \mathbb{E}\left[\left(f(x_i) - \mathbb{E}\left[f(x_i)\right]\right)^2\right]$$
 
+$$\mathbb E\left[\left(f(x_i) - y_i\right)^2\right] = \left(\mathbb E\left[f(x_i) - y_i\right]\right)^2 +\mathbb E\left[\left(f(x_i) - \mathbb E\left[f(x_i)\right] \right)^2\right]$$
+
 Of that new expression on the right-hand side, the first term is called the *square of the expected bias*, and the second term is called the variance of the estimator $$f$$.
 
 
