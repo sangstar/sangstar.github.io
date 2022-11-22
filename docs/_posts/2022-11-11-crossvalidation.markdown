@@ -35,24 +35,26 @@ As you can see, the test data is a sliding window that glides over the whole dat
 
 From my article on [the basics of ML](https://sangstar.github.io/ml/2022/11/08/ml-overview.html) I talk about there being some ideal function $$\hat f$$ that we wish to approximate. One can imagine there being some set of approximating functions $$\{f_i\}^n$$ with varying effectiveness. The best approximator $$\bar f$$ in that set will have the lowest total variance and bias compared to its fellow members in the set. Cross-validation is good because it serves as a very useful evaluation metric to assist in finding $$\bar f$$.
 
-# Bias and Variance
+# Rewriting the loss function
 
 If you take a look at the loss function I made in my previously mentioned article, you'll note that its actually just an average of the squared difference between the true and predicted values of a dataset:
 
-$$\mathcal{L} = \sum_{i=1}^n \left(y_i - f(x_i)^2\right)$$
+$$\mathcal{L} = \sum_{i=1}^n \left(y_i - f(x_i)\right)^2$$
 
 which is often called the *mean squared error*, or MSE. The mean is called an expected value, and can actually be written more simply as this:
 
-$$\mathcal{L} = \sum_{i=1}^n \left(y_i - f(x_i)^2\right) = \mathbb{E}\left[\left(y_i - f(x_i)\right)^2\right]$$
+$$\mathcal{L} = \sum_{i=1}^n \left(y_i - f(x_i)\right)^2 = \mathbb{E}\left[\left(y_i - f(x_i)\right)^2\right]$$
 
 and there's actually a way of rewriting this equation:
 
 
-$$\mathbb E\left[\left(y_i - f(x_i)\right)^2\right] = \left(\mathbb E\left[y_i - f(x_i)\right]\right)^2 +\mathbb E\left[\left(f(x_i) - \mathbb E\left[f(x_i)\right] \right)^2\right]$$
+$$\mathbb E\left[\left(y_i - f(x_i)\right)^2\right] = \mathbb E\left[y_i - f(x_i)\right]^2 +\mathbb E\left[\left(f(x_i) - \mathbb E\left[f(x_i)\right] \right)^2\right]$$
 
 Of that new expression on the right-hand side, the first term is called the *square of the expected bias*, and the second term is called the variance of the estimator $$f$$.
 
+It's clear to see that to minimize loss, you need to minimize bias *and* variance together. 
 
+## Bias and Variance
 
 
 ## References
