@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Learning curves and cross-validation"
-date:   2022-11-08 10:15
+date:   2022-11-12 10:15
 categories: ml
 usemathjax: true
 ---
@@ -23,7 +23,10 @@ Learning curves and cross-validation are integral things to incorporate when tra
 Cross-validation draws from a *validation set*. I mentioned it briefly in the first part of this series of ML posts. A validation set is a test set that is used *during* training, and typically takes the same share of the labeled data as the test set. Cross-validation aims to continually assess a model's ability to generalize as it's being trained. The most common form of cross-validation is the non-exhaustive $$k$$-fold cross-validation. 
 
 # $$k$$-fold cross-validation
-In $$k$$-fold cross-validatoin, a *fold* is the size of the training data to be partitioned into $$k$$ equally sized subsets. Of the $$k$$ folds, $$k-1$$ folds are used for training and one fold is reserved as a test set. From this partition, a model is trained on the training fold and an accuracy score is computed on the test fold
+In $$k$$-fold cross-validation, a *fold* is the size of the training data to be partitioned into $$k$$ equally sized subsets. Of the $$k$$ folds, $$k-1$$ folds are used for training and one fold is reserved as a test set. From this partition, a model is trained on the training part and an accuracy score is computed on the test part of each fold. The scores from each of the folds are averaged and used as an evaluation metric. An image of this process, created by Wikipedia user [Gufosawa](https://commons.wikimedia.org/wiki/User:Gufosowa), can be found below:
+
+[k-fold](assets/k-fold-crossval.png)
+
 
 
 
