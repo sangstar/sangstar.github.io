@@ -26,7 +26,7 @@ Cross-validation draws from a *validation set*. I mentioned it briefly in the fi
 In $$k$$-fold cross-validation, a *fold* is the size of the training data to be partitioned into $$k$$ equally sized subsets. Of the $$k$$ folds, $$k-1$$ folds are used for training and one fold is reserved as a test set. From this partition, a model is trained on the training part and an accuracy score is computed on the test part of each fold. The scores from each of the folds are averaged and used as an evaluation metric. An image of this process, created by Wikipedia user [Gufosawa](https://commons.wikimedia.org/wiki/User:Gufosowa), can be found below:
 
 <p align="center">
-  <img width="auto" height="auto" src="/assets/kfoldcrossval.png">
+  <img width="auto" height="auto" src="/assets/kfold.jpg">
 </p>
 
 
