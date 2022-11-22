@@ -29,8 +29,26 @@ In $$k$$-fold cross-validation, a *fold* is the size of the training data to be 
   <img width="auto" height="auto" src="/assets/kfold.jpg">
 </p>
 
+As you can see, the test data is a sliding window that glides over the whole dataset per epoch, such that the every datapoint is used once and only once as test data.
 
+## Why is cross-validation a good idea?
+
+From my article on [the basics of ML](https://sangstar.github.io/ml/2022/11/08/ml-overview.html) I talk about there being some ideal function $$\hat f$$ that we wish to approximate. One can imagine there being some set of approximating functions $$\left{f_i\right}^n$$ with varying effectiveness. The best approximator $$\bar f$$ in that set will have the lowest total variance and bias compared to its fellow members in the set. Cross-validation is good because it serves as a very useful evaluation metric to assist in finding $$\bar f$$.
+
+# Bias
+
+If you take a look at the loss function I made in my previously mentioned article, you'll note that its actually just an average of the squared difference between the true and predicted values of a dataset:
+
+$$\mathcal{L} = \sum_{i=1}^n \left(y_i - f(x_i))^2\right)$$
+
+which is often called the *mean squared error*, or MSE. The mean is called an expected value, and can actually be written more simply as this:
+
+$$\mathcal{L} = \sum_{i=1}^n \left(y_i - f(x_i))^2\right) = \mathbb{E}\left(y_i - f(x_i))^2\right)$$
+
+However, there's actually a way of rewriting this equation:
 
 
 
 ## References
+
+Henry (https://math.stackexchange.com/users/6460/henry), difference between bias vs variance, URL (version: 2020-05-10): https://math.stackexchange.com/q/3667818
