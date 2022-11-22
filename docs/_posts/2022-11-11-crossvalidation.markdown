@@ -43,9 +43,12 @@ $$\mathcal{L} = \sum_{i=1}^n \left(y_i - f(x_i))^2\right)$$
 
 which is often called the *mean squared error*, or MSE. The mean is called an expected value, and can actually be written more simply as this:
 
-$$\mathcal{L} = \sum_{i=1}^n \left(y_i - f(x_i))^2\right) = \mathbb{E}\left(y_i - f(x_i))^2\right)$$
+$$\mathcal{L} = \sum_{i=1}^n \left(y_i - f(x_i))^2\right) = \mathbb{E}\left[\left(y_i - f(x_i)^2\right)\right]$$
 
-However, there's actually a way of rewriting this equation:
+and there's actually a way of rewriting this equation:
+
+
+
 
 
 
