@@ -33,7 +33,7 @@ As you can see, the test data is a sliding window that glides over the whole dat
 
 ## Why is cross-validation a good idea?
 
-From my article on [the basics of ML](https://sangstar.github.io/ml/2022/11/08/ml-overview.html) I talk about there being some ideal function $$\hat f$$ that we wish to approximate. One can imagine there being some set of approximating functions $$\left{f_i\right}^n$$ with varying effectiveness. The best approximator $$\bar f$$ in that set will have the lowest total variance and bias compared to its fellow members in the set. Cross-validation is good because it serves as a very useful evaluation metric to assist in finding $$\bar f$$.
+From my article on [the basics of ML](https://sangstar.github.io/ml/2022/11/08/ml-overview.html) I talk about there being some ideal function $$\hat f$$ that we wish to approximate. One can imagine there being some set of approximating functions $$\{f_i\}^n$$ with varying effectiveness. The best approximator $$\bar f$$ in that set will have the lowest total variance and bias compared to its fellow members in the set. Cross-validation is good because it serves as a very useful evaluation metric to assist in finding $$\bar f$$.
 
 # Bias
 
@@ -43,11 +43,11 @@ $$\mathcal{L} = \sum_{i=1}^n \left(y_i - f(x_i))^2\right)$$
 
 which is often called the *mean squared error*, or MSE. The mean is called an expected value, and can actually be written more simply as this:
 
-$$\mathcal{L} = \sum_{i=1}^n \left(y_i - f(x_i))^2\right) = \mathbb{E}\left[\left(y_i - f(x_i)^2\right)\right]$$
+$$\mathcal{L} = \sum_{i=1}^n \left(y_i - f(x_i)^2\right) = \mathbb{E}\left[\left(y_i - f(x_i)^2\right)\right]$$
 
 and there's actually a way of rewriting this equation:
 
-
+$$\mathbb{E}\left[\left(y_i - f(x_i))^2\right)\right] = \mathbb{E}\left(\left[y_i - f(x_i))\right]\right)^2 + \mathbb{E}\left[\left(f(x_i) - \mathbb{E}\left[f(x_i)\right]\right)^2\right]$$
 
 
 
