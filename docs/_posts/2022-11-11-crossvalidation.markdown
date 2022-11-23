@@ -68,9 +68,12 @@ Bias, like accuracy, is concerned with, on average, how close darts (predicted v
 
 The two terms also tend to have a less mathematic but more qualitative definition that is also often more useful: bias is a systematic error in data due to incorrect assumptions about the data being trained, and variance is an error associated with sensitivity to perturbations in the training set, such as noise. High variance would tend to have a model 'connect the dots' for some signal for regression. Funnily enough, however, that model would have a very low bias, as the average distance between true and predicted values would be very small. This highlights something called the *bias-variance tradeoff*, which is one of the foremost problems with generalizing past a training set. 
 
-The point of all this is to say that cross-validation is really helpful in grappling with this problem. The design of the $$k$-fold cross-validation is able to flag for bias because by changing the test set per fold it's continuously testing the model on new data, and by performing multiple rounds of cross-validation, variance is monitored by measuring the model's predictive performance throughout the rounds, as consistently low errors through different partitions of the data imply low variance. Bias can be inherent to your dataset, as biased datasets are a common headache among data scientists, but CV can at the very least reduce what bias it can by using all of the data for training and lowering variance by varying the test sets used to average out any perturbations. 
+The point of all this is to say that cross-validation is really helpful in grappling with this problem. The design of the $$k$$-fold cross-validation is able to flag for bias because by changing the test set per fold it's continuously testing the model on new data, and by performing multiple rounds of cross-validation, variance is monitored by measuring the model's predictive performance throughout the rounds, as consistently low errors through different partitions of the data imply low variance. Bias can be inherent to your dataset, as biased datasets are a common headache among data scientists, but CV can at the very least reduce what bias it can by using all of the data for training and lowering variance by varying the test sets used to average out any perturbations. 
 
 Cross-validation scores are a great way to monitor how your model is training, especially using *learning curves.*
+
+## Learning curves
+Learning curves are plots of the scores of a model's training score and cross-validation as training examples increase. It can help indicate whether your model suffers from a bias problem or a variance problem more, and when your model may benefit from more data. 
 
 ## References
 
