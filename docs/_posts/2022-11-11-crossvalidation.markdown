@@ -41,7 +41,7 @@ If you take a look at the loss function I made in my previously mentioned articl
 
 $$\mathcal{L} = \sum_{i=1}^n \left(y_i - f(x_i)\right)^2$$
 
-which is often called the *mean squared error*, or MSE. The mean is called an expected value, and can actually be written more simply as this:
+which is often called the residual sum of squares, or the *mean squared error*, or MSE. The mean is called an expected value, and can actually be written more simply as this:
 
 $$\mathcal{L} = \sum_{i=1}^n \left(y_i - f(x_i)\right)^2 = \mathbb{E}\left[\left(y_i - f(x_i)\right)^2\right]$$
 
@@ -52,7 +52,7 @@ $$\mathbb E\left[\left(y_i - f(x_i)\right)^2\right] = \mathbb E\left[y_i - f(x_i
 
 Of that new expression on the right-hand side, the first term is called the *square of the expected bias*, and the second term is called the variance of the estimator $$f$$.
 
-It's clear to see that to minimize loss, you need to minimize bias *and* variance together. 
+It's clear to see that to minimize loss, you ideally need to minimize bias *and* variance together. 
 
 ## Bias and Variance
 
@@ -64,7 +64,13 @@ This may seem a bit vague, but it's analogous to *accuracy* and *precision*, whi
   <img width="auto" height="auto" src="/assets/precisionaccuracy.jpg">
 </p>
 
-Bias, like accuracy, is concerned with, on average, how close darts (predicted values) are to the bullseye (true value), while variance, like precision, is concerned with how close darts (predicted values) are to *eachother*. Just like the image describes, under-fitting models lead to "low accuracy, but high precision" (Dusen et al) models
+Bias, like accuracy, is concerned with, on average, how close darts (predicted values) are to the bullseye (true value), while variance, like precision, is concerned with how close darts (predicted values) are to *eachother*. Just like the image describes, an under-fitted model lead to "low accuracy, but high precision" and an overfitted model "leads to low precision but high accuracy" (Dusen et al). 
+
+The two terms also tend to have a less mathematic but more qualitative definition that is also often more useful: bias is a systematic error in data due to incorrect assumptions about the data being trained, and variance is an error associated with sensitivity to perturbations in the training set, such as noise. High variance would tend to have a model 'connect the dots' for some signal for regression. Funnily enough, however, that model would have a very low bias, as the average distance between true and predicted values would be very small. This highlights something called the *bias-variance tradeoff*, which is one of the foremost problems with generalizing past a training set. 
+
+The point of all this is to say that cross-validation is really helpful in grappling with this problem. The design of the $$k$-fold cross-validation is able to flag for bias because by changing the test set per fold it's continuously testing the model on new data, and by performing multiple rounds of cross-validation, variance is monitored by measuring the model's predictive performance throughout the rounds, as consistently low errors through different partitions of the data imply low variance. Bias can be inherent to your dataset, as biased datasets are a common headache among data scientists, but CV can at the very least reduce what bias it can by using all of the data for training and lowering variance by varying the test sets used to average out any perturbations. 
+
+Cross-validation scores are a great way to monitor how your model is training, especially using *learning curves.*
 
 ## References
 
