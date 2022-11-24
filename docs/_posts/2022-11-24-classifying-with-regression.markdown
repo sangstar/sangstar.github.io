@@ -68,7 +68,7 @@ which has *zero* classification error. The goal of classification in cases with 
 
 
 ## Caveats and other notes
-That being said, with some constraints to ensure points don't exist near the boundary, linear regression *can* work. See an example from whuber's answer [here](https://stats.stackexchange.com/questions/228344/why-a-linear-regression-cannot-obtain-a-zero-classification-error-on-a-predictor. )
+That being said, with some constraints to ensure points don't exist near the boundary, linear regression *can* work. See an example from whuber's answer [here.](https://stats.stackexchange.com/questions/228344/why-a-linear-regression-cannot-obtain-a-zero-classification-error-on-a-predictor. )
 
 I also wanted to add that I especially enjoyed learning about the logit well-approximating a perfect classifier, because it reminds me of another sigmoid modeling a step function that is bounded at a range of $$0$$ and $$1$$, the Fermi-Dirac distribution. As the absolute temperature converges to $$0$$ your sigmoid reduces to a step function.
 
