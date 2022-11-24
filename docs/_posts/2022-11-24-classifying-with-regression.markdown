@@ -22,6 +22,26 @@ You might've noticed that logistic *regression* is more often than not used as a
 
 A regressor is a model that predicts a *quantity*, specifically some real number $$x \in \mathbf{R}$$. A classifier, on the other hand, essentially outputs a vector that is typically argmax'd to a sparse vector, with the $$1$$ positioned at the predicted class. They are the two standard approaches to supervised learning, and are well-known to any ML enthusiast. 
 
+## Forcing a regressor to be a classifier
+
+Suppose I go against the grain and try and force linear regression to work for classification anyway. Andrew Ng has a lovely [course](https://www.coursera.org/learn/machine-learning) which highlights this issue with a few graphics that I'll use here. 
+
+Let's say I am trying to predict whether someone has a malignant tumor or not depending on its size, and try to fit a linear regressor to it to classify whether it's malignant or not. Let's say I took some of the data, and tried to fit it.
+
+<p align="center">
+  <img width="auto" height="auto" src="/assets/linearreg.jpg">
+</p>
+
+Well, that looks pretty good! I could probably decide on a decision boundary at like 0.5 or something and use this!
+
+Suppose, however, I add another datapoint from the training set, a sample with a far larger tumor size, and fit it again. 
+
+<p align="center">
+  <img width="auto" height="auto" src="/assets/linearreg2.jpg">
+</p>
+
+The 0.5 decision rule is completely ruined now, which means after *every* sample my decision rule would have to change. This decision rule should be used to predict an unseen datapoint, not *redefined* by it. How can you trust a model to decide whether your tumor is malignant or not when it changes its decision criteria after every tumor it's shown?
+
 ## What allows a regressor to be used as a classifier?
 
 It's commonly thought that logistic regression works as classification due to using a decision rule. It seems to be a good classifier if you give it a decision rule like below.
@@ -29,13 +49,9 @@ It's commonly thought that logistic regression works as classification due to us
 $$a \ \ \text{if} \ \ y >= 0.5 \ \ \text{else} \ \ b$$
 
 
-However, the *real* reason logistic regression is well-suited as a classifier is because its predictions are interpreted as the conditional probabilities $$P(y = 1 \mid x)$$. That way, you can model it as the likelihood that $$x_i$$ belong to class $$A$$. If it's low enough, you can *decide* it belongs to class $$B$$ instead if the probability is low. This leads people to adopting the decision rule above, but *you can set whatever threshold value you want*. If I'm deciding who to bet on to win a race, and some bookie tells me there's a 25% chance racer $$A$$ wins the race, I can *decide* to put him in the "not going to win the race" category, but that's because I *chose* 25% as at or below my decision threshold. I could choose my threshold to be 10% and therefore declare that racer $$A$$ will win the race. It's up to me.
+However, the *real* reason logistic regression is well-suited as a classifier is because its predictions are interpreted as the conditional probabilities $$P(y = 1 \mid x)$$. That way, you can model it as the likelihood that $$x_i$$ belong to class $$A$$. If it's low enough, you can *decide* it belongs to class $$B$$ instead if the probability is low. This leads people to adopting the decision rule above, but *you can set whatever threshold value you want*. If I'm deciding who to bet on to win a race, and some bookie tells me there's a 25% chance racer $$A$$ wins the race, I can *decide* to put him in the "not going to win the race" category, but that's because I *chose* 25% as at or below my decision threshold. I could choose my threshold to be 10% and therefore declare that racer $$A$$ will win the race. It's up to me. 
 
-A logit function is also unlike $$n$$th-degree polynomial regressors, however, in that its range is restricted from $$0$$ to $$1$$. This might clue you into the fact that polynomial regressors do not consider predictions conditional probabilities, and can therefore output any real number. You can't interpret their results as probabilities of the input belonging to a class, which makes interpretting its output problematic and nebulous. 
-
-
-
-Logistic regression can also be used in multiclass classification, called multinomial logistic regression, where for $$n$$ labels you create $$n-1$$ logit models with one class as a reference.
+A logit function is also unlike $$n$$th-degree polynomial regressors, however, in that its range is restricted from $$0$$ to $$1$$. This might clue you into the fact that polynomial regressors do not consider predictions conditional probabilities, and can therefore output any real number. You can't interpret their results as probabilities of the input belonging to a class, which makes interpretting its output problematic and nebulous. With logit, not only does its decision boundary stay consistent, but you can *predict the probability* of the tumor size amounting to its malignancy. 
 
 
 
