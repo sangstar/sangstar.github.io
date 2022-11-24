@@ -71,7 +71,7 @@ The point of all this is to say that cross-validation is really helpful in grapp
 
 ## Why is cross-validation a good idea?
 
-The design of the $$k$$-fold cross-validation is able to flag for bias because by changing the test set per fold it's continuously testing the model on new data, and by performing multiple rounds of cross-validation, variance is monitored by measuring the model's predictive performance throughout the rounds, as consistently low errors through different partitions of the data imply low variance. Bias can be inherent to your dataset, as biased datasets are a common headache among data scientists, but CV can at the very least reduce what bias it can by using all of the data for training and lowering variance by varying the test sets used to average out any perturbations. 
+The design of the $$k$$-fold cross-validation is able to flag for bias because by changing the test set per fold it's continuously testing the model on new data ($$k$$ times per epoch rather than once per epoch), and by performing multiple rounds of cross-validation, variance is monitored by measuring the model's predictive performance throughout the rounds, as consistently low errors through different partitions of the data imply low variance. Bias can be inherent to your dataset, as biased datasets are a common headache among data scientists, but CV can at the very least reduce what bias it can by using all of the data for training and lowering variance by varying the test sets used to average out any perturbations, preventing any weird gradient descent updates. 
 
 Cross-validation scores are a great way to monitor how your model is training, especially using *learning curves.*
 
