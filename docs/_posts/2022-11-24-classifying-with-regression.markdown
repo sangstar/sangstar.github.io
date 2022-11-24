@@ -26,5 +26,5 @@ A regressor is a model that predicts a *quantity*, specifically some real number
 
 Quite simply, *a decision rule*. Logistic regression is a *regression algorithm*, plain and simple. It just happens to be a good classifier if you give it a decision rule like:
 
-$$a \text{if} x >= 0.5 \text{else} b$$
+$$a \ \ \text{if} \ \ x >= 0.5 \ \ \text{else} \ \ b$$
 
