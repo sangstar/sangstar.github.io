@@ -66,6 +66,7 @@ which has *zero* classification error. The goal of classification in cases with 
   <img width="auto" height="auto" src="/assets/perfectclassifier_logit.jpg">
 </p>
 
+As you can see, I have very scientifically drawn it on. 
 
 ## Caveats and other notes
 That being said, with some constraints to ensure points don't exist near the boundary, linear regression *can* work. See an example from whuber's answer [here.](https://stats.stackexchange.com/questions/228344/why-a-linear-regression-cannot-obtain-a-zero-classification-error-on-a-predictor. )
