@@ -35,7 +35,7 @@ However, the *real* reason logistic regression is well-suited as a classifier is
 
 A logit function is also unlike $$n$$th-degree polynomial regressors, however, in that its range is restricted from $$0$$ to $$1$$. This might clue you into the fact that polynomial regressors do not consider predictions conditional probabilities, and can therefore output any real number. You can't interpret their results as probabilities of the input belonging to a class. This makes interpretting its output problematic and nebulous, only going off of a decision boundary for the scores and having to *change the boundary itself* after any new point is introduced into training. 
 
-
+## Using a linear regression as a classifier anyway..
 Suppose I go against the grain and try and force linear regression to work for classification anyway. Andrew Ng has a lovely [course](https://www.coursera.org/learn/machine-learning) which highlights this issue with a few graphics that I'll use here. 
 
 Let's say I am trying to predict whether someone has a malignant tumor or not depending on its size, and try to fit a linear regressor to it to classify whether it's malignant or not. Let's say I took some of the data, and tried to fit it.
