@@ -88,9 +88,8 @@ You'd be able to tell that the model has high variance if the gap between curves
 
 ## Using learning curves to spot underfitting and overfitting
 
-There's an awesome [article](https://www.kaggle.com/code/ryanholbrook/overfitting-and-underfitting) on this by Ryan Holbrook and Alexis Cook where I get the graphics from for this bit.
 
-Every machine learning enthusiast has encountered a graph like the following:
+Every machine learning enthusiast has encountered a graph like the following (which I got from this awesome [article](https://www.kaggle.com/code/ryanholbrook/overfitting-and-underfitting) by Ryan Holbrook and Alexis Cook):
 
 <p align="center">
   <img width="auto" height="auto" src="/assets/overfitting.jpg">
@@ -98,7 +97,10 @@ Every machine learning enthusiast has encountered a graph like the following:
 
 where the model starts learning too much *noise* from data and not just the underlying signal that needs to be modeled. This causes the accuracy on the training set to continually improve, naturally, but have it lose its ability to generalize, indicating an increase in validation loss (or a decrease in validation accuracy). 
 
-In the case of *underfitting*, it's a little bit harder to tell. Generally, thte learning curve will look relatively similar to an *ideal* learning curve where both training and validation curves converge, but the validation accuracy will simply not reach an acceptable threshold of performance. 
+In the case of *underfitting*, it's a little bit harder to tell. Generally, the learning curve will look relatively similar to an *ideal* learning curve where both training and validation curves converge, but the validation accuracy will simply not reach an acceptable threshold of performance. 
+
+
+All in all, learning curves are an incredibly important diagnostic tool for the health of your model. Both cross-validation and learning curves aid the machine learning engineer in diagnosing and limiting bias and variance, so that we can better arrive at that optimal estimator.
 
 ## References
 
