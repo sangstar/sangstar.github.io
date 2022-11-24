@@ -20,7 +20,7 @@ usemathjax: true
 Learning curves and cross-validation are integral things to incorporate when training your models. Learning curves help clue you in on how much labeled data you need and crucially helps inform you about whether your model is overfitting or underfitting. Cross-validation allows you to monitor and helps to reduce bias and variance, and is a necessary inclusion in your aforementioned learning curves in order to spot overfitting and underfitting. I'll start with talking about cross-validation.
 
 ## Cross-validation
-Cross-validation draws from a *validation set*. I mentioned it briefly in the first part of this series of ML posts. A validation set is a test set that is used *during* training, and typically takes the same share of the labeled data as the test set. Cross-validation aims to continually assess a model's ability to generalize as it's being trained. The most common form of cross-validation is the non-exhaustive $$k$$-fold cross-validation. 
+Cross-validation draws from a *validation set*. I mentioned it briefly in the first part of this series of ML posts. A validation set is a test set that is used *during* training, and typically takes the same percentage of the labeled data as the test set. Cross-validation aims to continually assess a model's ability to generalize as it's being trained. The most common form of cross-validation is the non-exhaustive $$k$$-fold cross-validation. 
 
 # $$k$$-fold cross-validation
 In $$k$$-fold cross-validation, a *fold* is the size of the training data to be partitioned into $$k$$ equally sized subsets. Of the $$k$$ folds, $$k-1$$ folds are used for training and one fold is reserved as a test set. From this partition, a model is trained on the training part and an accuracy score is computed on the test part of each fold. The scores from each of the folds are averaged and used as an evaluation metric. An image of this process, created by Wikipedia user [Gufosawa](https://commons.wikimedia.org/wiki/User:Gufosowa), can be found below:
@@ -36,7 +36,7 @@ From my article on [the basics of ML](https://sangstar.github.io/ml/2022/11/08/m
 
 # Rewriting the loss function
 
-If you take a look at the loss function I made in my previously mentioned article, you'll note that its actually just an average of the squared difference between the true and predicted values of a dataset:
+If you take a look at the loss function I made in my previously mentioned article, you'll note that it's actually just an average of the squared difference between the true and predicted values of a dataset:
 
 $$\mathcal{L} = \sum_{i=1}^n \left(y_i - f(x_i)\right)^2$$
 
