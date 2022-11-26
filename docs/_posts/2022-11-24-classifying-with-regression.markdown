@@ -20,7 +20,7 @@ You might've noticed that logistic *regression* is more often than not used as a
 
 ## What is a regressor? What is a classifier?
 
-A regressor is a model that predicts a *quantity*, specifically some real number $$x \in \mathbf{R}$$. A classifier, on the other hand, essentially outputs a vector that is typically argmax'd to a sparse vector, with the $$1$$ positioned at the predicted class. They are the two standard approaches to supervised learning, and are well-known to any ML enthusiast. 
+A regressor is a model that predicts a *quantity*, specifically some real number $$x \in \mathbf{R}$$. A classifier, on the other hand, essentially outputs a vector that is typically argmax'd. They are the two standard approaches to supervised learning, and are well-known to any ML enthusiast. 
 
 
 
@@ -69,7 +69,7 @@ which has *zero* classification error. The goal of classification in cases with 
 As you can see, I have very scientifically drawn it on. 
 
 ## Caveats and other notes
-That being said, with some constraints to ensure points don't exist near the boundary, linear regression *can* work. See an example from whuber's answer [here.](https://stats.stackexchange.com/questions/228344/why-a-linear-regression-cannot-obtain-a-zero-classification-error-on-a-predictor. )
+That being said, with some constraints to ensure points don't exist near the boundary, linear regression *can* work. See an example from whuber's answer [here.](https://stats.stackexchange.com/questions/228344/why-a-linear-regression-cannot-obtain-a-zero-classification-error-on-a-predictor. ) 
 
 I also wanted to add that I especially enjoyed learning about the logit well-approximating a perfect classifier, because it reminds me of another sigmoid modeling a step function that is bounded at a range of $$0$$ and $$1$$, the Fermi-Dirac distribution. As the absolute temperature converges to $$0$$ your sigmoid reduces to a step function.
 
