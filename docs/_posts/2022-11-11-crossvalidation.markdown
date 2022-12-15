@@ -29,7 +29,7 @@ In $$k$$-fold cross-validation, a *fold* is the size of the training data to be 
   <img width="auto" height="auto" src="/assets/kfold.jpg">
 </p>
 
-As you can see, the test data is a sliding window that glides over the whole dataset per epoch, such that the every datapoint is used once and only once as test data.
+As you can see, the test data is a sliding window that glides over the whole dataset per epoch, such that every datapoint is used once and only once as test data.
 
 
 From my article on [the basics of ML](https://sangstar.github.io/ml/2022/11/08/ml-overview.html) I talk about there being some ideal function $$\hat f$$ that we wish to approximate. One can imagine there being some set of approximating functions $$\{f_i\}^n$$ with varying effectiveness. The best approximator $$\bar f$$ in that set will have the lowest total variance and bias compared to its fellow members in the set. Cross-validation is good because it serves as a very useful evaluation metric to assist in finding $$\bar f$$.
@@ -63,7 +63,7 @@ This may seem a bit vague, but it's analogous to *accuracy* and *precision*, whi
   <img width="auto" height="auto" src="/assets/precisionaccuracy.jpg">
 </p>
 
-Bias, like accuracy, is concerned with, on average, how close darts (predicted values) are to the bullseye (true values) in that if a dart hits the bullseye, then one of your predicted values was equal to its true value, while variance, like precision, is concerned with how close darts (predicted values) are to *eachother*. Just like the image describes, an under-fitted model lead to "low accuracy, but high precision" and an overfitted model "leads to low precision but high accuracy" (Dusen et al). 
+Bias, like accuracy, is concerned with, on average, how close darts (predicted values) are to the bullseye (true values) in that if a dart hits the bullseye, then one of your predicted values was equal to its true value, while variance, like precision, is concerned with how close darts (predicted values) are to *eachother*. Just like the image describes, an under-fitted model leadsto "low accuracy, but high precision" and an overfitted model "leads to low precision but high accuracy" (Dusen et al). 
 
 The two terms also tend to have a less mathematic but more qualitative definition that is also often more useful: bias is a systematic error in data due to incorrect assumptions about the data being trained, and variance is an error associated with sensitivity to perturbations in the training set, such as noise. High variance would tend to have a model 'connect the dots' for some signal for regression. Funnily enough, however, that model would have a very low bias, as the average distance between true and predicted values would be very small. This highlights something called the *bias-variance tradeoff*, which is one of the foremost problems with generalizing past a training set. 
 
