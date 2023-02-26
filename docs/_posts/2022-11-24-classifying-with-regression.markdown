@@ -20,7 +20,7 @@ You might've noticed that logistic *regression* is more often than not used as a
 
 ## What is a regressor? What is a classifier?
 
-A regressor is a model that predicts a *quantity*, specifically some real number $$x \in \mathbf{R}$$. A classifier, on the other hand, outputs a *class*, essentially outputting a vector that is typically argmax'd. They are the two standard approaches to supervised learning, and are well-known to any ML enthusiast. 
+A regressor is a model that predicts a *quantity*, specifically some real number $$x \in \mathbf{R}$$. A classifier, on the other hand, outputs a *class*, essentially outputting a vector that is typically argmax'd. They are the two standard approaches to supervised learning, and are well-known to anyone who does ML. 
 
 
 
