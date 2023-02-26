@@ -17,7 +17,7 @@ usemathjax: true
 {% endif %}
 
 
-In my view, most of work done in ML is preparing for training. Aggregating appropriate data, analyzing it, deciding if it's sufficient, and then preprocessing it is the majority of the work of the machine learning engineer. Preprocessing is the preparation of data for maximal performance during training. It is done in both ML and NLP, in that it's done regardless of whether your data is numeric, categoric, or text. 
+In my view, most of work done in ML is preparing for training. Aggregating appropriate data, analyzing it, deciding if it's sufficient, and then preprocessing it in my view is the majority of the work of the machine learning engineer. Preprocessing is the preparation of data for maximal performance during training. It is done in both ML and NLP, in that it's done regardless of whether your data is numeric, categoric, or text. 
 
 ## Data scaling
 # Standardization
