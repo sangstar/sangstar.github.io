@@ -55,3 +55,5 @@ I will also mention that if you're fine-tuning a BERT model, you shouldn't stem,
 ## References
 
 Sarle, W. S. (n.d.). Comp.ai.neural-Nets FAQ, part 2 of 7: Learning. faqs.org. Retrieved February 26, 2023, from http://www.faqs.org/faqs/ai-faq/neural-nets/part2/ 
+
+Olah, C. (n.d.). Neural networks, manifolds, and topology. Neural Networks, Manifolds, and Topology -- colah's blog. Retrieved February 26, 2023, from https://colah.github.io/posts/2014-03-NN-Manifolds-Topology/ 
