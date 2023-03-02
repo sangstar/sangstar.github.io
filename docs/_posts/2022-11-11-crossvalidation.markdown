@@ -74,7 +74,7 @@ Cross-validation is really helpful in grappling with this problem.
 
 ## Why is cross-validation a good idea?
 
-The design of the $$k$$-fold cross-validation is able to flag for bias because by changing the test set per fold it's continuously testing the model on new data ($$k$$ times per epoch rather than once per epoch), and by performing multiple rounds of cross-validation, variance is monitored by measuring the model's predictive performance throughout the rounds, as consistently low errors through different partitions of the data imply low variance. Bias can be inherent to your dataset, as biased datasets are a common headache among data scientists, but CV can at the very least reduce what bias it can by using all of the data for training and lowering variance by varying the test sets used to average out any perturbations, preventing any weird gradient descent updates. 
+The design of the $$k$$-fold cross-validation is able to flag for bias because by changing the test set per fold it's continuously testing the model on new data ($$k$$ times per epoch rather than once per epoch, which is done in a standard split), instead of optimizing on the same test set each epoch, and by performing multiple rounds of cross-validation variance is monitored by measuring the model's predictive performance throughout the rounds, so that we can use it as an early stopping monitor if overfitting starts to occur. Bias can be inherent to your dataset, as biased datasets are a common headache among data scientists, but CV can at the very least reduce what bias it can by using all of the data for training and lowering variance by varying the test sets used to average out any perturbations, preventing any unhelpful updates to model parameters. 
 
 Cross-validation scores are a great way to monitor how your model is training, especially using *learning curves.*
 
@@ -100,7 +100,7 @@ Every machine learning enthusiast has encountered a graph like the following (wh
 
 where the model starts learning too much *noise* from data and not just the underlying signal that needs to be modeled. This causes the accuracy on the training set to continually improve, naturally, but have it lose its ability to generalize, indicating an increase in validation loss (or a decrease in validation accuracy). 
 
-In the case of *underfitting*, it's a little bit harder to tell. Generally, the learning curve will look relatively similar to an *ideal* learning curve where both training and validation curves converge, but the validation accuracy will simply not reach an acceptable threshold of performance. 
+In the case of *underfitting*, it's a little bit harder to tell. Generally, the learning curve will look relatively similar to an *ideal* learning curve where both training and validation curves are close together, but both accuracies will be low, indicating poor learning (stressing that the closeness of the two curves doesn't really imply a reassuring generalizability, but rather that it performs similarly poorly on a training and validation set).
 
 
 All in all, learning curves are an incredibly important diagnostic tool for the health of your model. Both cross-validation and learning curves aid the machine learning engineer in diagnosing and limiting bias and variance, so that we can better arrive at that optimal estimator.
