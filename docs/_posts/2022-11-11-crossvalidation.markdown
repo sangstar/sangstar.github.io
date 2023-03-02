@@ -57,17 +57,20 @@ It's clear to see that to minimize loss, you ideally need to minimize bias *and*
 
 As you might be able to tell by looking at the term above and noting that it's referring to the *squared* bias, bias is the average amount your estimator's prediction $$f(x_i)$$ is off from the true value $$y_i$$. On the other hand, variance is the average amount your predicted values are displaced from your *average* predicted value. 
 
-This may seem a bit vague, but it's analogous to *accuracy* and *precision*, which is one of the first things most physics undergraduates learn about when doing experiments. Both accuracy, bias, variance and precision can be really well described with a dartboard like in the image below (Dusen et al).
+This may seem a bit vague, but bias and variance are antithetical to accuracy and precision respectively, which is one of the first things most physics undergraduates learn about when doing experiments. Both accuracy, bias, variance and precision can be really well described with a dartboard like in the image below (Dusen et al).
 
 <p align="center">
   <img width="auto" height="auto" src="/assets/precisionaccuracy.jpg">
 </p>
 
-Bias, like accuracy, is concerned with, on average, how close darts (predicted values) are to the bullseye (true values) in that if a dart hits the bullseye, then one of your predicted values was equal to its true value, while variance, like precision, is concerned with how close darts (predicted values) are to *eachother*. Just like the image describes, an under-fitted model leadsto "low accuracy, but high precision" and an overfitted model "leads to low precision but high accuracy" (Dusen et al). 
 
-The two terms also tend to have a less mathematic but more qualitative definition that is also often more useful: bias is a systematic error in data due to incorrect assumptions about the data being trained, and variance is an error associated with sensitivity to perturbations in the training set, such as noise. High variance would tend to have a model 'connect the dots' for some signal for regression. Funnily enough, however, that model would have a very low bias, as the average distance between true and predicted values would be very small. This highlights something called the *bias-variance tradeoff*, which is one of the foremost problems with generalizing past a training set. 
+Bias, like accuracy, is concerned with, on average, how close darts (predicted values) are to the bullseye (true values) in that if a dart hits the bullseye, then one of your predicted values was equal to its true value, while variance, like precision, is concerned with how close darts (predicted values) are to *eachother*. Just like the image describes, an under-fitted model (equating to high bias but low variance) leads to "low accuracy, but high precision" and an overfitted model (equating to high variance and low bias) "leads to low precision but high accuracy" (Dusen et al). 
 
-The point of all this is to say that cross-validation is really helpful in grappling with this problem. 
+The two terms also tend to have a less mathematic but more qualitative definition that is also often more useful: bias is a systematic error in data due to oversimplistic learning, and variance is an error associated with sensitivity to perturbations in the training set, such as noise. 
+
+As an estimator becomes more complex, it'll start to look like it's "connecting the dots", which reduces bias as predicted values will on average be closer to target values. However, the nature of this more all-over-the-place estimator will have a higher average distance from the average predicted value, thus having a higher variance. Lowering one tends to raise the other. This highlights something called the *bias-variance tradeoff*, which is one of the foremost problems with generalizing past a training set. 
+
+Cross-validation is really helpful in grappling with this problem. 
 
 ## Why is cross-validation a good idea?
 
