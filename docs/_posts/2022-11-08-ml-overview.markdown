@@ -33,7 +33,7 @@ $$\bar f \left(\{x_i\}_{i=1}^{k}\right) = \{\bar y_i\}_{i=1}^{k}$$
 where $$\bar y_i$$ is called a *prediction*. In order to find our $$\bar f$$, we need to minimize a *loss function* with *backpropagation*. 
 
 # Loss functions
-A loss function is a function that helps us to uncover $$\bar f$$ by ideally finding its global minimum. There are many loss functoins out there, but a common one for estimating real numbers (regression) is called the *residual sum of squares*:
+A loss function is a function that helps us to uncover $$\bar f$$ by ideally finding its global minimum. There are many loss functions out there, but a common one for estimating real numbers (regression) is called the *residual sum of squares*:
 
 $$\mathcal{L} = \sum_{i=1}^n \left(y_i - f(x_i)\right)^2$$
 
