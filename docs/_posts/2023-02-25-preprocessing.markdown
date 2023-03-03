@@ -28,11 +28,11 @@ In a MLP, hidden units mathematically represent hyperplanes that attempt to orie
 So while standardizing input data for MLP allows for much better initialization, it's far more crucial in unsupervised learning algorithms, where if one of your columns has very high variance and another very low variance, the low variance column will have virtually no impact if using something like $$k$$-means with euclidean distance. This problem can easily and will often arise. If I'm training a model that has people's heights in one column and the money they spent on buying their house on the other, the latter will have a much, much higher variance and a clustering algorithm will basically ignore the heights column outright and unjustifiably. 
 
 # Normalization
-Models like MLPs actually place more importance on higher numbers than lower numbers *always and without context*, unlike humans. We're usually more concerned with relative scales, while lots of models deal with *absolutes*. In order to account for this, we like to normalize our data so that no columns are given unfair importance. A common way to do this is with *min-max scaling*, although there are a couple ways. The transformation is represented with the equation below:
+Models like MLPs actually place more importance on higher numbers than lower numbers *always and without context*, unlike humans. If a predicted value for a housing price is 5% off the true value, this error is far larger than someone's height in feet being 5% off, yet the loss function typically only cares about the displacement between true and predicted. These huge error calculations can at best dominate the average gradient of batch or at worst lead to exploding gradients. We're usually more concerned with relative scales. In order to account for this, we like to normalize our data so that no columns are given unfair importance. A common way to do this is with *min-max scaling*, although there are a couple ways. The transformation is represented with the equation below:
 
 $$x' = \frac{x-x_{min}}{x_{max}-x_{min}}$$
 
-It's usually a good idea to do this with numeric data, unless you have two columns where you think preserving the different magnitudes are important. 
+It's usually never a bad idea to do this with numeric data, unless you have two columns where you think preserving the different magnitudes is important. 
 
 ## NLP preprocessing
 NLP is probably one of the most data-hungry fields of machine learning, yet has a serious dearth of quality labeled data. This is one of the reasons why LLM's are so popular. It can be often hard to justify building your own model from scratch as opposed to just fine-tuning a LLM. 

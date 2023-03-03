@@ -17,6 +17,9 @@ usemathjax: true
 {% endif %}
 
 
+# How much hidden layers should I use? How much hidden layer units should I use?
+They both sort of serve the same purpose in allowing the network to pick up on more complex patterns at the cost of overfitting to the data. Adding a new layer adds a whole new weights matrix to the computation, and the number of hidden layer neurons determines one of the dimensions of the weights matrix. Apart from that, it's hard to really intuitively know *how many* layers to use or *how many* neurons to use for some given layer. Just know that the more you add the more complex your model is, and that adding hidden layers will probably add more complexity faster than adding more hidden layer neurons because you're introducing an entirely new weights matrix as opposed to increasing one of the dimensions in the preceding weights matrix.
+
 
 
 # Why do I never see polynomial models besides linear ones?
