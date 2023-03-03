@@ -37,8 +37,3 @@ This usually involves adding some fully-connected layers on top of the pre-train
 In transfer learning the pre-trained model's learned weights and embeddings effectively have done most of the work for you if your target task is relatable. Fewer datapoints are needed to train this model because the hope is if the target task is relatable, less datapoints will be "wasted" learning fundamental representations from both the source and target task, and allow the data to allow for more "advanced" insights. It's kind of like having a goal of teaching students calculus in as few lessons as possible and noting that high school students will require less lessons to accomplish this goal than kindergarteners because the high school students won't have to learn many basic math concepts that the younger cohort will.
 
 It's fairly hard justifying not using transfer learning in certain disciplines, like object recognition and NLP, which are innately data-hungry and where publically available, multipurpose data is fairly scarce.  
-## References
-
-Sarle, W. S. (n.d.). Comp.ai.neural-Nets FAQ, part 2 of 7: Learning. faqs.org. Retrieved February 26, 2023, from http://www.faqs.org/faqs/ai-faq/neural-nets/part2/ 
-
-Olah, C. (n.d.). Neural networks, manifolds, and topology. Neural Networks, Manifolds, and Topology -- colah's blog. Retrieved February 26, 2023, from https://colah.github.io/posts/2014-03-NN-Manifolds-Topology/ 
