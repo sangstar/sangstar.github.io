@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Transfer learning"
+title:  "Rapid-fire questions 1"
 date:   2023-02-25 8:58
 categories: ml
 usemathjax: true
@@ -17,17 +17,26 @@ usemathjax: true
 {% endif %}
 
 
-# The types of transfer learning
-There are actually three: instance-based transfer, feature-representation transfer and parameter transfer.
+
+
+# Why do I never see polynomial models besides linear ones?
+Because it usually feels better to leave a non-linear decision boundary to something like a neural network. Polynomials are a bit finnicky and love to grossly overfit to data. Also, compared to linear models, they're far less interpretable. It's not often that you favor a polynomial model over a linear model or splines. Splines are tragically undervalued in my opinion, especially to the beginniner ML engineer. 
+
+# Will a neural network also create the same output from the same input?
+As a neural network is just a series of matrix multiplications wrapped up in some nonlinear function, it is indeed deterministic. That being said, much of ML is stochastic, including large swathes of the training process, especially with smaller batch sizes. Smaller batch sizes are a bit endearingly chaotic, in that usually they result in poor optimization, but can sometimes walk the gradient to the global minimum mostly by chance, and that could literally just not happen if you decide to train again. It's actually formally called stochastic gradient descent. 
+
+# What's transfer learning? 
+Transfer learning is all about leveraging the knowledge of a pre-trained model to a new task. There are actually three different types of transfer learning: instance-based transfer, feature-representation transfer and parameter transfer.
 
 In instance-based transfer, you use some of the data used to train the pre-trained model to assist in training your own model. In feature representation transfer, hidden layer activations from the pre-trained model are used to aid the input features with the learned patterns of the pre-trained layer, either replacing them entirely or concatenating themselves to the input vector. 
 
-I will go out on a limb and say parameter transfer is the most common form that I've encountered. It involves using the weights from a pre-trained model to assist in the learning process for your model. 
+I will go out on a limb and say parameter transfer is the most common form that I've encountered. It involves using the weights from a pre-trained model to assist in the learning process for your model. When people talk about "fine-tuning" models, this is what they mean, and, to be honest, whenever I think of transfer learning I am usually thinking about parameter transfer. 
 
-This usually involves adding some fully-connected layers on top of the pre-trained model, and then either freezing the weights on the old layers or letting them change while introducing new data relevant to your use case, often with two different learning rates for the old and new layers. The learning rate for the new layers ought to be much higher as you want them to change much more drastically compared to the weights from the old layers, because the whole point of parameter transfer is the assumption that those weights are already pretty good. 
+This usually involves adding some fully-connected layers on top of the pre-trained model, and then either freezing the weights on the old layers or letting them change while introducing new data relevant to your use case, often with two different learning rates for the old and new layers. The learning rate for the new layers ought to be much higher as you want them to change much more drastically compared to the weights from the old layers, because the whole point of parameter transfer is the assumption that those weights are already pretty good. Tinkering too much with the old weights can cause it to lose its quality extant embeddings, a phenomenon known as "catastrophic forgetting", which is why paying great care to the old layers when re-training is quite important. 
 
-In transfer learning the pre-trained model's learned weights and embeddings effectively have done most of the work for you if your target task is relatable. Fewer datapoints are needed to train this model because the hope is if the target task is relatable, less datapoints will be "wasted" learning fundamental representations from both the source and target task, and allow the data to allow for more "advanced" insights. It's kind of like having a goal of teaching students calculus in as few lessons as possible and noting that high school students will require less lessons to accomplish this goal than kindergarteners because the high school students won't have to learn many basic math concepts the younger cohort will. 
+In transfer learning the pre-trained model's learned weights and embeddings effectively have done most of the work for you if your target task is relatable. Fewer datapoints are needed to train this model because the hope is if the target task is relatable, less datapoints will be "wasted" learning fundamental representations from both the source and target task, and allow the data to allow for more "advanced" insights. It's kind of like having a goal of teaching students calculus in as few lessons as possible and noting that high school students will require less lessons to accomplish this goal than kindergarteners because the high school students won't have to learn many basic math concepts that the younger cohort will.
 
+It's fairly hard justifying not using transfer learning in certain disciplines, like object recognition and NLP, which are innately data-hungry and where publically available, multipurpose data is fairly scarce.  
 ## References
 
 Sarle, W. S. (n.d.). Comp.ai.neural-Nets FAQ, part 2 of 7: Learning. faqs.org. Retrieved February 26, 2023, from http://www.faqs.org/faqs/ai-faq/neural-nets/part2/ 
