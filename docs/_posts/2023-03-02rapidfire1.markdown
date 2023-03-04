@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Rapid-fire questions 1"
-date:   2023-02-25 8:58
+date:   2023-03-02 8:58
 categories: ml
 usemathjax: true
 ---
@@ -27,6 +27,8 @@ Because it usually feels better to leave a non-linear decision boundary to somet
 
 # Will a neural network also create the same output from the same input?
 As a neural network is just a series of matrix multiplications wrapped up in some nonlinear function, it is indeed deterministic. That being said, much of ML is stochastic, including large swathes of the training process, especially with smaller batch sizes. Smaller batch sizes are a bit endearingly chaotic, in that usually they result in poor optimization, but can sometimes walk the gradient to the global minimum mostly by chance, and that could literally just not happen if you decide to train again. It's actually formally called stochastic gradient descent. 
+
+One notably exception to this rule however is with text generative models, which makes use of a concept called *temperature sampling*. I'll talk about this more on my article on ChatGPT.
 
 # What's transfer learning? 
 Transfer learning is all about leveraging the knowledge of a pre-trained model to a new task. There are actually three different types of transfer learning: instance-based transfer, feature-representation transfer and parameter transfer.
