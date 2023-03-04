@@ -31,7 +31,7 @@ A transformer is a complex type of neural network architecture that really has n
 
 which for me, when I first saw it, was absolutely befuddling. My hope is that after reading this article, if you go back to this graphic it'll make a bit more sense. Let's dive right and start dealing with the attention units. 
 
-## Self-attention
+## Self-attention: encoding layer
 Transformers are composed of scaled dot-product attention units. These attention units embed the input document by each token's weighted relevance to other tokens in the sentence. 
 
 For each attention unit, the model learns weights matrices $$W_Q$$, called the query weights matrix, $$W_K$$, the key weights matrix, and $$W_V$$, the value weights matrix. 
@@ -46,9 +46,17 @@ which can be thought of as the relevance of token $$i$$ on token $$j$$. These at
 
 $$\text{Attention}_i = \sum_{j=1}^n a{i,j} v_j$$
 
-where $$a_i$$ is known as the *attention* for token or position $$i$$. By doing this for all tokens, you've *encoded* your document $$d$$. Notice that through all these vectorized operations we've managed to enable full-range context dependency on all of our tokens, which RNN's aren't able to do. In addition, this setup allows for asymmetry between tokens $$i$$ and $$j$$. As $$\alpha_{i,j} \ne \alpha_{j,i}$$, this means that the influence of token $$i$$ on $$j$$ can be large while the influence of token $$j$$ on $$i$$ can be mild. 
+where $$a_i$$ is known as the *attention* for token or position $$i$$. By doing this for all tokens, you've *encoded* your document $$d$$. Notice that through all these vectorized operations we've managed to enable full-range context dependency on all of our tokens, which RNN's aren't able to do. In addition, this setup allows for asymmetry between tokens $$i$$ and $$j$$. As $$\alpha_{i,j} \ne \alpha_{j,i}$$, this means that the influence of token $$i$$ on $$j$$ can be large while the influence of token $$j$$ on $$i$$ can be mild and vice versa. 
 
+One set of weights matrices each is referred to as an *attention head*, and each attention layer will have multiple heads, as you can see from the "multi-head attention" stuff in the above image. The reason why you want to use multiple heads is similar to why you want to use multiple hidden layers in a neural net, in that it allows more insights to be picked up by combining the "ideas" of all the heads. 
 
+The final multi-headed attention is a concatenation of all of the attention vectors multiplied by a final weights matrix $$W_O$$:
+
+$$\text{MultiheadAttention(Q,K,V)} = \text{Concat}(\text{Attention_i})W_O$$
+
+which is fed to a feed-forward neural network as essentially an "enhanced" and "wiser" word embedding, usually then passed to an $$\text{Add&Norm}$$ layer which adds the output of the feed-forward layer to the output of the multiheaded attention layer which helps to stabilize the training process by reducing the effect of the variance in the distributions of the intermediate activations of the self-attention and feed-forward layers which helps remedy the risk of vanishing gradients. 
+
+This is known as an encoder. 
 
 ## References
 
