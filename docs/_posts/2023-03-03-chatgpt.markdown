@@ -29,9 +29,9 @@ A transformer is a complex type of neural network architecture that really has n
   <img width="auto" height="auto" src="/assets/transformer.jpg">
 </p>
 
-which for me, when I first saw it, was absolutely befuddling. My hope is that after reading this article, if you go back to this graphic it'll make a bit more sense. Let's dive right and start dealing with the attention units. 
+which for me, when I first saw it, was absolutely befuddling. My hope is that after reading this article, if you go back to this graphic it'll make a bit more sense. Let's dive right and start dealing with the attention units. I will be describing a transformer that is used to generate text. 
 
-## Self-attention: encoding layer
+## Self-attention: encoder
 Transformers are composed of scaled dot-product attention units. These attention units embed the input document by each token's weighted relevance to other tokens in the sentence. 
 
 For each attention unit, the model learns weights matrices $$W_Q$$, called the query weights matrix, $$W_K$$, the key weights matrix, and $$W_V$$, the value weights matrix. 
@@ -52,11 +52,15 @@ One set of weights matrices each is referred to as an *attention head*, and each
 
 The final multi-headed attention is a concatenation of all of the attention vectors multiplied by a final weights matrix $$W_O$$:
 
-$$\text{MultiheadAttention(Q,K,V)} = \text{Concat}(\text{Attention_i})W_O$$
+$$\text{MultiheadAttention(Q,K,V)} = \text{Concat}(\text{Attention}_i)W_O$$
 
 which is fed to a feed-forward neural network as essentially an "enhanced" and "wiser" word embedding, usually then passed to an $$\text{Add&Norm}$$ layer which adds the output of the feed-forward layer to the output of the multiheaded attention layer which helps to stabilize the training process by reducing the effect of the variance in the distributions of the intermediate activations of the self-attention and feed-forward layers which helps remedy the risk of vanishing gradients. 
 
-This is known as an encoder. 
+This is known as an encoder. There usually are a number of these in popular transformers (BERT and GPT-2 range usually between 12 and 24). The first encoder takes word embeddings as input, while the subsequent encoders take encodings. 
+
+I'm going to skip positional encoding other than to say it provides a way to capture the order of an input sequence, which is good because otherwise it couldn't distinguish between two tokens that have the same value vector but appear at different positions in the input sequence.
+
+
 
 ## References
 
