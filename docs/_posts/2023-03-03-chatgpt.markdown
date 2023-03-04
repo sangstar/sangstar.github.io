@@ -32,7 +32,9 @@ For each attention unit, the model learns weights matrices $$W_Q$$, called the q
 
 Suppose we have a document $$d$$ with $$n$$ tokens that I will describe in terms of their embeddings: $$d = (u_1, u_2, ..., u_n)$$, which we can assume are produced using a pre-trained word vector space like GloVe or something. For each token, we produce a query, key and value vector by multiplying the token's embedding with each of their associated weights matrices. 
 
-Therefore, for a position $$i$$, corresponding to a token $$t_i$$, we have a query vector $$q_i = u_i W_Q$$, a key vector $$k_i = u_i W_K$$ and a value vector $$
+Therefore, for a position $$i$$, corresponding to a token $$t_i$$, we have a query vector $$q_i = u_i W_Q$$, a key vector $$k_i = u_i W_K$$ and a value vector $$v_i = u_i W_V$$. Then, for each position $$i$$, we get an attention score between positions $$i$$ and $$j$$ by taking the dot product of $$q_i$$ with $$k_j$$:
+
+$$\text{Attention}(q_i, k_j) = \frac{q_i^T k_j}{\sqrt{n}}$$
 
 <p align="center">
   <img width="auto" height="auto" src="/assets/transformer.jpg">
