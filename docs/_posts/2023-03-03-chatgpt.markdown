@@ -46,7 +46,7 @@ which can be thought of as the relevance of token $$i$$ on token $$j$$. These at
 
 $$\text{Attention}_i = \sum_{j=1}^n a{i,j} v_j$$
 
-where $$a_i$$ is known as the *attention* for token or position $$i$$. By doing this for all tokens, you've *encoded* your document $$d$$. Notice that through all these vectorized operations we've managed to enable full-range context dependency on all of our tokens, which RNN's aren't able to do. In addition, this setup allows for asymmetry between tokens $$i$$ and $$j$$. As $$\alpha_{i,j} \ne \alpha{j,i}$$, this means that the influence of token $$i$$ on $$j$$ can be large while the influence of token $$j$$ on $$i$$ can be mild. 
+where $$a_i$$ is known as the *attention* for token or position $$i$$. By doing this for all tokens, you've *encoded* your document $$d$$. Notice that through all these vectorized operations we've managed to enable full-range context dependency on all of our tokens, which RNN's aren't able to do. In addition, this setup allows for asymmetry between tokens $$i$$ and $$j$$. As $$\alpha_{i,j} \ne \alpha_{j,i}$$, this means that the influence of token $$i$$ on $$j$$ can be large while the influence of token $$j$$ on $$i$$ can be mild. 
 
 
 
