@@ -73,7 +73,19 @@ Yes, that's pretty much the gist of it. It's complicated, but if you were to tak
 1. Transformers leverage context between tokens in each sequence, not just a token's absolute sentimental meaning, all without a dependency range limit. 
 2. Text-generation transformers leverage context between tokens in an input sequence to tokens in their output sequence, as well as the output sequence *with itself*. 
 
+That's how a generative transformer like GPT works. As you can see, this process isn't stochastic, yet if you regenerate text in ChatGPT it'll usually produce different responses. This is thanks to something called *semantic temperature*, or just *temperature*. 
 
+# Semantic temperature
+
+# How ChatGPT was trained
+
+## Reinforcement Learning
+
+## Human feedback, reward models
+
+## Proximal policy optimization
+
+## The process
 
 ## References
 
