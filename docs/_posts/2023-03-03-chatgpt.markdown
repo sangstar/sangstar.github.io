@@ -22,7 +22,7 @@ ChatGPT is an artificially intelligent chatbot developed by OpenAI that deployed
 
 I'm going to first start by talking broadly about what transformers are, then get into how GPT's output is stochastic and how that produces "smarter" language, then will overview how ChatGPT uses GPT and proximal policy optimization to be *the* living embodient of this decade's AI paradigm. 
 
-# Transformers
+## Transformers
 A transformer is a complex type of neural network architecture that really has no peer in natural language processing. It's also relatively new, debuting in a paper titled "Attention is All You Need" by Vaswani et al in 2017. It piggybacks off of sequence-to-sequence models (Seq2Seq) that takes a sequence as input and takes a sequence as outputs. Before their invention, the usage of recurrent neural networks (RNNs) were the standard. Transformers immediately seemed to eclipse RNN's in usage due to their improved capacity to capture long-range dependencies in sequences, ability to process tokens in parallel (as opposed to sequentially, which additionally suffered from the risk of vanishing gradients) and are far more interpretable with self-attention. A transformer is shown below:
 
 <p align="center">
@@ -31,7 +31,7 @@ A transformer is a complex type of neural network architecture that really has n
 
 which for me, when I first saw it, was absolutely befuddling. My hope is that after reading this article, if you go back to this graphic it'll make a bit more sense. Let's dive right and start dealing with the attention units. I will be describing a transformer that is used to generate text. 
 
-## Self-attention and the encoder
+# Self-attention and the encoder
 Transformers are composed of scaled dot-product attention units. These attention units embed the input document by each token's weighted relevance to other tokens in the sentence. 
 
 For each attention unit, the model learns weights matrices $$W_Q$$, called the query weights matrix, $$W_K$$, the key weights matrix, and $$W_V$$, the value weights matrix. 
@@ -61,7 +61,7 @@ This is known as an encoder. There usually are a number of these in popular tran
 I'm going to skip positional encoding other than to say it provides a way to capture the order of an input sequence, which is good because otherwise it couldn't distinguish between two tokens that have the same value vector but appear at different positions in the input sequence.
 
 
-## Decoders
+# Decoders
 The decoder is responsible for actually producing the output. For text generation, it takes as input the previously generated output tokens in the output, and the output of the encoding layers. If no tokens have been generated so far it starts with a start-of-sequence token $$\text{SOS}$$. 
 
 Firstly, self-attention is applied to the output tokens. In order to ensure the decoder doesn't "cheat" and use current or future output tokens in its autoregressive generation, it uses a attention layer that *masks* tokens ahead of token $$t$$ before the softmax stage. Then, the encoded input and previously generated tokens are all used as input for another multi-head attention layer, which allows it to focus on relevant parts of the input sequence to generate the next token. Another way of saying this is that the decoder *attends to* the encoded input as well as the previously generated tokens
@@ -77,15 +77,15 @@ That's how a generative transformer like GPT works. As you can see, this process
 
 # Semantic temperature
 
-# How ChatGPT was trained
+## How ChatGPT was trained
 
-## Reinforcement Learning
+# Reinforcement Learning
 
-## Human feedback, reward models
+# Human feedback, reward models
 
-## Proximal policy optimization
+# Proximal policy optimization
 
-## The process
+# The process
 
 ## References
 
