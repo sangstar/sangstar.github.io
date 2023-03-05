@@ -23,7 +23,7 @@ ChatGPT is an artificially intelligent chatbot developed by OpenAI that deployed
 I'm going to first start by talking broadly about what transformers are, then get into how GPT's output is stochastic and how that produces "smarter" language, then will overview how ChatGPT uses GPT and proximal policy optimization to be *the* living embodient of this decade's AI paradigm. 
 
 ## Transformers
-A transformer is a complex type of neural network architecture that really has no peer in natural language processing. It's also relatively new, debuting in a paper titled "Attention is All You Need" by Vaswani et al in 2017. It piggybacks off of sequence-to-sequence models (Seq2Seq) that takes a sequence as input and takes a sequence as outputs. Before their invention, the usage of recurrent neural networks (RNNs) were the standard. Transformers immediately seemed to eclipse RNN's in usage due to their improved capacity to capture long-range dependencies in sequences, ability to process tokens in parallel (as opposed to sequentially, which additionally suffered from the risk of vanishing gradients) and are far more interpretable with self-attention. A transformer is shown below:
+A transformer is a complex type of neural network architecture that really has no peer in natural language processing. It's also relatively new, debuting in a paper titled "Attention is All You Need" by Vaswani et al in 2017. It piggybacks off of sequence-to-sequence models (Seq2Seq) that takes a sequence as input and takes a sequence as outputs. Before their invention, the usage of recurrent neural networks (RNNs) were the standard. Transformers immediately seemed to eclipse RNN's in usage due to their improved capacity to capture long-range dependencies in sequences, ability to process tokens in parallel (as opposed to sequentially, which additionally suffered from the risk of vanishing gradients) and are far more interpretable with self-attention. A transformer is shown below from the [original paper](https://arxiv.org/abs/1706.03762):
 
 <p align="center">
   <img width="auto" height="auto" src="/assets/transformer.jpg">
@@ -70,12 +70,20 @@ This net encoding of the encoded input with the previously generated tokens is f
 
 Yes, that's pretty much the gist of it. It's complicated, but if you were to take anything away, it would be this:
 
-1. Transformers leverage context between tokens in each sequence, not just a token's absolute sentimental meaning, all without a dependency range limit. 
+1. Transformers leverage context between tokens in each sequence, not just a token's embedding, all without a dependency range limit. 
 2. Text-generation transformers leverage context between tokens in an input sequence to tokens in their output sequence, as well as the output sequence *with itself*. 
 
 That's how a generative transformer like GPT works. As you can see, this process isn't stochastic, yet if you regenerate text in ChatGPT it'll usually produce different responses. This is thanks to something called *semantic temperature*, or just *temperature*. 
 
 # Semantic temperature
+If you ask ChatGPT a question, and click "Regenerate response", it'll almost always give you a unique response. Yet none of what I told you involves any random processes. 
+
+The reason why this happens is because at the output layer a probability distribution of the most likely next token is formed out of all tokens in the model's vocabulary. If the most probable token is chosen each time, the output is notoriously banal, repetitive, and overall uninteresting. 
+
+In order to remedy this, the probability of a token being chosen by the model is modified by the *freezing function*:
+
+$$\widetilde p_i = f_\tau (p)_i = \frac{p_i^{1/\tau}}{\sum_j p_j^{1/\tau}}$$
+
 
 ## How ChatGPT was trained
 
@@ -88,4 +96,8 @@ That's how a generative transformer like GPT works. As you can see, this process
 # The process
 
 ## References
-
+https://en.wikipedia.org/wiki/Transformer_(machine_learning_model)
+https://nlp.stanford.edu/blog/maximum-likelihood-decoding-with-rnns-the-good-the-bad-and-the-ugly/
+https://writings.stephenwolfram.com/2023/02/what-is-chatgpt-doing-and-why-does-it-work/
+https://huggingface.co/blog/rlhf
+Vaswani, Ashish; Shazeer, Noam; Parmar, Niki; Uszkoreit, Jakob; Jones, Llion; Gomez, Aidan N.; Kaiser, Lukasz; Polosukhin, Illia (2017-06-12). "Attention Is All You Need". arXiv:1706.03762 [cs.CL].
