@@ -113,13 +113,33 @@ That being, said ChatGPT's factual accuracy isn't always perfect so this should 
 
 ## How ChatGPT was trained
 
-# Reinforcement Learning
+ChatGPT's training process was far more complicated than that of a typical transformer, eschewing supervised, semi-supervised and unsupervised learning in favor of reinforcement learning with human feedback. I'm going to refrain from explaining reinforcement learning much at all in favor of preserving some semblance of brevity for this article.
 
-# Human feedback, reward models
+In reinforcement learning, an *actor* aims to act according to a *policy* in order to maximize a *reward*. In NLP, a natural challenge was trying to define a reward that wasn't so easy as "distance to checkpoint" or "distance from soccer ball to goal" that didn't just cause text generation models to "cheat the system" by producing gibberish that garnered high reward scores. Attempts were made to define rewards in terms of how favorable it would be to humans such as BLEU or ROGUE, these weren't ultimately super satisfactory. Reinforcement learning with human feedback (RLHF) aimed to remedy this with a more clever reward metric: a language model. It's a relatively new concept, as 2019 is the earliest [paper](https://arxiv.org/abs/1909.08593) I can find on the subject.
 
-# Proximal policy optimization
+# Reward models
+
+A reward *model* is a language model (a transformer, typically) trained to identify whether a prompt is useful to humans or not. One way I'm aware it can be done is by providing putting two language models on a prompt and ranking which one is better, generating a sort of ELO system like it's chess. Giving a blank score to a prompt has been found to be ineffective, as human labelers tend to be less likely to see eye-to-eye on an exact score as opposed to a differential ranking, causing noisy training data. 
+
+Once the reward model is trained, we're left with a text-generation transformer and a reward model that ideally is able to distinguish useful prompts from not-so-useful prompts.
 
 # The process
+
+A general outline of the fine-tuning process can be visualized with a gorgeous visual from HuggingFace's [blogpost](https://huggingface.co/blog/rlhf) on RLHF, which explains this whole process in great detail:
+
+<p align="center">
+  <img width="auto" height="auto" src="/assets/rlhf.jpg">
+</p>
+
+and to annotate this process:
+
+1. Two LM's are used that can generate text. All the LM's in use tend to have billions of weights, including the reward model. One LM is used to be fine-tuned for optimal responses in this process, called the *policy*, and another is used as a control to help stabilize the policy's outputs. 
+
+2. Both LM's receive a prompt and generate text. The policy's text is scored by the reward model, rendering score $$r_{\theta}$$ and the initial LM and the policy's outputs are combined to generate a Kullback-Leibler divergence score $$r_{KL}$$ that is a further hedge against the policy cheating the reward model with gibberish by penalizing responses that venture too far from the initial LM's output. 
+
+3. This adjusted reward score $$r = r_{\theta} - \lambda r_{KL}$$ (with $$\lambda$$ serving as a scalar to modify the magnitude of the KL divergence's penalization) is fed to a policy gradient method called proximal policy optimization (PPO). PPO is a trust region optimization algorithm, which for brevity essentially aims to update the policy to maximize the reward metric without letting it verge too far from the old policy (hence "proximal"). It essentially takes a ratio of the probabilities of producing a specific output under the new policy versus the old policy, and clipping a policy update to a maximum amount if that ratio is too large. There has been discussions about updating the reward model together with the policy model, but at the time of this writing I don't think it's been done yet. 
+
+
 
 ## References
 https://en.wikipedia.org/wiki/Transformer_(machine_learning_model)
