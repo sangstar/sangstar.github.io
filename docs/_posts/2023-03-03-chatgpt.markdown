@@ -86,13 +86,21 @@ $$\sigma(z_i) = \frac{e^{z_i}}{\sum_j^N e^{z_i}}$$
 
 but introduce an additional parameter $$\tau$$ like so:
 
-$$\sigma(z_i, \tau) = \frac{e^{z_i/\tau}}{\sum_j^N e^{z_i/\tau}}$$
+$$\sigma(z_i, \tau) = \frac{e^{z_i/\tau}}{\sum_{j=0}^{N=1} e^{z_i/\tau}}$$
 
 where $$\tau$$ is the semantic temperature. In order to better understand how this affects the output logits, consider some edge cases. 
 
-1. $$\tau \to 1$$. In this case, the denominator is unity and the numerator is $$p_i$$, which means $$f_{\tau =1} (p)_i = p_i$$ which means $$f_{\tau =1}$$ is an identity function. 
+1. $$\tau \to 1$$. In this case, the denominator is unity and the numerator is $$p_i$$, which means $$f_{\tau =1} (p)_i = p_i$$ which means $$f_{\tau =1}$$ is the original softmax. 
 
-2. $$\tau \to 0$$ this reduces to an *argmax*. See [EDZ's answer on stack exchange](https://math.stackexchange.com/questions/2656231/proving-that-softmax-converges-to-argmax-as-we-scale-x) where $$1/\tau \to 0$$ is equivalent to $$c \to \infty$$ in the user's example.
+2. $$\tau \to 0$$ this reduces to *argmax*. See [EDZ's answer on stack exchange](https://math.stackexchange.com/questions/2656231/proving-that-softmax-converges-to-argmax-as-we-scale-x) where $$1/\tau \to 0$$ is equivalent to $$c \to \infty$$ in the user's example.
+
+
+Generally speaking, when temperature is computed it's usually applied to the logits $$\text{logit} = \frac{\text{logit}}{\tau}$$ before being applied to the softmax. At lower temperature $$\tau$$, the resulting probability distribution over the classes becomes exponentially "sharper", exacerbating the gap between higher probability and lower probability classes, hence why $$\tau -> 0$$ becomes argmax. Larger values of $$\tau$$ will blunt the probability distribution over the classes, allowing previously lesser probability tokens to have a higher chance of being generated. The softmax in general is an analog to the Gibbs distribution in physics. In the Boltzman distribution, lower temperature causes the Boltzmann distribution to be more pointed. Below is a plot of the Maxwell-Boltzman distribution as temperature varies. It's not the exact same as the Gibbs distribution or temperature-dependent softmax, but it captures the same blunting with increased temperature.
+
+<p align="center">
+  <img width="auto" height="auto" src="/assets/transformer.jpg">
+</p>
+
 
 ## How ChatGPT was trained
 
@@ -110,3 +118,4 @@ https://nlp.stanford.edu/blog/maximum-likelihood-decoding-with-rnns-the-good-the
 https://writings.stephenwolfram.com/2023/02/what-is-chatgpt-doing-and-why-does-it-work/
 https://huggingface.co/blog/rlhf
 Vaswani, Ashish; Shazeer, Noam; Parmar, Niki; Uszkoreit, Jakob; Jones, Llion; Gomez, Aidan N.; Kaiser, Lukasz; Polosukhin, Illia (2017-06-12). "Attention Is All You Need". arXiv:1706.03762 [cs.CL].
+https://lukesalamone.github.io/posts/what-is-temperature/
