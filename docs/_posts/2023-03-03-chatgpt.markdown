@@ -80,11 +80,11 @@ ChatGPT word-for-word selects from a probability distribution of every token in 
 
 Recall that the final layer of a transformer is a softmax scaled on output $$z$$:
 
-$$\sigma(z_i) = \frac{e^{z_i}}{\sum_j^N e^{z_i}}$$
+$$\sigma(z_i) = \frac{e^{z_i}}{\sum_{j=1}^{N} e^{z_i}}$$
 
 but introduce an additional parameter $$\tau$$ like so:
 
-$$\sigma(z_i, \tau) = \frac{e^{z_i/\tau}}{\sum_{j=0}^{N=1} e^{z_i/\tau}}$$
+$$\sigma(z_i, \tau) = \frac{e^{z_i/\tau}}{\sum_{j=1}^{N} e^{z_i/\tau}}$$
 
 where $$\tau$$ is called the semantic temperature. In order to better understand how this affects the output logits, consider some edge cases. 
 
