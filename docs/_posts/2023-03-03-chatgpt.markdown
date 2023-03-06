@@ -20,7 +20,7 @@ ChatGPT has blown up the world of ML and seems to have transcended all other mac
 
 ChatGPT is an artificially intelligent chatbot developed by OpenAI that deployed last November. It's built on top of GPT-3, which is part of what I like to consider the pantheon of NLP large language models, particularly notorious for its ability to summarize or generate text. GPT stands for Generative Pre-Trained Transformer. 
 
-This article is designed to be slightly heavier on text-generative transformers than on how ChatGPT was specifically trained, although I'll be touching on it. The latter was summed up in HuggingFace's [blogpost](https://huggingface.co/blog/rlhf) better than I ever could. Also, I don't get in to some stuff typical to reinforcement learning like policy gradient methods, so if you're unfamiliar with that kind of stuff it may be worth doing a bit of reading into it. There's a lot of great resources out there, and you can always ask ChatGPT ;). 
+This article is designed to be slightly heavier on text-generative transformers than on how ChatGPT was specifically trained, although I'll be touching on it. The latter was summed up in HuggingFace's [blogpost](https://huggingface.co/blog/rlhf) better than I ever could. Also, I don't get in to some stuff typical to reinforcement learning like policy gradient methods, so if you're unfamiliar with that kind of stuff it may be worth doing a bit of reading into it. There's a lot of great resources out there, and you can always try asking ChatGPT :-).  
 
 ## Transformers
 A transformer is a complex type of neural network architecture that really has no peer in natural language processing. It's also relatively new, debuting in a paper titled "Attention is All You Need" by Vaswani et al in 2017. It piggybacks off of sequence-to-sequence models (Seq2Seq) that takes a sequence as input and takes a sequence as outputs. Before their invention, the usage of recurrent neural networks (RNNs) were the standard. Transformers immediately seemed to eclipse RNN's in usage due to their improved capacity to capture long-range dependencies in sequences, ability to process tokens in parallel (as opposed to sequentially, which additionally suffered from the risk of vanishing gradients) and are far more interpretable with self-attention. A transformer is shown below from the [original paper](https://arxiv.org/abs/1706.03762):
@@ -32,11 +32,11 @@ A transformer is a complex type of neural network architecture that really has n
 which for me, when I first saw it, was absolutely befuddling. My hope is that after reading this article, if you go back to this graphic it'll make a bit more sense. Let's dive right and start dealing with the attention units. I will be describing a transformer that is used to generate text. 
 
 # Self-attention and the encoder
-Transformers are composed of scaled dot-product attention units. These attention units embed the input document by each token's weighted relevance to other tokens in the sentence. 
+Transformers are composed of things called scaled dot-product attention units. These attention units embed the input document by each token's weighted relevance to other tokens in the sentence. 
 
 For each attention unit, the model learns weights matrices $$W_Q$$, called the query weights matrix, $$W_K$$, the key weights matrix, and $$W_V$$, the value weights matrix. 
 
-Suppose we have a document $$d$$ with $$n$$ tokens that I will describe in terms of their embeddings: $$d = (u_1, u_2, ..., u_n)$$, which we can assume are produced using a pre-trained word vector space like GloVe or something, and want to render . For each token, we produce a query, key and value vector by multiplying the token's embedding with each of their associated weights matrices. 
+Suppose we have a document $$d$$ with $$n$$ tokens that I will describe in terms of their embeddings: $$d = (u_1, u_2, ..., u_n)$$, which we can assume are produced using a pre-trained word vector space like GloVe or something. For each token, we produce a query, key and value vector by multiplying the token's embedding with each of their associated weights matrices. 
 
 Therefore, for a position $$i$$, corresponding to a token $$t_i$$, we have a query vector $$q_i = u_i W_Q$$, a key vector $$k_i = u_i W_K$$ and a value vector $$v_i = u_i W_V$$. Then, for each position $$i$$, we get an attention weight between positions $$i$$ and $$j$$ by taking the dot product of $$q_i$$ with $$k_j$$:
 
@@ -54,7 +54,7 @@ The final multi-headed attention is a concatenation of all of the attention vect
 
 $$\text{MultiheadAttention(Q,K,V)} = \text{Concat}(\text{Attention}_i)W_O$$
 
-which is fed to a feed-forward neural network as essentially an "enhanced" and "wiser" version of a word embedding, usually then passed to an $$\text{Add&Norm}$$ layer which adds the output of the feed-forward layer to the output of the multiheaded attention layer which helps to stabilize the training process by reducing the effect of the variance in the distributions of the intermediate activations of the self-attention and feed-forward layers which helps remedy the risk of vanishing gradients. 
+which is fed to a feed-forward neural network as essentially an "enhanced" version of a word embedding, holding more contextual information through self attention, usually then passed to an $$\text{Add&Norm}$$ layer which adds the output of the feed-forward layer to the output of the multiheaded attention layer which helps to stabilize the training process by reducing the effect of the variance in the distributions of the intermediate activations of the self-attention and feed-forward layers which helps remedy the risk of vanishing gradients. 
 
 This is known as an encoder. There usually are a number of these in popular transformers (BERT and GPT-2 range usually between 12 and 24). The first encoder takes word embeddings as input, while the subsequent encoders take encodings. 
 
@@ -73,14 +73,12 @@ Yes, that's pretty much the gist of it. It's complicated, but if you were to tak
 1. Transformers leverage context between tokens in each sequence, not just a token's embedding, all without a dependency range limit. 
 2. Text-generation transformers leverage context between tokens in an input sequence to tokens in their output sequence, as well as the output sequence *with itself*. 
 
-That's how a generative transformer like GPT works. As you can see, this process isn't stochastic, yet if you regenerate text in ChatGPT it'll usually produce different responses. This is thanks to something called *semantic temperature*, or just *temperature*. 
 
 # Semantic temperature
-If you ask ChatGPT a question, and click "Regenerate response", it'll almost always give you a unique response. Yet none of what I told you involves any random processes. 
+ChatGPT word-for-word selects from a probability distribution of every token in its massive corpus. If the highest probability tokens are always selected, this tends to make for unrealistic messages. 
 
-The reason why this happens is because at the output layer a probability distribution of the most likely next token is formed out of all tokens in the model's vocabulary. If the most probable token is chosen each time, the output is notoriously banal, repetitive, and overall uninteresting. 
 
-In order to remedy this, the probability of a token being chosen by the model is modified by the *freezing function*. Recall that the final layer of a transformer is a softmax scaled on output $$z$$:
+Recall that the final layer of a transformer is a softmax scaled on output $$z$$:
 
 $$\sigma(z_i) = \frac{e^{z_i}}{\sum_j^N e^{z_i}}$$
 
@@ -88,16 +86,16 @@ but introduce an additional parameter $$\tau$$ like so:
 
 $$\sigma(z_i, \tau) = \frac{e^{z_i/\tau}}{\sum_{j=0}^{N=1} e^{z_i/\tau}}$$
 
-where $$\tau$$ is the semantic temperature. In order to better understand how this affects the output logits, consider some edge cases. 
+where $$\tau$$ is called the semantic temperature. In order to better understand how this affects the output logits, consider some edge cases. 
 
 1. $$\tau \to 1$$. In this case, the denominator is unity and the numerator is $$p_i$$, which means $$f_{\tau =1} (p)_i = p_i$$ which means $$f_{\tau =1}$$ is the original softmax. 
 
 2. $$\tau \to 0$$ this reduces to *argmax*. See [EDZ's answer on stack exchange](https://math.stackexchange.com/questions/2656231/proving-that-softmax-converges-to-argmax-as-we-scale-x) where $$1/\tau \to 0$$ is equivalent to $$c \to \infty$$ in the user's example.
 
 
-Generally speaking, when temperature is computed it's usually applied to the logits $$\text{logit} = \frac{\text{logit}}{\tau}$$ before being applied to the softmax. At lower temperature $$\tau$$, the resulting probability distribution over the classes becomes exponentially "sharper", exacerbating the gap between higher probability and lower probability classes, hence why $$\tau -> 0$$ becomes argmax. Larger values of $$\tau$$ will blunt the probability distribution over the classes, allowing previously lesser probability tokens to have a higher chance of being generated. The softmax in general is an analog to the Gibbs distribution in physics. In the Boltzman distribution, lower temperature causes the Boltzmann distribution to be more pointed. 
+Generally speaking, when temperature is computed it's usually applied to the logits $$\text{logit} = \frac{\text{logit}}{\tau}$$ before being applied to the softmax. At lower temperature $$\tau$$, the resulting probability distribution over the classes becomes exponentially "sharper", exacerbating the gap between higher probability and lower probability classes, hence why $$\tau -> 0$$ becomes argmax. Larger values of $$\tau$$ will blunt the probability distribution over the classes, allowing previously lesser probability tokens to have a higher chance of being generated. The softmax in general is an analog to the Gibbs distribution in physics. In the Gibbs distribution, lower temperature cause the distribution to be more pointed. 
 
-Below is a plot of the Maxwell-Boltzman distribution as temperature varies. It's not the exact same as the Gibbs distribution or temperature-dependent softmax, but it captures the same blunting with increased temperature. Note that here $$a \propto T$$.
+Below is a plot of the Maxwell-Boltzman distribution as temperature varies. It's not the exact same as the Gibbs distribution or temperature-dependent softmax, but it captures the same blunting with increased temperature that I'm referring to. Note that here $$a \propto T$$.
 
 <p align="center">
   <img width="auto" height="auto" src="/assets/maxboltz.jpg">
@@ -113,19 +111,19 @@ That being, said ChatGPT's factual accuracy isn't always perfect so this should 
 
 ## How ChatGPT was trained
 
-ChatGPT's training process was far more complicated than that of a typical transformer, eschewing supervised, semi-supervised and unsupervised learning in favor of reinforcement learning with human feedback. I'm going to refrain from explaining reinforcement learning much at all in favor of preserving some semblance of brevity for this article.
+ChatGPT's training process was far more complicated than that of a typical transformer, eschewing supervised, semi-supervised and unsupervised learning for training its primary language model in favor of a new paradigm called reinforcement learning with human feedback. I'm going to refrain from explaining reinforcement learning much at all in favor of preserving some semblance of brevity for this article.
 
-In reinforcement learning, an *actor* aims to act according to a *policy* in order to maximize a *reward*. In NLP, a natural challenge was trying to define a reward that wasn't so easy as "distance to checkpoint" or "distance from soccer ball to goal" that didn't just cause text generation models to "cheat the system" by producing gibberish that garnered high reward scores. Attempts were made to define rewards in terms of how favorable it would be to humans such as BLEU or ROGUE, these weren't ultimately super satisfactory. Reinforcement learning with human feedback (RLHF) aimed to remedy this with a more clever reward metric: a language model. It's a relatively new concept, as 2019 is the earliest [paper](https://arxiv.org/abs/1909.08593) I can find on the subject.
+In reinforcement learning, an *actor* aims to act according to a *policy* in order to maximize a *reward*. In NLP, a natural challenge was trying to define a reward that wasn't so easy as "distance to checkpoint" or "distance from soccer ball to goal" that didn't just cause text generation models to "cheat the system" by producing gibberish that garnered high reward scores. Attempts were made to define rewards in terms of how favorable it would be to humans such as BLEU or ROGUE, but these weren't ultimately super satisfactory. Reinforcement learning with human feedback (RLHF) aimed to remedy this with a more clever reward metric: a language model. It's a relatively new concept, as 2019 is the earliest [paper](https://arxiv.org/abs/1909.08593) I can find on the subject.
 
 # Reward models
 
-A reward *model* is a language model (a transformer, typically) trained to identify whether a prompt is useful to humans or not. One way I'm aware it can be done is by providing putting two language models on a prompt and ranking which one is better, generating a sort of ELO system like it's chess. Giving a blank score to a prompt has been found to be ineffective, as human labelers tend to be less likely to see eye-to-eye on an exact score as opposed to a differential ranking, causing noisy training data. 
+A reward *model* is a language model (a transformer) trained to identify whether a prompt is useful to humans or not. One way I'm aware it can be done is by providing putting two language models on a prompt and ranking which one is better, generating a sort of ELO system like it's chess. Giving a blank score to a prompt has been found to be ineffective, as human labelers tend to be less likely to see eye-to-eye on an exact score as opposed to a picking a favorite out of two, causing noisy training data. 
 
 Once the reward model is trained, we're left with a text-generation transformer and a reward model that ideally is able to distinguish useful prompts from not-so-useful prompts.
 
 # The process
 
-A general outline of the fine-tuning process can be visualized with a gorgeous visual from HuggingFace's [blogpost](https://huggingface.co/blog/rlhf) on RLHF, which explains this whole process in great detail:
+A general outline of the fine-tuning process can be visualized with a lovely visual from HuggingFace's [blogpost](https://huggingface.co/blog/rlhf) on RLHF, which explains this whole process in great detail:
 
 <p align="center">
   <img width="auto" height="auto" src="/assets/rlhf.jpg">
@@ -139,17 +137,19 @@ and to annotate this process:
 
 3. This adjusted reward score $$r = r_{\theta} - \lambda r_{KL}$$ (with $$\lambda$$ serving as a scalar to modify the magnitude of the KL divergence's penalization) is fed to a policy gradient method called proximal policy optimization (PPO). PPO is a trust region optimization algorithm, which for brevity essentially aims to update the policy to maximize the reward metric without letting it verge too far from the old policy (hence "proximal"). It essentially takes a ratio of the probabilities of producing a specific output under the new policy versus the old policy, and clipping a policy update to a maximum amount if that ratio is too large. There has been discussions about updating the reward model together with the policy model, but at the time of this writing I don't think it's been done yet. 
 
+This process is repeated until, I assume, the prompts dataset is exhausted or some early stopping criterion is reached (such as policy updates tapering off).
+
 ## Some things to note
 
 It may seem like no explanation as to how ChatGPT was trained seems to make its remarkable usefulness believable. My only explanation for this would be the exorbitant amount of training data and parameters at play here.
 
-ChatGPT released their API recently, and with it, an option to control its output temperature. It would be interesting to see how it does with more "safe" or exploratory responses. 
+ChatGPT released their API recently, and with it, an option to control its temperature. It would be interesting to see how it does with more "safe" or exploratory responses. 
 
 Because of the way the reward model was trained, ChatGPT is designed to generate prompts that are useful to humans. *This does not mean that it's factually accurate*, and I highly recommend not relying on ChatGPT to learn things without having enough information to know if it's making any sense beforehand.
 
-There are likely *tons* of things under the hood that ChatGPT benefits from that OpenAI has not publically disclosed. I'm not aware of how it handles continuing conversations or correcting itself beyond a few complete guesses.
+There are likely *tons* of other things that ChatGPT makes use of under the hood that OpenAI has not publically disclosed. I'm not aware of how it handles continuing conversations or correcting itself beyond a few complete guesses.
 
-One of the limitations listed on ChatGPT's main page in the chat window is that it has "Limited knowledge of world and events after 2021". That implies that there is sparse training data that exists in 2021 or later. One of the biggest issues with serving trained models is *concept drift*, which is a model's declining usefulness with time since training. I suspect ChatGPT's advice can and will become dated in the future, and it will probably be up for a costly re-training, and, given how widely used it is, in the near future, which will prevent a constant financial load to provide ChatGPT as a service on the part of OpenAI. Given its funding recently, however, I'm not too worried for them.  
+One of the limitations listed on ChatGPT's main page in the chat window is that it has "limited knowledge of world and events after 2021". That implies that there is limited training data that exists in 2021 or later. One of the biggest issues with serving trained models is *concept drift*, which is a model's declining usefulness with time since training. I suspect ChatGPT's advice can and will become dated in the future, and it will probably be up for a costly re-training, and, given how widely used it is, in the near future, which will prevent a constant financial load to provide ChatGPT as a service on the part of OpenAI. Given its funding recently, however, I'm not too worried for them.  
 
 ## References
 Wikipedia contributors. (2021, December 30). Transformer (machine learning model). In Wikipedia, The Free Encyclopedia. Retrieved 20:43, March 3, 2023, from https://en.wikipedia.org/wiki/Transformer_(machine_learning_model)
