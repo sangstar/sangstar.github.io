@@ -139,12 +139,28 @@ and to annotate this process:
 
 3. This adjusted reward score $$r = r_{\theta} - \lambda r_{KL}$$ (with $$\lambda$$ serving as a scalar to modify the magnitude of the KL divergence's penalization) is fed to a policy gradient method called proximal policy optimization (PPO). PPO is a trust region optimization algorithm, which for brevity essentially aims to update the policy to maximize the reward metric without letting it verge too far from the old policy (hence "proximal"). It essentially takes a ratio of the probabilities of producing a specific output under the new policy versus the old policy, and clipping a policy update to a maximum amount if that ratio is too large. There has been discussions about updating the reward model together with the policy model, but at the time of this writing I don't think it's been done yet. 
 
+## Some things to note
 
+It may seem like no explanation as to how ChatGPT was trained seems to make its remarkable usefulness believable. My only explanation for this would be the exorbitant amount of training data and parameters at play here.
+
+ChatGPT released their API recently, and with it, an option to control its output temperature. It would be interesting to see how it does with more "safe" or exploratory responses. 
+
+Because of the way the reward model was trained, ChatGPT is designed to generate prompts that are useful to humans. *This does not mean that it's factually accurate*, and I highly recommend not relying on ChatGPT to learn things without having enough information to know if it's making any sense beforehand.
+
+There are likely *tons* of things under the hood that ChatGPT benefits from that OpenAI has not publically disclosed. I'm not aware of how it handles continuing conversations or correcting itself beyond a few complete guesses.
+
+One of the limitations listed on ChatGPT's main page in the chat window is that it has "Limited knowledge of world and events after 2021". That implies that there is sparse training data that exists in 2021 or later. One of the biggest issues with serving trained models is *concept drift*, which is a model's declining usefulness with time since training. I suspect ChatGPT's advice can and will become dated in the future, and it will probably be up for a costly re-training, and, given how widely used it is, in the near future, which will prevent a constant financial load to provide ChatGPT as a service on the part of OpenAI. Given its funding recently, however, I'm not too worried for them.  
 
 ## References
-https://en.wikipedia.org/wiki/Transformer_(machine_learning_model)
-https://nlp.stanford.edu/blog/maximum-likelihood-decoding-with-rnns-the-good-the-bad-and-the-ugly/
-https://writings.stephenwolfram.com/2023/02/what-is-chatgpt-doing-and-why-does-it-work/
-https://huggingface.co/blog/rlhf
+Wikipedia contributors. (2021, December 30). Transformer (machine learning model). In Wikipedia, The Free Encyclopedia. Retrieved 20:43, March 3, 2023, from https://en.wikipedia.org/wiki/Transformer_(machine_learning_model)
+
+Jia, R., & Liang, P. (2017, September 15). Maximum Likelihood Decoding with RNNs: The Good, The Bad, and The Ugly. Retrieved March 3, 2023, from https://nlp.stanford.edu/blog/maximum-likelihood-decoding-with-rnns-the-good-the-bad-and-the-ugly/
+
+Wolfram, S. (2023, February 28). What Is ChatGPT Doing (and Why Does It Work)? Retrieved March 3, 2023, from https://writings.stephenwolfram.com/2023/02/what-is-chatgpt-doing-and-why-does-it-work/
+
+Hugging Face. (2021, October 27). RLHF: A Dataset for High Stakes, Multi-Agent RL. Retrieved January 4, 2023, from https://huggingface.co/blog/rlhf
+
 Vaswani, Ashish; Shazeer, Noam; Parmar, Niki; Uszkoreit, Jakob; Jones, Llion; Gomez, Aidan N.; Kaiser, Lukasz; Polosukhin, Illia (2017-06-12). "Attention Is All You Need". arXiv:1706.03762 [cs.CL].
 https://lukesalamone.github.io/posts/what-is-temperature/
+
+Salamone, L. (n.d.). What is Temperature? Retrieved March 6, 2023, from https://lukesalamone.github.io/posts/what-is-temperature/
