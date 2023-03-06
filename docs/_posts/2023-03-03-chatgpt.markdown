@@ -98,7 +98,7 @@ where $$\tau$$ is the semantic temperature. In order to better understand how th
 Generally speaking, when temperature is computed it's usually applied to the logits $$\text{logit} = \frac{\text{logit}}{\tau}$$ before being applied to the softmax. At lower temperature $$\tau$$, the resulting probability distribution over the classes becomes exponentially "sharper", exacerbating the gap between higher probability and lower probability classes, hence why $$\tau -> 0$$ becomes argmax. Larger values of $$\tau$$ will blunt the probability distribution over the classes, allowing previously lesser probability tokens to have a higher chance of being generated. The softmax in general is an analog to the Gibbs distribution in physics. In the Boltzman distribution, lower temperature causes the Boltzmann distribution to be more pointed. Below is a plot of the Maxwell-Boltzman distribution as temperature varies. It's not the exact same as the Gibbs distribution or temperature-dependent softmax, but it captures the same blunting with increased temperature.
 
 <p align="center">
-  <img width="auto" height="auto" src="/assets/transformer.jpg">
+  <img width="auto" height="auto" src="/assets/maxboltz.jpg">
 </p>
 
 
