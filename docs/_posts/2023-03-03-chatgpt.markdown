@@ -103,12 +103,13 @@ Below is a plot of the Maxwell-Boltzman distribution as temperature varies. It's
   <img width="auto" height="auto" src="/assets/maxboltz.jpg">
 </p>
 
-ChatGPT, by its own admission, uses a temperature-annealing process during its training, in order to encourage exploration of different next tokens early on (which will also help in preventing overfitting) and encouraged to converge to more "safe" or "accurate" outputs towards the end.
+ChatGPT, by its own admission, uses a temperature-annealing process during its training, in order to encourage exploration of different next tokens early on (which will also help in preventing overfitting) and encouraged to converge to more "safe" or "accurate" outputs towards the end. 
 
 <p align="center">
   <img width="auto" height="auto" src="/assets/chatgpt_temperature.jpg">
 </p>
 
+That being, said ChatGPT's factual accuracy isn't always perfect so this should be taken with a grain of salt.
 
 ## How ChatGPT was trained
 
