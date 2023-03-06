@@ -78,7 +78,7 @@ Yes, that's pretty much the gist of it. It's complicated, but if you were to tak
 ChatGPT word-for-word selects from a probability distribution of every token in its massive corpus. If the highest probability tokens are always selected, this tends to make for unrealistic messages. 
 
 
-Recall that the final layer of a transformer is a softmax scaled on output $$z$$:
+Recall that the final layer of a transformer is a softmax scaled on output vector $$\vec z$$. A vector component $$z_i$$ would then be transformed like:
 
 $$\sigma(z_i) = \frac{e^{z_i}}{\sum_{j=1}^{N} e^{z_i}}$$
 
