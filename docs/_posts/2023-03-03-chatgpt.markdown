@@ -44,7 +44,7 @@ $$\alpha_{i,j} = \frac{q_i^T k_j}{\sqrt{n}}$$
 
 which can be thought of as the relevance of token $$i$$ on token $$j$$. These attention weight are computed for all $$n$$ tokens, so that for token $$i$$ you have a vector of attention units $$(\alpha_{i,1}, \alpha_{i,2}, ... , \alpha_{i,n})$$ which includes $$\alpha_{i,i}$$, for completeness sake. The vector is softmaxxed so that all the scalars add up to unity, and to denote that I will rewrite the attention units as $$(a_{i,1}, a_{i,2}, ... , a_{i,n})$$. This vector then acts as weight for the weighted sum of value vectors for each position:
 
-$$\text{Attention}_i = \sum_{j=1}^n a{i,j} v_j$$
+$$\text{Attention}_i = \sum_{j=1}^n a_{i,j} v_j$$
 
 where $$a_i$$ is known as the *attention* for token or position $$i$$. By doing this for all tokens, you've *encoded* your document $$d$$. Notice that through all these vectorized operations we've managed to enable full-range context dependency on all of our tokens, which RNN's aren't able to do. In addition, this setup allows for asymmetry between tokens $$i$$ and $$j$$. As $$\alpha_{i,j} \ne \alpha_{j,i}$$, this means that the influence of token $$i$$ on $$j$$ can be large while the influence of token $$j$$ on $$i$$ can be mild and vice versa. 
 
@@ -88,12 +88,12 @@ $$\sigma(z_i, \tau) = \frac{e^{z_i/\tau}}{\sum_{j=0}^{N=1} e^{z_i/\tau}}$$
 
 where $$\tau$$ is called the semantic temperature. In order to better understand how this affects the output logits, consider some edge cases. 
 
-1. $$\tau \to 1$$. In this case, the denominator is unity and the numerator is $$p_i$$, which means $$f_{\tau =1} (p)_i = p_i$$ which means $$f_{\tau =1}$$ is the original softmax. 
+1. $$\tau \to 1$$. reverts to the original softmax. 
 
 2. $$\tau \to 0$$ this reduces to *argmax*. See [EDZ's answer on stack exchange](https://math.stackexchange.com/questions/2656231/proving-that-softmax-converges-to-argmax-as-we-scale-x) where $$1/\tau \to 0$$ is equivalent to $$c \to \infty$$ in the user's example.
 
 
-Generally speaking, when temperature is computed it's usually applied to the logits $$\text{logit} = \frac{\text{logit}}{\tau}$$ before being applied to the softmax. At lower temperature $$\tau$$, the resulting probability distribution over the classes becomes exponentially "sharper", exacerbating the gap between higher probability and lower probability outputs, hence why $$\tau \to 0$$ tends to argmax. Larger values of $$\tau$$ will blunten the probability distribution over the classes, allowing previously lesser probability tokens to have a higher chance of being generated. The softmax in general is an analog to the Gibbs distribution in statistical mechanics. In the Gibbs distribution, lower temperature cause the distribution to be more pointed. 
+Generally speaking, when temperature is computed it's usually applied to the logits $$\text{logit} \to \frac{\text{logit}}{\tau}$$ before being applied to the softmax. At lower temperature $$\tau$$, the resulting probability distribution over the classes becomes exponentially "sharper", exacerbating the gap between higher probability and lower probability outputs, hence why $$\tau \to 0$$ tends to argmax. Larger values of $$\tau$$ will blunten the probability distribution over the classes, allowing previously lesser probability tokens to have a higher chance of being generated. The softmax in general is an analog to the Gibbs distribution in statistical mechanics. In the Gibbs distribution, lower temperature cause the distribution to be more pointed. 
 
 Below is a plot of the Maxwell-Boltzman distribution as temperature varies. It's not the exact same as the Gibbs distribution or temperature-dependent softmax, but it captures the same blunting with increased temperature that I'm referring to. Note that here $$a \propto T$$.
 
@@ -141,7 +141,7 @@ This process is repeated until, I assume, the prompts dataset is exhausted or so
 
 ## Some things to note
 
-It may seem like no explanation as to how ChatGPT was trained seems to make its remarkable usefulness believable. My only explanation for this would be the exorbitant amount of training data and parameters at play here.
+It may seem like no explanation as to how ChatGPT was trained seems to make its remarkable usefulness believable. My only explanation for this would be the likely exorbitant amount of training data and parameters at play here.
 
 ChatGPT released their API recently, and with it, an option to control its temperature. It would be interesting to see how it does with more "safe" or exploratory responses. 
 
@@ -149,7 +149,7 @@ Because of the way the reward model was trained, ChatGPT is designed to generate
 
 There are likely *tons* of other things that ChatGPT makes use of under the hood that OpenAI has not publically disclosed. I'm not aware of how it handles continuing conversations or correcting itself beyond a few complete guesses.
 
-One of the limitations listed on ChatGPT's main page in the chat window is that it has "limited knowledge of world and events after 2021". That implies that there is limited training data that exists in 2021 or later. One of the biggest issues with serving trained models is *concept drift*, which is a model's declining usefulness with time since training. I suspect ChatGPT's advice can and will become dated in the future, and it will probably be up for a costly re-training, and, given how widely used it is, in the near future, which will prevent a constant financial load to provide ChatGPT as a service on the part of OpenAI. Given its funding recently, however, I'm not too worried for them.  
+One of the limitations listed on ChatGPT's main page in the chat window is that it has "limited knowledge of world and events after 2021". That implies that there is limited training data that exists in 2021 or later. One of the biggest issues with serving trained models is *concept drift*, which is a model's declining usefulness with time since training. I suspect ChatGPT's advice can and will become dated in the future, and it will probably be up for a costly re-training, and, given how widely used it is, in the near future, which will present a constant financial load to provide ChatGPT as a service on the part of OpenAI. Given recent investment, however, I'm not too worried for them.  
 
 ## References
 Wikipedia contributors. (2021, December 30). Transformer (machine learning model). In Wikipedia, The Free Encyclopedia. Retrieved 20:43, March 3, 2023, from https://en.wikipedia.org/wiki/Transformer_(machine_learning_model)
