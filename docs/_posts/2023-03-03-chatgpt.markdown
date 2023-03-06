@@ -80,10 +80,19 @@ If you ask ChatGPT a question, and click "Regenerate response", it'll almost alw
 
 The reason why this happens is because at the output layer a probability distribution of the most likely next token is formed out of all tokens in the model's vocabulary. If the most probable token is chosen each time, the output is notoriously banal, repetitive, and overall uninteresting. 
 
-In order to remedy this, the probability of a token being chosen by the model is modified by the *freezing function*:
+In order to remedy this, the probability of a token being chosen by the model is modified by the *freezing function*. Recall that the final layer of a transformer is a softmax scaled on output $$z$$:
 
-$$\widetilde p_i = f_\tau (p)_i = \frac{p_i^{1/\tau}}{\sum_j p_j^{1/\tau}}$$
+$$\sigma(z_i) = \frac{e^{z_i}}{\sum_j^N e^{z_i}}$$
 
+but introduce an additional parameter $$\tau$$ like so:
+
+$$\sigma(z_i, \tau) = \frac{e^{z_i/\tau}}{\sum_j^N e^{z_i/\tau}}$$
+
+where $$\tau$$ is the semantic temperature. In order to better understand how this affects the output logits, consider some edge cases. 
+
+1. $$\tau \to 1$$. In this case, the denominator is unity and the numerator is $$p_i$$, which means $$f_{\tau =1} (p)_i = p_i$$ which means $$f_{\tau =1}$$ is an identity function. 
+
+2. $$\tau \to 0$$ this reduces to an *argmax*. See [EDZ's answer on stack exchange](https://math.stackexchange.com/questions/2656231/proving-that-softmax-converges-to-argmax-as-we-scale-x) where $$1/\tau \to 0$$ is equivalent to $$c \to \infty$$ in the user's example.
 
 ## How ChatGPT was trained
 
