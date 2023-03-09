@@ -91,7 +91,7 @@ where $$\tau$$ is called the semantic temperature. In order to better understand
 
 1. $$\tau \to 1$$. reverts to the original softmax. 
 
-2. $$\tau \to 0$$ this reduces to *argmax*. See [EDZ's answer on stack exchange](https://math.stackexchange.com/questions/2656231/proving-that-softmax-converges-to-argmax-as-we-scale-x) where $$1/\tau \to 0$$ is equivalent to $$c \to \infty$$ in the user's example. 
+2. $$\tau \to 0$$ reduces to *argmax*. See [EDZ's answer on stack exchange](https://math.stackexchange.com/questions/2656231/proving-that-softmax-converges-to-argmax-as-we-scale-x) where $$1/\tau \to 0$$ is equivalent to $$c \to \infty$$ in the user's example. 
 
 
 Generally speaking, when temperature is computed it's usually applied to the logits $$\text{logit} \to \frac{\text{logit}}{\tau}$$ before being applied to the softmax. At lower temperature $$\tau$$, the resulting probability distribution over the classes becomes exponentially "sharper", exacerbating the gap between higher probability and lower probability outputs, hence why $$\tau \to 0$$ tends to argmax. Larger values of $$\tau$$ will blunten the probability distribution over the classes, allowing previously lesser probability tokens to have a higher chance of being generated as the smoothing is harsher for higher logits. The softmax in general is an analog to the Gibbs distribution in statistical mechanics. In the Gibbs distribution, lower temperature cause the distribution to be more pointed. 
