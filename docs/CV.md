@@ -10,12 +10,9 @@ title: Curriculum Vitæ
 ### Full-time positions
 **Chattr**  
 *MLOps Engineer*  
-Tampa, Fl  
+Tampa, Fl
 2022 - Present  
-Machine learning engineer for Chattr, an AI-powered hourly hiring assistant startup based in Tampa, Fl. Solely
-responsible for monitoring and improving the artificial intelligence of the chatbot by implementing a continuous
-delivery and automation pipeline for all active endpoints as well as improving their performance using a mixture of
-state-of-the-art supervised and semi-supervised learning techniques.
+Machine learning engineer for Chattr, an AI-powered hiring assistant startup based in Tampa, Fl. Solely responsible for Chattr's ML operations, including creating and maintaining MLOps pipelines: using trunk-based development for the deployment and management of multiple endpoints, the latter leveraging transformer architectures for text classification, named-entity recognition, summarization, and text generation. 
 
 **econscia**  
 *Machine Learning Engineer*  
