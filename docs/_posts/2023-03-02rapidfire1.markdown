@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Rapid-fire questions 1"
+title:  "Common ML misconceptions 1"
 date:   2023-03-02 8:58
 categories: ml
 usemathjax: true

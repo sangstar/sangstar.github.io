@@ -1,7 +1,7 @@
 ---
 layout: post
-title:  "Imbalanced datasets and the dangers of over and undersampling"
-date:   2022-11-18 10:15
+title:  "Reinforcement Learning for NLP"
+date:   2023-03-03 11:42
 categories: ml
 usemathjax: true
 ---
@@ -16,5 +16,8 @@ usemathjax: true
   <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 {% endif %}
 
+tktktk
 
-A common pitfall a beginner machine learning engineer encounters 
+## Markov Decision Process
+
+##

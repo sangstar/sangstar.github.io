@@ -2,7 +2,7 @@
 layout: post
 title:  "Transformers and ChatGPT"
 date:   2023-03-03 11:42
-categories: ml
+categories: nlp
 usemathjax: true
 ---
 
