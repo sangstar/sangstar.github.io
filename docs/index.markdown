@@ -1,5 +1,5 @@
 ---
-layout: page
+layout: home
 ---
 
 
@@ -11,3 +11,5 @@ This website serves as a personal online portfolio for me where I mostly ramble 
 # My personal favorites:
 
 1. [Transformers and ChatGPT](https://sangstar.github.io/nlp/2023/03/03/chatgpt.html)
+2. [Preprocessing](https://sangstar.github.io/ml/2023/02/25/preprocessing.html)
+3. [Learning curves and cross-validation](https://sangstar.github.io/ml/2022/11/12/crossvalidation.html)
