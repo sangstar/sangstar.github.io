@@ -17,4 +17,6 @@ usemathjax: true
 {% endif %}
 
 
-A common pitfall a beginner machine learning engineer encounters 
+A common pitfall a beginner machine learning engineer can find themselves in is putting faith in the metric "accuracy". In classification tasks, accuracy is defined as:
+
+$$ \frac{}
