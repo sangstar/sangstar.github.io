@@ -27,4 +27,6 @@ Accuracy as a metric is rife throughout machine learning libraries like Tensorfl
 
 ## Where accuracy goes wrong
 
-Suppose a bank wants to create a classifier than determines whether bank transcations are fraudulent or not. 
+Suppose a bank wants to create a classifier than determines whether bank transcations are fraudulent (`1`) or not (`0`). Suppose someone is tasked with creating this model, and creates a feed-forward network with inputs, two hidden layers with something like 16 units and 12 units each and RELU activations. That's a pretty boilerplate feed-forward. Suppose that when they train the model, they rely on validation accuracy as a stopping criterion. 
+
+Suppose they start training, and all of a sudden the model is trained quickly and in a few epochs, with validation accuracy well over 90%. *This should be an expected result if you looked at the target distribution*, and you would probably *not* consider this model well-equipped to handle its use case if you were to look at its predictions on the test set. The model would be performing 3 matrix multiplication operations, activation function computations on 29 nodes, and yet I can create my own predictor that will do just as good a job in one line of code: `def predictor(x): return 0`
