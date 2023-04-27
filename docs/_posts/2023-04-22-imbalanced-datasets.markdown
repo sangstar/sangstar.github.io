@@ -29,9 +29,9 @@ Accuracy as a metric is rife throughout machine learning libraries like Tensorfl
 
 Suppose a bank wants to create a classifier than determines whether bank transcations are fraudulent (`1`) or not (`0`). Suppose someone is tasked with creating this model, and trains a support vector machine, or maybe a basic decision tree for interpretability. Suppose that when they train the model, they rely on validation accuracy as a stopping criterion. 
 
-Suppose they start training, and all of a sudden the model is trained quickly and in a few epochs, with validation accuracy well over 90%. *This should be an expected result if you looked at the target distribution*, and you would probably *not* consider this model well-equipped to handle its use case if you were to look at its predictions on the test set. The model would be performing 3 matrix multiplication operations, activation function computations on 29 nodes, and yet I can create my own predictor that will likely do just as good a job in one line of code: `def predictor(x): return 0`
+Suppose they start training, and all of a sudden the model is trained quickly and in a few epochs, with validation accuracy well over 90%. *This should be an expected result if you looked at the target distribution*, and you would probably *not* consider this model well-equipped to handle its use case if you were willing to allow it to be better at catching fraud at the cost of sometimes flagging fraud where this none. For the model used, I can create my own predictor that will likely do just as good a job in one line of code: `def predictor(x): return 0`
 
-If the engineer were to look at his data, if the data is representative of a typical bank transactions dataset, fraudulent transactions would be horribly under-represented. This is an example of an imbalanced dataset, which accuracy is woefully equipped to handling. An imbalanced dataset is any dataset where the class distribution is not flat. A *balanced dataset* is below, with arbitary classes $$A$$ and $$B$$.
+If the engineer were to look at his data, if the data is representative of a typical bank transactions dataset, fraudulent transactions would be horribly under-represented. This is an example of an imbalanced dataset, An imbalanced dataset is any dataset where the class distribution is not uniform for all classes. A *balanced dataset* is below, with arbitary classes $$A$$ and $$B$$.
 
 <p align="center">
   <img width="auto" height="auto" src="/assets/balanced_pie.jpg">
@@ -43,22 +43,24 @@ Whereas an imbalanced dataset is any deviation from this parity, such as if I re
   <img width="auto" height="auto" src="/assets/imbalanced_pie.jpg">
 </p>
 
-Histograms are by far the more standard way of displaying this, but I love a good pie chart. The first image is fairly straight-forward to train, but unrealistic -- you'll probably find it is seldom the case that this parity will occur naturally. 
+Histograms are by far the more standard way of displaying this, but I like pie charts. The first image is fairly straight-forward to train, but unrealistic -- you'll probably find it is seldom the case that this parity will occur naturally. 
 
 Imbalanced datasets are a messy subject. Once aspiring machine learning engineers learn about imbalanced datasets, they tend to invariably assume it is a problem that needs to be fixed. One of the main reasons for this writing this article is as a PSA for machine learning engineers. 
 
-Ladies and gents: the issue isn't that there is class imbalance. The issue is that you're dealing with a cost-sensitive learning problem. That is to say that the misclassification costs are imbalanced.
+Ladies and gents: the issue isn't that there is class imbalance. The issue is that you actually aren't priotizing accuracy and don't realize, and instead are dealing with a cost-sensitive learning problem. That is to say that the misclassification costs are imbalanced, just like your dataset.
 
 ## Why models favor the majority class
-Your model is probably ignoring the minority class because it is lacking the complexity to capture the patterns of the under-represented class and also is typically incentivized to favor the majority class when you pick an ill-equipped loss function. 
+# Lack of complexity
+Your model is probably ignoring the minority class because it is lacking the complexity to capture the patterns of the under-represented class and/or also is typically incentivized to favor the majority class when you pick a loss function and expect it to do things other than minimize with equal misclassification cost. 
 
 To explain my first part, suppose I'm using a support vector machine to separate class $$A$$ and $$B$$ with a hyperplane on the feature space. If I have a huge dearth of datapoints for class $$B$$, it's incredibly difficult to find a reliable hyperplane orientation to separate the classes. With more datapoints, the data cloud for $$B$$ will ideally become more visible, which will allow the model to have less trouble fitting its hyperplane.
 
 Additionally, if I worked with another primitive model like a decision tree, which recursively partitions the feature space based on chosen feature values, too little data might cause the tree to not have enough information to distinguish the minority class $$B$$ from $$A$$.
 
-This can be remedied to some extent with a more complex model like a neural network, thanks to its ability to fit non-linear decision boundaries quite well. Even still though, more data will greatly help. 
+This can be remedied to some extent with a more complex model like a neural network, thanks to its ability to fit non-linear decision boundaries quite well. Even still though, more data will greatly help. This still may not be enough, however. 
 
-This may not be enough, however. Cross-entropy is the flagship loss function for classification tasks, and is defined for two probability distributions $$P$$ and $$Q$$ as:
+# Loss function assumes equal misclassification loss
+Cross-entropy is arguably the most widely used loss function for classification tasks, and is defined for two probability distributions $$P$$ and $$Q$$ as:
 
 $$H(P,Q) = - \sum_{i=1}^N p(x_i) \log{(q(x_i))}$$
 
@@ -74,9 +76,9 @@ The computation of which, looks like this for binary cross-entropy:
 
 $$L = - \sum_{i=1}^2 y_i \log{(\hat y_i)}$$
 
-Cross-entropy is super nice for classification because it's convex (which is obviously ideal for a loss function) and well-suited to backpropagation. The logarithm in its equation is also particularly handy, punishing incorrect classifications (due to its behavior $$x \to \infty$$) by blowing up if the probability of the correct class is low according to $$q(x_i)$$. It also handles multiclass beautifully by simply adding more terms to the sum.  
+Cross-entropy is super nice for classification because it's convex (which is obviously ideal for a loss function) and well-suited to backpropagation. The logarithm in its equation is also particularly handy, punishing incorrect classifications (due to its behavior $$x \to \infty$$) by blowing up if the probability of the correct class is low. It also handles multiclass beautifully by simply adding more terms to the sum.  
 
-For our example here, suppose the real data has class $$A$$ appear 90% of the time and class $$B$$ appears 10% of the time, and suppose for the sake of the example our predictor is perfectly calibrated (so that its predicted probabilities match the true probabilities, implying that if a class appears 50% of the time in a dataset its average prediction probability is 50%) and wants to predict class $$A$$ 90% of the time and class $$B$$ 10% of the time as is the case in the real data. That leaves our loss function as follows, if we are solving for 100 datapoints, I'll start with the total loss over all the datapoints
+For our example here, suppose the real data has class $$A$$ appear 90% of the time and class $$B$$ appears 10% of the time, and suppose for the sake of the example our predictor is perfectly calibrated and wants to predict class $$A$$ 90% of the time and class $$B$$ 10% of the time as is the case in the real data (a calibrated predictor means its predicted probabilities match the true probabilities, implying that if a class appears 90% of the time in a dataset its average prediction probability is 90%) . That leaves our loss function as follows, if we are solving for 100 datapoints. I'll start with the total loss over all the datapoints
 
 $$L = \frac{1}{100} \sum_{i=1}^{100} -\mathbf{y}_i \cdot \log{(\mathbf{\hat y}_i)}$$
 
@@ -88,20 +90,20 @@ $$L = - \frac{1}{100} \left(90(1 \times \log{(0.90)} + 0 \times \log{(0.1)}) + 1
 $$L = 20.81...$$
 
 
-whereas if our predictor is no longer calibrated and on-average predicts class $$A$$ 99% of the time and class $$B$$ 1% of the time..
+whereas if our predictor is no longer calibrated and on-average predicts class $$A$$ 99% of the time and class $$B$$ 1% of the time regardless of how often either class appears in the training data..
 
 $$L = - \frac{1}{100} \left(99(1 \times \log{(0.99)} + 0 \times \log{(0.01)}) + 1(0 \times \log{(0.99)} + 1 \times \log{(0.01)})\right)$$
 
 $$L = 4.56...$$
 
-Which is a drastically smaller loss. In order to minimize loss, therefore, models are tempted during learning to apply healthy probabilities to majority classes unrepresentative of its actual prevalence as this lowers loss. This, however, is not necessarily a bad thing. In fact, this is actually what you *want* if your goal is to minimize loss, as this is the best way to do it. 
+Which is a drastically smaller loss. In order to minimize loss, therefore, models are tempted during learning to apply healthy probabilities to majority classes regardless of its actual prevalence as this lowers loss. This, however, is not necessarily a bad thing. In fact, this is actually what you *want* if your goal is accuracy, as this is the best way to do maximize it.
 
 ## The reality of imbalanced datasets
-The above behavior is only an issue if the cost of misclassifying one class should be higher than the cost of misclassifying another (this often appears in the medical field where misclassifying a false negative for a tumor is far worse than misclassifying a false positive for a tumor). That is to say that an accurate prediction isn't the most important thing. If your data is representative and you are only interested in accurate prediction, this behavior is *optimal*, as it has *optimized* your accuracy. You're done. 
+The above behavior is only an issue if the cost of misclassifying one class should be higher than the cost of misclassifying another (this problem often appears in the medical field where misclassifying a false negative for a malignant tumor is far worse than misclassifying a false positive for a malignant tumor). That is to say that an accurate prediction isn't the most important thing. If your data is representative and you are only interested in accurate prediction, this behavior is *optimal*, as it has *optimized* your accuracy. You're done. 
 
 So, when we're interested in good performance on a minority class to the point where we're willing to eschew a bit of overall accuracy, we'll need to add some way to favor minimizing the loss by better predicting minority classes. 
 
-Let's briefly return to the example from before. The calculation I was effectively doing per datapoint is common written as:
+Let's briefly return to the example from before. The calculation I was effectively doing per datapoint is commonly written as:
 
 $$L = -(y \log{(p)} + (1-y)\log{(1-p)})$$
 
