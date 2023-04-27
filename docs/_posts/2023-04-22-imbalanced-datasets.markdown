@@ -34,13 +34,13 @@ Suppose they start training, and all of a sudden the model is trained quickly an
 If the engineer were to look at his data, if the data is representative of a typical bank transactions dataset, fraudulent transactions would be horribly under-represented. This is an example of an imbalanced dataset, which accuracy is woefully equipped to handling. An imbalanced dataset is any dataset where the class distribution is not flat. A *balanced dataset* is below, with arbitary classes $$A$$ and $$B$$.
 
 <p align="center">
-  <img width="auto" height="auto" src="/assets/balanced.jpg">
+  <img width="auto" height="auto" src="/assets/balanced_pie.jpg">
 </p>
 
 Whereas an imbalanced dataset is any deviation from this parity, such as if I reduced the prevalence of some classes at random like below:
 
 <p align="center">
-  <img width="auto" height="auto" src="/assets/imbalanced.jpg">
+  <img width="auto" height="auto" src="/assets/imbalanced_pie.jpg">
 </p>
 
 Histograms are by far the more standard way of displaying this, but I love a good pie chart. The first image is fairly straight-forward to train, but unrealistic -- you'll probably find it is seldom the case that this parity will occur naturally. 
