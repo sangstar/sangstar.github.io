@@ -56,12 +56,14 @@ This can be remedied to some extent with a more complex model like a neural netw
 
 This may not be enough, however. Cross-entropy is the flagship loss function for classification tasks, and is defined for two probability distributions $$P$$ and $$Q$$ as:
 
-$$H(P,Q) = - \sum_{\forall x} p(x) \log{(q(x))}$$
+$$H(P,Q) = - \sum_{i=1}^N p(x_i) \log{(q(x_i))}$$
 
-where $$p(x)$$ is interpreted as the true distribution and $$q(x)$$ as the predicted distribution. Obviously $$x \in X$$ is a discrete set of input values, and not actually representing $$x \in \mathbf{R}$$ or something. 
+where $$p(x_i)$$ is interpreted as the true distribution and $$q(x_i)$$ as the predicted distribution. 
 
 I kind of like writing it in terms of the dot product
 
 $$L = \mathbf{y} \cdot \log{(\hat \mathbf{y})}$$
 
-where $$L$$ now represents cross-entropy as a loss function, $$\mathbf{y}$$ as the vector of values consisting of $$p(x)$$ and $$\hat \mathbf{y}$$ as the vector of values consisting of $$q(x)$$. 
+where $$L$$ now represents cross-entropy as a loss function, $$\mathbf{y}$$ as the vector of values consisting of $$p(x_i)$$ and $$\hat \mathbf{y}$$ as the vector of values consisting of $$q(x_i)$$. 
+
+Cross-entropy is super nice for classification because it's convex (which is obviously ideal for a loss function) and well-suited to backpropagation. The logarithm in its equation is also particularly handy, punishing incorrect classifications (due to its behavior $$x \to \infty$$) by blowing up if the probability of the correct class is low according to $$q(x_i)$$
