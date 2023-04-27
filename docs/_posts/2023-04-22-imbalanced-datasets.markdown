@@ -29,7 +29,7 @@ Accuracy as a metric is rife throughout machine learning libraries like Tensorfl
 
 Suppose a bank wants to create a classifier than determines whether bank transcations are fraudulent (`1`) or not (`0`). Suppose someone is tasked with creating this model, and trains a support vector machine, or maybe a basic decision tree for interpretability. Suppose that when they train the model, they rely on validation accuracy as a stopping criterion. 
 
-Suppose they start training, and all of a sudden the model is trained quickly and in a few epochs, with validation accuracy well over 90%. *This should be an expected result if you looked at the target distribution*, and you would probably *not* consider this model well-equipped to handle its use case if you were willing to allow it to be better at catching fraud at the cost of sometimes flagging fraud where this none. For the model used, I can create my own predictor that will likely do just as good a job in one line of code: `def predictor(x): return 0`
+Suppose they start training, and all of a sudden the model is trained quickly and in a few epochs, with validation accuracy well over 90%. *This should be an expected result if you looked at the target distribution*, and you would probably *not* consider this model well-equipped to handle its use case if you were willing to allow it to be better at catching fraud at the cost of sometimes flagging fraud where there is none. For the model used, I can create my own predictor that will likely do just as good a job in one line of code: `def predictor(x): return 0`
 
 If the engineer were to look at his data, if the data is representative of a typical bank transactions dataset, fraudulent transactions would be horribly under-represented. This is an example of an imbalanced dataset, An imbalanced dataset is any dataset where the class distribution is not uniform for all classes. A *balanced dataset* is below, with arbitary classes $$A$$ and $$B$$.
 
@@ -45,7 +45,7 @@ Whereas an imbalanced dataset is any deviation from this parity, such as if I re
 
 Histograms are by far the more standard way of displaying this, but I like pie charts. The first image is fairly straight-forward to train, but unrealistic -- you'll probably find it is seldom the case that this parity will occur naturally. 
 
-Imbalanced datasets are a messy subject. Once aspiring machine learning engineers learn about imbalanced datasets, they tend to invariably assume it is a problem that needs to be fixed. One of the main reasons for this writing this article is as a PSA for machine learning engineers. 
+Imbalanced datasets are a messy subject. Once aspiring machine learning engineers learn about imbalanced datasets, they tend to invariably assume it is a problem that needs to be fixed. One of the main reasons for writing this article is as a PSA for machine learning engineers. 
 
 Ladies and gents: the issue isn't that there is class imbalance. The issue is that you actually aren't priotizing accuracy and don't realize, and instead are dealing with a cost-sensitive learning problem. That is to say that the misclassification costs are imbalanced, just like your dataset.
 
@@ -57,14 +57,14 @@ To explain my first part, suppose I'm using a support vector machine to separate
 
 Additionally, if I worked with another primitive model like a decision tree, which recursively partitions the feature space based on chosen feature values, too little data might cause the tree to not have enough information to distinguish the minority class $$B$$ from $$A$$.
 
-This can be remedied to some extent with a more complex model like a neural network, thanks to its ability to fit non-linear decision boundaries quite well. Even still though, more data will greatly help. This still may not be enough, however. 
+This can be remedied to some extent with a more complex model like a neural network, thanks to its ability to fit non-linear decision boundaries quite well. Even still though, it might not be enough.
 
 # Loss function assumes equal misclassification loss
 Cross-entropy is arguably the most widely used loss function for classification tasks, and is defined for two probability distributions $$P$$ and $$Q$$ as:
 
 $$H(P,Q) = - \sum_{i=1}^N p(x_i) \log{(q(x_i))}$$
 
-where $$p(x_i)$$ is interpreted as the true distribution and $$q(x_i)$$ as the predicted distribution. In this case, $$x$$ *does not** refer to feature vectors, but output vectors -- a vector of classes. Remember that loss functions deal with comparing output vectors.
+where $$p(x_i)$$ is interpreted as the true distribution and $$q(x_i)$$ as the predicted distribution. In this case, $$x$$ *does not* refer to feature vectors, but output vectors -- a vector of classes. Remember that loss functions deal with comparing output vectors.
 
 This is why I kind of like writing it in terms of the dot product. This is the cross-entropy loss for datapoint $$(x_i,y_i)$$.
 
