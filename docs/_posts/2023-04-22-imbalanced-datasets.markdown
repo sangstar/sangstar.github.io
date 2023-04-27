@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Imbalanced datasets and misclassification costs"
+title:  "The misconceptions of the imbalanced dataset"
 date:   2023-04-22 10:15
 categories: ml
 usemathjax: true
@@ -43,7 +43,7 @@ The first image is fairly straight-forward to train, but unrealistic -- you'll p
 
 Imbalanced datasets are a messy subject. Once aspiring machine learning engineers learn about imbalanced datasets, they tend to invariably assume it is a problem that needs to be fixed. One of the main reasons for this writing this article is as a PSA for machine learning engineers. 
 
-Ladies and gents: the issue isn't that there is class imbalance. The issue is that you're dealing with a cost-sensitive learning problem. That is to say that the misclassification costs lack parity. 
+Ladies and gents: the issue isn't that there is class imbalance. The issue is that you're dealing with a cost-sensitive learning problem. That is to say that the misclassification costs are imbalanced.
 
 ## Why models favor the majority class
 Your model is probably ignoring the minority class because it is lacking the complexity to capture the patterns of the under-represented class and also is typically incentivized to favor the majority class when you pick an ill-equipped loss function. 
@@ -72,7 +72,7 @@ $$L = - \sum_{i=1}^2 y_i \log{(\hat y_i)}$$
 
 Cross-entropy is super nice for classification because it's convex (which is obviously ideal for a loss function) and well-suited to backpropagation. The logarithm in its equation is also particularly handy, punishing incorrect classifications (due to its behavior $$x \to \infty$$) by blowing up if the probability of the correct class is low according to $$q(x_i)$$. It also handles multiclass beautifully by simply adding more terms to the sum.  
 
-For our example here, suppose the real data has class $$A$$ appear 90% of the time and class $$B$$ appears 10% of the time, and suppose for the sake of the example our predictor is perfectly calibrated (so that its predicted probabilities match the true probabilities one-to-one) and wants to predict class $$A$$ 90% of the time and class $$B$$ 10% of the time as is the case in the real data. That leaves our loss function as follows, if we are solving for 100 datapoints, I'll start with the total loss over all the datapoints
+For our example here, suppose the real data has class $$A$$ appear 90% of the time and class $$B$$ appears 10% of the time, and suppose for the sake of the example our predictor is perfectly calibrated (so that its predicted probabilities match the true probabilities, implying that if a class appears 50% of the time in a dataset its average prediction probability is 50%) and wants to predict class $$A$$ 90% of the time and class $$B$$ 10% of the time as is the case in the real data. That leaves our loss function as follows, if we are solving for 100 datapoints, I'll start with the total loss over all the datapoints
 
 $$L = \frac{1}{100} \sum_{i=1}^{100} -\mathbf{y}_i \cdot \log{(\mathbf{\hat y}_i)}$$
 
@@ -84,12 +84,14 @@ $$L = - \frac{1}{100} \left(90(1 \times \log{(0.90)} + 0 \times \log{(0.1)}) + 1
 $$L = 20.81...$$
 
 
-whereas if our predictor predicts class $$A$$ 99% of the time and class $$B$$ 1% of the time..
+whereas if our predictor is no longer calibrated and on-average predicts class $$A$$ 99% of the time and class $$B$$ 1% of the time..
 
 $$L = - \frac{1}{100} \left(99(1 \times \log{(0.99)} + 0 \times \log{(0.01)}) + 1(0 \times \log{(0.99)} + 1 \times \log{(0.01)})\right)$$
 
 $$L = 4.56...$$
 
-Which is a drastically smaller loss. In order to minimize loss, therefore, models are tempted during learning to apply healthy probabilities to majority classes unrepresentative of its actual prevalence as this lowers loss.
+Which is a drastically smaller loss. In order to minimize loss, therefore, models are tempted during learning to apply healthy probabilities to majority classes unrepresentative of its actual prevalence as this lowers loss. This, however, is not necessarily a bad thing. In fact, this is actually what you *want* if your goal is to minimize loss, as this is the best way to do it. 
 
+## The reality of imbalanced datasets
+The above behavior is only an issue if the cost of misclassifying one class should be higher than the cost of misclassifying another (this often appears in the medical field where misclassifying a false negative for a tumor is far worse than misclassifying a false positive for a tumor). That is to say that an accurate prediction isn't the most important thing. If your data is representative and you are only interested in accurate prediction, this behavior is *optimal*, as it has *optimized* your accuracy. You're done. 
 
