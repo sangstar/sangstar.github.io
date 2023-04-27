@@ -54,4 +54,6 @@ Additionally, if I worked with another primitive model like a decision tree, whi
 
 This can be remedied to some extent with a more complex model like a neural network, thanks to its ability to fit non-linear decision boundaries quite well. Even still though, more data will greatly help. 
 
-This may not be enough, however. Cross-entropy is the flagship loss function for classification tasks, and is defined for two probability distributions $$P$$ and $$Q$$ as
+This may not be enough, however. Cross-entropy is the flagship loss function for classification tasks, and is defined for two probability distributions $$P$$ and $$Q$$ as:
+
+$$H(P,Q) = - \sum_{\forall x} p(x) \log{(q(x))}
