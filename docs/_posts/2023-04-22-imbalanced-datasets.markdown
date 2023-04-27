@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Imbalanced datasets and the dangers of over and undersampling"
+title:  "Imbalanced datasets and misclassification costs"
 date:   2023-04-22 10:15
 categories: ml
 usemathjax: true
