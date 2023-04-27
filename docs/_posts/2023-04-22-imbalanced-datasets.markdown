@@ -72,17 +72,19 @@ $$L = - \sum_{i=1}^2 y_i \log{(\hat y_i)}$$
 
 Cross-entropy is super nice for classification because it's convex (which is obviously ideal for a loss function) and well-suited to backpropagation. The logarithm in its equation is also particularly handy, punishing incorrect classifications (due to its behavior $$x \to \infty$$) by blowing up if the probability of the correct class is low according to $$q(x_i)$$. It also handles multiclass beautifully by simply adding more terms to the sum.  
 
-For our example here, suppose our predictor is calibrated and wants to predict class $$A$$ 95% of the time and class $$B$$ 5% of the time. That leaves our loss function as follows, if we are solving for 10 datapoints:
+For our example here, suppose the real data has class $$A$$ appear 90% of the time and class $$B$$ appears 10% of the time, and suppose our predictor is calibrated and wants to predict class $$A$$ 90% of the time and class $$B$$ 10% of the time as is the case in the real data. That leaves our loss function as follows, if we are solving for 100 datapoints:
 
-$$L = - \left(\frac{1}{10} 9(1 \times \log{(0.95)} + 0 \times \log{(0.05)}) + (0 \times \log{(0.95)} + 1 \times \log{(0.05)})\right)$$
+$$L = - \left(\frac{1}{100} 90(1 \times \log{(0.90)} + 0 \times \log{(0.1)}) + 10(0 \times \log{(0.90)} + 1 \times \log{(0.1)})\right)$$
 
-$$L = 2.74232...$$
+$$L = 20.81...$$
 
 
-whereas if our predictor predicts class $$A$$ 100% of the time and class $$B$$ 0% of the time..
+whereas if our predictor predicts class $$A$$ 99% of the time and class $$B$$ 1% of the time..
 
-$$L = - \left(\frac{1}{10} 10(1 \times \log{(0.95)} + 0 \times \log{(0.05)})\right)$$
+$$L = - \left(\frac{1}{100} 99(1 \times \log{(0.99)} + 0 \times \log{(0.01)}) + 1(0 \times \log{(0.99)} + 1 \times \log{(0.01)})\right)$$
 
-$$L = 0.0512...$$
+$$L = 4.56...$$
+
+Which is a drastically smaller loss. In order to minimize loss, therefore, models are tempted to exhibit this kind of behavior.
 
 
