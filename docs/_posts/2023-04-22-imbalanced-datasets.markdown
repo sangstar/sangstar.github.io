@@ -58,12 +58,31 @@ This may not be enough, however. Cross-entropy is the flagship loss function for
 
 $$H(P,Q) = - \sum_{i=1}^N p(x_i) \log{(q(x_i))}$$
 
-where $$p(x_i)$$ is interpreted as the true distribution and $$q(x_i)$$ as the predicted distribution. 
+where $$p(x_i)$$ is interpreted as the true distribution and $$q(x_i)$$ as the predicted distribution. In this case, $$x$$ *does not** refer to feature vectors, but output vectors -- a vector of classes. Remember that loss functions deal with comparing output vectors.
 
-I kind of like writing it in terms of the dot product
+This is why I kind of like writing it in terms of the dot product. This is the cross-entropy loss for datapoint $$(x_i,y_i)$$.
 
-$$L = \mathbf{y} \cdot \log{(\hat \mathbf{y})}$$
+$$L = -\mathbf{y} \cdot \log{(\mathbf{\hat y})}$$
 
-where $$L$$ now represents cross-entropy as a loss function, $$\mathbf{y}$$ as the vector of values consisting of $$p(x_i)$$ and $$\hat \mathbf{y}$$ as the vector of values consisting of $$q(x_i)$$. 
+where $$L$$ now represents cross-entropy as a loss function, $$\mathbf{y}$$ as the vector of values consisting of $$p(x_i)$$ and $$\mathbf{\hat y}$$ as the vector of values consisting of $$q(x_i)$$. 
 
-Cross-entropy is super nice for classification because it's convex (which is obviously ideal for a loss function) and well-suited to backpropagation. The logarithm in its equation is also particularly handy, punishing incorrect classifications (due to its behavior $$x \to \infty$$) by blowing up if the probability of the correct class is low according to $$q(x_i)$$
+The computation of which, looks like this, for binary cross-entropy:
+
+$$L = - \sum_{i=1}^2 y_i \log{(\hat y_i)}$$
+
+Cross-entropy is super nice for classification because it's convex (which is obviously ideal for a loss function) and well-suited to backpropagation. The logarithm in its equation is also particularly handy, punishing incorrect classifications (due to its behavior $$x \to \infty$$) by blowing up if the probability of the correct class is low according to $$q(x_i)$$. It also handles multiclass beautifully by simply adding more terms to the sum.  
+
+For our example here, suppose our predictor wants to predict class $$A$$ 95% of the time and class $$B$$ 5% of the time. That leaves our loss function as follows, if we are solving for 10 datapoints:
+
+$$L = - \left(\frac{1}{10} 9(1 \cross \log{(0.95)} + 0 \cross \log{(0.05)}) + (0 \cross \log{(0.95)} + 1 \cross \log{(0.05)}))\right$$
+
+$$L = 2.74232...$$
+
+
+whereas if our predictor predicts class $$A$$ 100% of the time and class $$B$$ 0% of the time..
+
+$$L = - \left(\frac{1}{10} 10(1 \cross \log{(0.95)} + 0 \cross \log{(0.05)}))\right$$
+
+$$L = 0.0512...$$
+
+
