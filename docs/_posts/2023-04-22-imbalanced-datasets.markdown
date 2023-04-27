@@ -101,3 +101,15 @@ The above behavior is only an issue if the cost of misclassifying one class shou
 
 So, when we're interested in good performance on a minority class to the point where we're willing to eschew a bit of overall accuracy, we'll need to add some way to favor minimizing the loss by better predicting minority classes. 
 
+Let's briefly return to the example from before. The calculation I was effectively doing per datapoint is common written as:
+
+$$L = -(y \log{(p)} + (1-y)\log{(1-p)})$$
+
+Suppose we tack on a constant to the first term:
+
+$$L = -(y \log{(p)} \alpha + (1-y)\log{(1-p)})$$
+
+If $$\alpha > 1$$, we spur on positive error relative to negative error, incentivizing precision at all costs and causing even greater minority exclusion. If $$ 0 < \alpha < 1$$, we hamstring positive error in favor of negative error, incentivizing better recall by reducing false negatives. This is one way to combat misclassification cost, known as *weighted cross-entropy*.
+
+Another way would be to adjust decision boundaries after the fact to allow minority classes more leniency to be predicted.
+
