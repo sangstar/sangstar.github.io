@@ -31,7 +31,7 @@ Suppose a bank wants to create a classifier than determines whether bank transca
 
 Suppose they start training, and all of a sudden the model is trained quickly and in a few epochs, with validation accuracy well over 90%. *This should be an expected result if you looked at the target distribution*, and you would probably *not* consider this model well-equipped to handle its use case if you were to look at its predictions on the test set. The model would be performing 3 matrix multiplication operations, activation function computations on 29 nodes, and yet I can create my own predictor that will likely do just as good a job in one line of code: `def predictor(x): return 0`
 
-If the engineer were to look at his data, if the data is representative of a typical bank transactions dataset, fraudulent transactions would be horribly under-represented. This is an example of an imbalanced dataset, which accuracy is woefully equipped to handling. An imbalanced dataset is any dataset where the class distribution is not flat. A *balanced dataset* is below, with arbitary classes `A` and `B`.
+If the engineer were to look at his data, if the data is representative of a typical bank transactions dataset, fraudulent transactions would be horribly under-represented. This is an example of an imbalanced dataset, which accuracy is woefully equipped to handling. An imbalanced dataset is any dataset where the class distribution is not flat. A *balanced dataset* is below, with arbitary classes $$A$$ and $$B$$.
 
 (image)
 
@@ -56,4 +56,12 @@ This can be remedied to some extent with a more complex model like a neural netw
 
 This may not be enough, however. Cross-entropy is the flagship loss function for classification tasks, and is defined for two probability distributions $$P$$ and $$Q$$ as:
 
-$$H(P,Q) = - \sum_{\forall x} p(x) \log{(q(x))}
+$$H(P,Q) = - \sum_{\forall x} p(x) \log{(q(x))}$$
+
+where $$p(x)$$ is interpreted as the true distribution and $$q(x)$$ as the predicted distribution. Obviously $$x \in X$$ is a discrete set of input values, and not actually representing $$x \in \mathbf{R}$$ or something. 
+
+I kind of like writing it in terms of the dot product
+
+$$L = \mathbf{y} \cdot \log{(\hat \mathbf{y})}$$
+
+where $$L$$ now represents cross-entropy as a loss function, $$\mathbf{y}$$ as the vector of values consisting of $$p(x)$$ and $$\hat \mathbf{y}$$ as the vector of values consisting of $$q(x)$$. 
