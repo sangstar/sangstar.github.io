@@ -23,7 +23,7 @@ $$ \frac{P_T + N_T}{P + N}$$
 
 Where $$P_T$$ and $$N_T$$ represent the true and false positive results respectively made by a predictor, whereas $$P$$ and $$N$$ represent the actual number of positive and negative cases in something like a test dataset. It's quite easy to compute when programming as long as your `==` operator is element-wise, and computing it between $$y$$ and $$\hat y$$: the true and predicted $$y$$ values. This will create an array of booleans whose average is the accuracy.  
 
-Accuracy as a metric is rife throughout machine learning libraries like Tensorflow, where validation accuracy is a common early stopping criterion for training. However, I personally hate accuracy as a metric, and relying on it is not only bad practice, but potentially costly. 
+Accuracy as a metric is rife throughout machine learning libraries like Tensorflow, where validation accuracy is a common early stopping criterion for training. Accuracy is a fine metric, but it can lead you astray if you use it too liberally.
 
 ## Where accuracy goes wrong
 
@@ -33,11 +33,15 @@ Suppose they start training, and all of a sudden the model is trained quickly an
 
 If the engineer were to look at his data, if the data is representative of a typical bank transactions dataset, fraudulent transactions would be horribly under-represented. This is an example of an imbalanced dataset, which accuracy is woefully equipped to handling. An imbalanced dataset is any dataset where the class distribution is not flat. A *balanced dataset* is below, with arbitary classes $$A$$ and $$B$$.
 
-(image)
+<p align="center">
+  <img width="auto" height="auto" src="/assets/balanced.jpg">
+</p>
 
 Whereas an imbalanced dataset is any deviation from this parity, such as if I reduced the prevalence of some classes at random like below:
 
-(image)
+<p align="center">
+  <img width="auto" height="auto" src="/assets/imbalanced.jpg">
+</p>
 
 The first image is fairly straight-forward to train, but unrealistic -- you'll probably find it is seldom the case that this parity will occur naturally. 
 
@@ -94,4 +98,6 @@ Which is a drastically smaller loss. In order to minimize loss, therefore, model
 
 ## The reality of imbalanced datasets
 The above behavior is only an issue if the cost of misclassifying one class should be higher than the cost of misclassifying another (this often appears in the medical field where misclassifying a false negative for a tumor is far worse than misclassifying a false positive for a tumor). That is to say that an accurate prediction isn't the most important thing. If your data is representative and you are only interested in accurate prediction, this behavior is *optimal*, as it has *optimized* your accuracy. You're done. 
+
+So, when we're interested in good performance on a minority class to the point where we're willing to eschew a bit of overall accuracy, we'll need to add some way to favor minimizing the loss by better predicting minority classes. 
 
