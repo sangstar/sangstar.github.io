@@ -111,5 +111,5 @@ $$L = -(\alpha y \log{(p)} + (1-y)\log{(1-p)})$$
 
 As this is once again an example for binary cross-entropy, I should note that the first term traditionally relates to what is called *positive* error, as it refers to the error made by the classifier when it misclassifiers a positive instance (a label of $$1$$) as negative (a label of $$0$$), and vice versa for the second term -- the *negative error*. If $$ 0 < \alpha < 1$$, we buffer the penalty of positive error, incentivizing precision at all costs and causing even greater minority exclusion. If $$\alpha > 1$$, we exacerbate positive error in favor of negative error, incentivizing better recall by reducing false negatives. When considering this, remind yourself that a low $$p$$ for the non-zero term is a misclassification. This is one way to combat misclassification cost, known as *weighted cross-entropy*.
 
-Another way would be to adjust decision boundaries after the fact to allow minority classes more leniency to be predicted.
+Another way to help minority class prediction would be to adjust decision boundaries after the fact to allow minority classes more leniency to be predicted.
 
