@@ -66,7 +66,7 @@ $$L = -\mathbf{y} \cdot \log{(\mathbf{\hat y})}$$
 
 where $$L$$ now represents cross-entropy as a loss function, $$\mathbf{y}$$ as the vector of values consisting of $$p(x_i)$$ and $$\mathbf{\hat y}$$ as the vector of values consisting of $$q(x_i)$$. 
 
-The computation of which, looks like this, for binary cross-entropy:
+The computation of which, looks like this for binary cross-entropy:
 
 $$L = - \sum_{i=1}^2 y_i \log{(\hat y_i)}$$
 
@@ -74,7 +74,7 @@ Cross-entropy is super nice for classification because it's convex (which is obv
 
 For our example here, suppose the real data has class $$A$$ appear 90% of the time and class $$B$$ appears 10% of the time, and suppose for the sake of the example our predictor is perfectly calibrated (so that its predicted probabilities match the true probabilities one-to-one) and wants to predict class $$A$$ 90% of the time and class $$B$$ 10% of the time as is the case in the real data. That leaves our loss function as follows, if we are solving for 100 datapoints, I'll start with the total loss over all the datapoints
 
-$$L = \frac{1}{100} \sum_{i=1}^100 -\mathbf{y}_i \cdot \log{(\mathbf{\hat y}_i)}$$
+$$L = \frac{1}{100} \sum_{i=1}^{100} -\mathbf{y}_i \cdot \log{(\mathbf{\hat y}_i)}$$
 
 where each vector is two-dimensional. 
 
@@ -90,6 +90,6 @@ $$L = - \frac{1}{100} \left(99(1 \times \log{(0.99)} + 0 \times \log{(0.01)}) + 
 
 $$L = 4.56...$$
 
-Which is a drastically smaller loss. In order to minimize loss, therefore, models are tempted to exhibit this kind of behavior.
+Which is a drastically smaller loss. In order to minimize loss, therefore, models are tempted during learning to apply healthy probabilities to majority classes unrepresentative of its actual prevalence as this lowers loss.
 
 
