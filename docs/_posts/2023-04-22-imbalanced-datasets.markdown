@@ -74,14 +74,14 @@ Cross-entropy is super nice for classification because it's convex (which is obv
 
 For our example here, suppose the real data has class $$A$$ appear 90% of the time and class $$B$$ appears 10% of the time, and suppose our predictor is calibrated and wants to predict class $$A$$ 90% of the time and class $$B$$ 10% of the time as is the case in the real data. That leaves our loss function as follows, if we are solving for 100 datapoints:
 
-$$L = - \left(\frac{1}{100} 90(1 \times \log{(0.90)} + 0 \times \log{(0.1)}) + 10(0 \times \log{(0.90)} + 1 \times \log{(0.1)})\right)$$
+$$L = - \frac{1}{100} \left(90(1 \times \log{(0.90)} + 0 \times \log{(0.1)}) + 10(0 \times \log{(0.90)} + 1 \times \log{(0.1)})\right)$$
 
 $$L = 20.81...$$
 
 
 whereas if our predictor predicts class $$A$$ 99% of the time and class $$B$$ 1% of the time..
 
-$$L = - \left(\frac{1}{100} 99(1 \times \log{(0.99)} + 0 \times \log{(0.01)}) + 1(0 \times \log{(0.99)} + 1 \times \log{(0.01)})\right)$$
+$$L = - \frac{1}{100} \left(99(1 \times \log{(0.99)} + 0 \times \log{(0.01)}) + 1(0 \times \log{(0.99)} + 1 \times \log{(0.01)})\right)$$
 
 $$L = 4.56...$$
 
