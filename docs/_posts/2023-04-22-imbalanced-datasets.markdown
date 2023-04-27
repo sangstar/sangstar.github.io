@@ -81,7 +81,7 @@ $$L = 2.74232...$$
 
 whereas if our predictor predicts class $$A$$ 100% of the time and class $$B$$ 0% of the time..
 
-$$L = - \left(\frac{1}{10} 10(1 \cross \log{(0.95)} + 0 \cross \log{(0.05)}))\right$$
+$$L = - (\frac{1}{10} 10(1 \cross \log{(0.95)} + 0 \cross \log{(0.05)}))$$
 
 $$L = 0.0512...$$
 
