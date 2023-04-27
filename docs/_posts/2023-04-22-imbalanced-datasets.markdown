@@ -43,7 +43,7 @@ Whereas an imbalanced dataset is any deviation from this parity, such as if I re
   <img width="auto" height="auto" src="/assets/imbalanced.jpg">
 </p>
 
-The first image is fairly straight-forward to train, but unrealistic -- you'll probably find it is seldom the case that this parity will occur naturally. 
+Histograms are by far the more standard way of displaying this, but I love a good pie chart. The first image is fairly straight-forward to train, but unrealistic -- you'll probably find it is seldom the case that this parity will occur naturally. 
 
 Imbalanced datasets are a messy subject. Once aspiring machine learning engineers learn about imbalanced datasets, they tend to invariably assume it is a problem that needs to be fixed. One of the main reasons for this writing this article is as a PSA for machine learning engineers. 
 
