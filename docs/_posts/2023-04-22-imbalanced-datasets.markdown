@@ -76,7 +76,7 @@ The computation of which, looks like this for binary cross-entropy:
 
 $$L = - \sum_{i=1}^2 y_i \log{(\hat y_i)}$$
 
-Cross-entropy is super nice for classification because it's convex (which is obviously ideal for a loss function) and well-suited to backpropagation. The logarithm in its equation is also particularly handy, punishing incorrect classifications (due to its behavior $$x \to \infty$$) by blowing up if the probability of the correct class is low. It also handles multiclass beautifully by simply adding more terms to the sum.  
+Cross-entropy is super nice for classification because it's convex (which is obviously ideal for a loss function) and well-suited to backpropagation. The logarithm in its equation is also particularly handy, punishing incorrect classifications (due to its behavior $$x \to 0$$) by blowing up if the probability of the correct class is low. It also handles multiclass beautifully by simply adding more terms to the sum.  
 
 For our example here, suppose the real data has class $$A$$ appear 90% of the time and class $$B$$ appears 10% of the time, and suppose for the sake of the example our predictor is perfectly calibrated and wants to predict class $$A$$ 90% of the time and class $$B$$ 10% of the time as is the case in the real data (a calibrated predictor means its predicted probabilities match the true probabilities, implying that if a class appears 90% of the time in a dataset its average prediction probability is 90%) . That leaves our loss function as follows, if we are solving for 100 datapoints. I'll start with the total loss over all the datapoints
 
