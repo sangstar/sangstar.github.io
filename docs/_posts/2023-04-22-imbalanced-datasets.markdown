@@ -90,7 +90,7 @@ $$L = - \frac{1}{100} \left(90(1 \times \log{(0.90)} + 0 \times \log{(0.1)}) + 1
 $$L = 20.81...$$
 
 
-whereas if our predictor is no longer calibrated and on-average predicts class $$A$$ 99% of the time and class $$B$$ 1% of the time regardless of how often either class appears in the training data..
+Keep in mind I'm slightly taking liberties here for the sake of explanation, assuming that each time it predicts the positive and negative class with the same probability due to it being calibrated -- on average this will be the case but it is unlikely to all be exact. If our predictor is no longer calibrated and on-average predicts class $$A$$ 99% of the time and class $$B$$ 1% of the time regardless of how often either class appears in the training data..
 
 $$L = - \frac{1}{100} \left(99(1 \times \log{(0.99)} + 0 \times \log{(0.01)}) + 1(0 \times \log{(0.99)} + 1 \times \log{(0.01)})\right)$$
 
