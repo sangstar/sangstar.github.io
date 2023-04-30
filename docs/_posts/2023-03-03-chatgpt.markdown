@@ -29,7 +29,7 @@ A transformer is a complex type of neural network architecture that really has n
   <img width="auto" height="auto" src="/assets/transformer.jpg">
 </p>
 
-which for me, when I first saw it, was absolutely befuddling. My hope is that after reading this article, if you go back to this graphic it'll make a bit more sense. Let's dive right and start dealing with the attention units. I will be describing a transformer that is used to generate text. 
+which for me, when I first saw it, was absolutely befuddling. My hope is that after reading this article, if you go back to this graphic it'll make a bit more sense. Let's dive right and start dealing with the attention units. I will be describing a an autoregressive encoder-decoder transformer to generate text.
 
 # Self-attention and the encoder
 Transformers are composed of things called scaled dot-product attention units. These attention units embed the input document by each token's weighted relevance to other tokens in the sentence. 
@@ -141,6 +141,8 @@ and to annotate this process:
 This process is repeated until, I assume, the prompts dataset is exhausted or some early stopping criterion is reached (such as policy updates tapering off).
 
 ## Some things to note
+
+To describe as much as possible, I talked about an encoder-decoder transformer, but not all LLM's are based off this design. Some are, like BART, are in this framework, while BERT is an encoder-only model, and LLM's like GPT (all generations), Bard and LlaMa are decoder-only.
 
 It may seem like no explanation as to how ChatGPT was trained seems to make its remarkable usefulness believable. My only explanation for this would be the likely exorbitant amount of training data and parameters at play here.
 
