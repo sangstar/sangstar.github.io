@@ -142,7 +142,11 @@ This process is repeated until, I assume, the prompts dataset is exhausted or so
 
 ## Some things to note
 
-To describe as much as possible, I talked about an encoder-decoder transformer, but not all LLM's are based off this design. Some are, like BART, are in this framework, while BERT is an encoder-only model, and LLM's like GPT (all generations), Bard and LlaMa are decoder-only.
+To describe as much as possible, I talked about an encoder-decoder transformer, but not all LLM's are based off this design. Some are, like BART, are in this framework, while BERT is an encoder-only model, and LLM's like GPT (all generations), Bard and LlaMa are decoder-only. 
+
+Decoder-only transformers are more popular for autoregressive text generation. An autoregressive transformer simply does not have much use for an encoder's output. The encoder, which has bidirectional self-attention (no masking) is not necessary for autoregression as multi-directional context is not applicable to generating sequences token-by-token and ends up providing needless bloat to an already incredibly computationally-hefty model architecture. Not only is it wasteful; it can be detrimental. For generating text, only the currently generated tokens should be attended to -- not the entire input sequence it's learning off of. 
+
+It is theoretically possible (but not popular) to use a encoder-decoder framework for autoregressive textgen, and I explained it in this context just to explain what both encoders and decoders were. 
 
 It may seem like no explanation as to how ChatGPT was trained seems to make its remarkable usefulness believable. My only explanation for this would be the likely exorbitant amount of training data and parameters at play here.
 
