@@ -29,7 +29,7 @@ A transformer is a complex type of neural network architecture that really has n
   <img width="auto" height="auto" src="/assets/transformer.jpg">
 </p>
 
-which for me, when I first saw it, was absolutely befuddling. My hope is that after reading this article, if you go back to this graphic it'll make a bit more sense. Let's dive right and start dealing with the attention units. I will be describing a an autoregressive encoder-decoder transformer to generate text.
+which for me, when I first saw it, was absolutely befuddling. My hope is that after reading this article, if you go back to this graphic it'll make a bit more sense. Let's dive right and start dealing with the attention units. I will be describing a an autoregressive encoder-decoder transformer to generate text. I will do so by framing it in an explanation of encoders and decoders, but I want to preface this by saying: the two of them are very similar, and can be thought of as slight variations of a generic transformer block; something with multiheaded attention and an MLP.
 
 # Self-attention and the encoder
 Transformers are composed of things called scaled dot-product attention units. These attention units embed the input document by each token's weighted relevance to other tokens in the sentence. 
@@ -46,7 +46,7 @@ which can be thought of as the relevance of token $$i$$ on token $$j$$. These at
 
 $$\text{Attention}_i = \sum_{j=1}^n a_{i,j} v_j$$
 
-where $$a_i$$ is known as the *attention* for token or position $$i$$. By doing this for all tokens, you've *encoded* your document $$d$$. Notice that through all these vectorized operations we've managed to enable full-range context dependency on all of our tokens, which RNN's aren't able to do. In addition, this setup allows for asymmetry between tokens $$i$$ and $$j$$. As $$\alpha_{i,j} \ne \alpha_{j,i}$$, this means that the influence of token $$i$$ on $$j$$ can be large while the influence of token $$j$$ on $$i$$ can be mild and vice versa. 
+where $$a_i$$ is known as the *attention* for token or position $$i$$. By doing this for all tokens, you've self-attended your document $$d$$. Notice that through all these vectorized operations we've managed to enable full-range context dependency on all of our tokens, which RNN's aren't able to do. In addition, this setup allows for asymmetry between tokens $$i$$ and $$j$$. As $$\alpha_{i,j} \ne \alpha_{j,i}$$, this means that the influence of token $$i$$ on $$j$$ can be large while the influence of token $$j$$ on $$i$$ can be mild and vice versa. 
 
 One set of weights matrices each is referred to as an *attention head*, and each attention layer will have multiple heads, as you can see from the "multi-head attention" stuff in the above image. The reason why you want to use multiple heads is similar to why you want to use multiple hidden layers in a neural net, in that it allows more insights to be picked up by combining the "ideas" of all the heads. 
 
@@ -56,7 +56,7 @@ $$\text{MultiheadAttention(Q,K,V)} = \text{Concat}(\text{Attention}_i)W_O$$
 
 which is fed to a feed-forward neural network as essentially an "enhanced" version of a word embedding, holding more contextual information through self attention, usually then passed to an $$\text{Add&Norm}$$ layer which adds the input used to generate the output with that latter output. That sounds confusing, but for example the first $$\text{Add&Norm}$$ layer adds the input embeddings with the result of the first multi-head attention layer, and the second layer adds the output of the feed-forward layer to the output of the multiheaded attention layer (which serves as the $$\text{Add&Norm}$$ input as it's used as output for the feed-forward). $$\text{Add&Norm}$$ layers help to reduce the risk of vanishing gradients. 
 
-This is known as an encoder. There usually are a number of these in popular transformers (BERT and GPT-2 range usually between 12 and 24). The first encoder takes word embeddings as input, while the subsequent encoders take encodings. 
+This is known as an encoder. There usually are a number of these in popular transformers. The first encoder takes word embeddings as input, while the subsequent encoders take encodings. 
 
 I'm going to skip positional encoding other than to say it provides a way to capture the order of an input sequence, which is good because otherwise it couldn't distinguish between two tokens that have the same value vector but appear at different positions in the input sequence.
 
@@ -142,11 +142,11 @@ This process is repeated until, I assume, the prompts dataset is exhausted or so
 
 ## Some things to note
 
-To describe as much as possible, I talked about an encoder-decoder transformer, but not all LLM's are based off this design. Some, like BART, are in this framework, while BERT is an encoder-only model, and LLM's like GPT (all generations), Bard and LlaMa are decoder-only. 
+- To describe as much as possible, I talked about an encoder-decoder transformer, but not all LLM's are based off this design. Some, like BART, are in this framework, while BERT is an encoder-only model, and LLM's like GPT (all generations) and LlaMa are decoder-only (Bard might be too but I've read conflicting information on it). 
 
-Decoder-only transformers are more popular for autoregressive text generation. An autoregressive transformer simply does not have much use for an encoder's output. The encoder, which has bidirectional self-attention (no masking) is not necessary for autoregression as multi-directional context is not applicable to generating sequences token-by-token and ends up providing needless bloat to an already incredibly computationally-hefty model architecture. Not only is it wasteful; it can be detrimental. For generating text, only the currently generated tokens should be attended to -- not the entire input sequence it's learning off of. 
+- Decoder-only transformers are more common for autoregressive text generation LLMs. They doesn't seem to have any need for encoders because there is seemingly not much benefit to learning the latent vector representation of the input sequence when only attending to currently generated tokens. 
 
-It is theoretically possible (but not popular) to use a encoder-decoder framework for autoregressive textgen, and I explained it in this context just to explain what both encoders and decoders were. 
+Encoder-decoder transformers seem to work great for applications where long-range contextual understanding of the input sequence is important (encoders are great for this) and text generation is desired (decoders), like with language translation.
 
 It may seem like no explanation as to how ChatGPT was trained seems to make its remarkable usefulness believable. My only explanation for this would be the likely exorbitant amount of training data and parameters at play here.
 
