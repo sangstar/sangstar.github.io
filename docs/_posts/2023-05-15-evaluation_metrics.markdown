@@ -34,7 +34,7 @@ $$
 \delta(T) = M(A,T) - M(B,T)
 $$
 
-This performance difference is known as an *effect size*. Suppose $$\delta(T) = 0.2$$. According statistical hypothesis testing, this *does not* allow us to state that $$A$$ is a superior model to $$B$$. That's because it's entirely possible that $$A$$ was "accidentally" better than $$B$$ on test set $$T$$, and that $$B$$ is actually no worse than $$A$$ or even better.  
+This performance difference is known as an *effect size*. Suppose $$\delta(T) = 0.2$$. According to statistical hypothesis testing, this *does not* allow us to state that $$A$$ is a superior model to $$B$$. That's because it's entirely possible that $$A$$ was "accidentally" better than $$B$$ on test set $$T$$, and that $$B$$ is actually no worse than $$A$$ or even better.  
 
 In the realm of statistical inference, to make a claim that some agent $$A$$ outperforms $$B$$, we make two hypotheses: that $$A$$ is either as good or worse than $$B$$, or that $$A$$ is better than $$B$$. 
 
