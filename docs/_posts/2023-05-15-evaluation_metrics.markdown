@@ -42,7 +42,7 @@ The first hypothesis is the one we assume is true, known as the null hypothesis.
 
 $$H_0 : \delta(T) \le 0$$
 
-The goal to proving statistical significance in $$A$$'s superiority to $$B$$ is to find the empirical probability that we'd find our value of $$\delta(T)$$ or of one even greater if the null hypothesis. Basically we want to find the probability that we would see $$\delta(T)$$ or higher if $$A$$ is actually not better than $$B$$ with regard to some test statistic (in our case $$F_1$$). That is to say that we want to find:
+The goal to proving statistical significance in $$A$$'s superiority to $$B$$ is to find the empirical probability that we'd find our value of $$\delta(T)$$ or of one even greater if the null hypothesis is true. Basically we want to find the probability that we would see $$\delta(T)$$ or higher if $$A$$ is actually not better than $$B$$ with regard to some test statistic (in our case $$F_1$$). That is to say that we want to find:
 
 $$P(\delta(t) \ge \delta(T) | H_0 \text{is true})$$
 
