@@ -46,7 +46,7 @@ The goal to proving statistical significance in $$A$$'s superiority to $$B$$ is 
 
 $$P(\delta(t) \ge \delta(T) | H_0 \text{is true})$$
 
-This probability is called a *p-value*. You might've seen the p-value before in studies and stuff, where it's usually set to something like $$0.05$$, which means there is a $$95%$$ chance the null hypothesis is not true: that whatever $$B$$ is (in studies talking about medical interventions this is often called a placebo!) cannot be considered on par with or better than $$A$$ at some test statistic. 
+This probability is called a *p-value*. You might've seen the p-value before in studies and stuff, where it's usually set to something like $$0.05$$, which means there is a $$95\%$$ chance the null hypothesis is not true: that whatever $$B$$ is (in studies talking about medical interventions this is often called a placebo!) cannot be considered on par with or better than $$A$$ at some test statistic. 
 
 
 ## References
