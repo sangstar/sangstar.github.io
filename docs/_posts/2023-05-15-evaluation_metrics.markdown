@@ -34,7 +34,7 @@ $$
 \delta(T) = M(A,T) - M(B,T)
 $$
 
-
+This performance difference is known as an *effect size*. Suppose $$\delta(T) = 0.2$$. According statistical hypothesis testing, this *does not imply* that $$A$$ is a superior model to $$B$$. Can we say for sure that $$A$$ is a better model than $$B$$? 
 
 
 ## References
