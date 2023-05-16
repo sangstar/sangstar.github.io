@@ -2,7 +2,7 @@
 layout: post
 title:  "Evaluation metrics in NLP"
 date:   2023-05-15 10:15
-categories: ml
+categories: nlp
 usemathjax: true
 ---
 
@@ -50,9 +50,14 @@ $$H_0 : \delta(T) \le 0$$
 
 The goal to proving statistical significance in $$A$$'s superiority to $$B$$ is to find the empirical probability that we'd find our value of $$\delta(T)$$ or of one even greater if the null hypothesis is true. Basically we want to find the probability that we would see $$\delta(T)$$ or higher if $$A$$ is actually not better than $$B$$ with regard to some test statistic (in our case $$F_1$$). That is to say that we want to find for some arbitrary test set $$t$$:
 
-$$P(\delta(t) \ge \delta(T) | H_0 \text{is true})$$
+$$p = P(\delta(t) \ge \delta(T) \ | \ H_0 \ \text{is true})$$
 
-This probability is called a *p-value*. You might've seen the p-value before in studies and stuff, where it's usually set to something like $$0.05$$, which means there is a $$95\%$$ chance the null hypothesis is not true: that whatever $$B$$ is (in studies talking about medical interventions this is often called a placebo!) cannot be considered on par with or better than $$A$$ at some test statistic, like the difference in $$F_1$$ scores or the difference in amyloid deposition in the brain for an Alzheimer's drug. It's an *incredibly powerful* statistic.
+This probability is called a *p-value*. You might've seen the p-value before in studies and stuff, where it's usually set to something like $$0.05$$, which means there is a $$95\%$$ chance the null hypothesis is not true: that whatever $$B$$ is (in studies talking about medical interventions this is often called a placebo!) cannot be considered on par with or better than $$A$$ at some test statistic, like the difference in $$F_1$$ scores or the difference in amyloid deposition in the brain for an Alzheimer's drug. It's an *incredibly powerful* statistic. The result of $$A$$ being better than $$B$$ is *statistically significant* if the probability we defined is below a threshold we decided on, such as $$p \le 0.05$$. 
+
+In NLP, we approach computing this probability $$p$$ generally using non-parametric tests, (as parametric tests don't generally work with our data because data in NLP is rarely normal) such as a bootstrap test, which I'm going to be discussing here. 
+
+## Paired Bootstrap Test
+Bootstrapping is a word in statistics used to describe random sampling *with replacement*, which basically means once a datapoint is sampled, that datapoint has an equal likelihood of being sampled as it had before. It's not out of the available pool of datapoints to be sampled. It's like if you were to sample a ball out of a bag of red, green and blue balls, but once you took one out of the bag, before you sampled it again you'd put that ball back. It's actually also quite important in decision trees, and is not an unreasonable thing to do as you are able to assume that the sample you've bootstrapped is representative, which is a fairly reliable assumption to make with a large enough sample size, the data collection process not introducing any bias or systematic errors that would be propogated, and the data being independent and identically distributed (ie not dealing with weird/complex data structures with spatial, temporal or hierarchical dependencies). 
 
 
 ## References
