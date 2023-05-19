@@ -25,4 +25,4 @@ subject to $$\text{rank}(\hat D) \le r$$. This has an analytic solution if you r
 
 Representing $$D$$ into its SVD we have
 
-$$D = U \sum V^T \in \mathcal{R}^{m \cross n}, \ m \le n$$
+$$D = U \sum V^T \in \mathbf{R}^{m \times n}, \ m \le n$$
