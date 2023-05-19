@@ -21,4 +21,8 @@ In linear algebra, there is a concept called *low-rank approximation*, where a c
 
 $$||D - \hat D||_F$$
 
-subject to $$\text{rank}(\hat D) \le r$$
+subject to $$\text{rank}(\hat D) \le r$$. This has an analytic solution if you represent $$D$$ using its singular value decomposition. I'm not going to go into SVD in detail for this article, but there are great resources online to read more about it. 
+
+Representing $$D$$ into its SVD we have
+
+$$D = U \sum V^T \in \mathcal{R}^{m \cross n}, \ m \le n$$
