@@ -39,7 +39,7 @@ $$\hat D^* = U_1 \Sigma_1 V_1^T$$
 
 Then by the Eckart-Young-Mirsky theorem we've achieved our goal: 
 
-$$\lVert D - \hat D^* \rVert _F = \text{min} \  \lVert D - \hat D \rVert _F$$
+$$\lVert D - \hat D^* \rVert _F = \text{min}_{\text{rank}(\hat D) \le r} \  \lVert D - \hat D \rVert _F$$
 
 Which allows us to approximate $$D$$ as $$\hat D$$ if we're happy with how much it's minimized (recalling that $$\lim_{x \to 0} A - B = x$$ converges to $$A = B$$ and this is what is being stated through the norm of this matrix getting smaller and smaller).
 
