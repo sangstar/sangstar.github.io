@@ -17,7 +17,7 @@ usemathjax: true
 {% endif %}
 
 ## Low-Rank Adapation of Large Language Models (LoRA)
-In linear algebra, there is a concept called *low-rank approximation*, where a cost function (canonically the Frobenius norm) measures the difference between a given matrix an a matrix that approximates it of a lower rank. The task is to minimize over $$\hat D$$ the following optimization problem:
+In linear algebra, there is a concept called *low-rank approximation*, where a cost function (canonically the Frobenius norm) measures the difference between a given matrix and a matrix that approximates it of a lower rank. The task is to minimize over $$\hat D$$ the following optimization problem:
 
 $$\lVert D - \hat D \rVert _F$$
 
