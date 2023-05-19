@@ -17,7 +17,7 @@ usemathjax: true
 {% endif %}
 
 ## Low-Rank Adapation of Large Language Models (LoRA)
-In linear algebra, there is a concept called *low-rank approximation*, where a cost function (canonically the Frobenius norm) measures the difference between a given matrix an a matrix that approximates it of a lower rank. The task to minimize over $$\hat D$$ the following optimization problem:
+In linear algebra, there is a concept called *low-rank approximation*, where a cost function (canonically the Frobenius norm) measures the difference between a given matrix an a matrix that approximates it of a lower rank. The task is to minimize over $$\hat D$$ the following optimization problem:
 
 $$\lVert D - \hat D \rVert _F$$
 
@@ -32,3 +32,13 @@ Suppose we decide to partition our decomposed matrices into block matrices like 
 $$U = [U_1, U_2], \ \Sigma = diag(\Sigma_1, \Sigma_2), \ V = [V_1, V_2]$$
 
 Where $$U_1$$ is $$m \ \times \ r$$, $$\Sigma_1$$ is $$r \ \times \ r$$ and $$V_1$$ is $$r \ \times \ n$$. These means that those associated submatrices have dominant singular values since $$\Sigma$$ typically is typically put in descending order. This restructuring captures the "important information" of matrix $$D$$ in a submatrix. If this sounds confusing, remind yourself that singular values are a rectangular analogue to eigenvalues for square matrices, and that the values are sorted by magnitude, so that $$\Sigma_1$$ holds the most heavily-weighted linear transformations of $$V$$ corresponding to $$V_1$$. 
+
+If we thereby define our matrix approximation as:
+
+$$\hat D^* = U_1 \Sigma_1 V_1^T$$
+
+Then by the Eckart-Young-Mirsky theorem we've achieved our goal: 
+
+$$\lVert D - \hat D^* \rVert _F = \text{min} \  \lVert D - \hat D \rVert _F$$
+
+Which allows us to approximate $$D$$ as $$\hat D$$ if we're happy with how much it's minimized ($$\lim_{x \to 0} A - B = x$$ converges to $$A = B$$ and this is what is being stated through the norm of this matrix getting smaller and smaller).
