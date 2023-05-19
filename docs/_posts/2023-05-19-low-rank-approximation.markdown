@@ -42,3 +42,7 @@ Then by the Eckart-Young-Mirsky theorem we've achieved our goal:
 $$\lVert D - \hat D^* \rVert _F = \text{min} \  \lVert D - \hat D \rVert _F$$
 
 Which allows us to approximate $$D$$ as $$\hat D$$ if we're happy with how much it's minimized ($$\lim_{x \to 0} A - B = x$$ converges to $$A = B$$ and this is what is being stated through the norm of this matrix getting smaller and smaller).
+
+The point of all of this is that this can be applied to fine-tuning a model for a downstream task. When we fine-tune a model, we essentially for each weights matrix we modify its pre-trained weights $$W_{O, n}$$ by some adjustment $$\Delta W_n$$ through training. This is typically of the same rank as the original weights matrix, which amounts to some pretty serious overhead with compute and memory. But, if we represented $$\Delta W_n$$ instead as $$BA$$, then $$BA$$ can have the required dimensions, say $$d \ \times \ k$$, while $$B$$ can have dimensions $$d \ \times \ r$$ and $$A$$ can have dimensions $$r \ \times \ k$$, where $$r$$ can be arbitrarily small. Thus, $$W_0$$ can be freezed, and $$B$$ and $$A$$ can be interpreted as additional weights matrices to learn that are rank-decomposed. 
+
+This is an increasingly popular way to approach the question of how to fine-tune in transfer learning. It is markedly more computationally efficient than fine-tuning with no freezing, usually blows layer-freezing few-shot learning out of the water, and has been shown to obtain results comparable or even superior to full finetuning. 
