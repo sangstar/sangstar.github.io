@@ -17,7 +17,7 @@ usemathjax: true
 {% endif %}
 
 ## Low-Rank Adapation of Large Language Models (LoRA)
-In linear algebra, there is a concept called *low-rank approximation*, where a cost function (canonically the Frobenius norm) measures the difference between a given matrix and a matrix that approximates it of a lower rank. The task is to minimize over $$\hat D$$ the following optimization problem:
+In linear algebra, there is a concept called *low-rank approximation*, where a cost function (canonically the Frobenius norm) measures the difference between a given matrix an a matrix that approximates it of a lower rank. The task is to minimize over $$\hat D$$ the following optimization problem:
 
 $$\lVert D - \hat D \rVert _F$$
 
@@ -43,6 +43,8 @@ $$\lVert D - \hat D^* \rVert _F = \text{min}_{\text{rank}(\hat D) \le r} \  \lVe
 
 Which allows us to approximate $$D$$ as $$\hat D$$ if we're happy with how much it's minimized (recalling that $$\lim_{x \to 0} A - B = x$$ converges to $$A = B$$ and this is what is being stated through the norm of this matrix getting smaller and smaller).
 
-The point of all of this is that this can be applied to fine-tuning a model for a downstream task. When we fine-tune a model, we essentially for each weights matrix modify its pre-trained weights $$W_{0, i}$$ by some adjustment $$\Delta W_i$$ through training. This is typically of the same rank as the original weights matrix, which amounts to some pretty serious overhead with compute and memory. But, if we represented $$\Delta W_i$$ instead as $$BA$$, then $$BA$$ can have the required dimensions, say $$d \ \times \ k$$, while $$B$$ can have dimensions $$d \ \times \ r$$ and $$A$$ can have dimensions $$r \ \times \ k$$, where $$r$$ can be arbitrarily small. Thus, $$W_0$$ can be freezed, and $$B$$ and $$A$$ can be interpreted as additional weights matrices to learn that are rank-decompositions of $$W_0$$. 
+The point of all of this is that this can be applied to fine-tuning a model for a downstream task. When we fine-tune a model, we essentially for each initial (initial signified as $$i$$) weights matrix $$j$$ (the $$j$$-th weights matrix) modify its pre-trained weights (the weights matrix of an arbitrary initial pre-trained weights matrix $$W_{i, j}$$) by some adjustment $$\Delta W_j$$ through training. This is typically of the same rank as the original weights matrix, which amounts to some pretty serious overhead with compute and memory. But, if we represented $$\Delta W_{j}$$ instead as $$B_jA_j$$, then $$BA$$ can have the required dimensions, say $$d \ \times \ k$$, while $$B$$ can have dimensions $$d \ \times \ r$$ and $$A$$ can have dimensions $$r \ \times \ k$$, where $$r$$ can be arbitrarily small. Thus, $$W_{i,j}$$ can be freezed, and $$B_j$$ and $$A_j$$ can be interpreted as additional weights matrices to learn that are rank-decompositions of $$W_i$$ such that we have the rule for updating:
+
+$$W_{f,j} = W_{i,j} + B_j A_j$$
 
 This is an increasingly popular way to approach the question of how to fine-tune in transfer learning. It is markedly more computationally efficient than fine-tuning with no freezing, usually blows layer-freezing few-shot learning out of the water, and has been shown to obtain results comparable or even superior to full finetuning with only a fraction of the data cost. 
