@@ -25,4 +25,4 @@ subject to $$\text{rank}(\hat D) \le r$$ where $$r$$ is some desired rank. This 
 
 Representing $$D$$ into its SVD we have
 
-$$D = U \sum V^T \in \mathbf{R}^{m \times n}, \ m \le n$$
+$$D = U \Sigma V^T \in \mathbf{R}^{m \times n}, \ m \le n$$
