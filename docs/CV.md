@@ -54,8 +54,9 @@ optimizing the design of a saturable absorber for an integrated semiconducting l
 Fife, UK  
 2016 - 2020  
 Upper second class honors
+
 Recipient of Student Staff Council Vacation Award (2018)
 
-## Publications
+## First Author Publications
 **S Steel**, M Wielgus, L Blackburn, S Issaoun, MD Johnson. “Global calibration of instrumental polarimetric phase
 gains.” 2019. Event Horizon Telescope Memo Series. [Link here.](https://eventhorizontelescope.org/files/eht/files/EHT_memo_Steel_2019-CE-03.pdf)
