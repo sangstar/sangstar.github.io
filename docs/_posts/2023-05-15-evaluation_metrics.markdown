@@ -204,6 +204,12 @@ $$
 \end{cases}
 $$
 
+However, since we're being pessimistic with our assumption of $$H_0$$, we need to explain how we measured for our whole test set $$\delta(T) > 0$$ despite the fact that on average $$\delta(t)$$ ought to be $$\le 0$$ by to telling ourselves that our distribution has a biased mean of $$\delta(T)$$. So to better account for surprise, we have to assume $$\delta(t) - \delta(T)$$ matches or exceeds this biased mean:
+
+$$\text{p-value}(t) = \frac{1}{b}\sum_{i=1}^b \mathbb{1}\left{\delta(t) - \delta(T) \ge \delta(T)\right}$$
+
+$$\implies \text{p-value}(t) = \frac{1}{b}\sum_{i=1}^b \mathbb{1}\left{\delta(t) \ge 2\delta(T)\right}$$
+
 
 ## References
 Jurafsky, D., & Martin, J. H. (2019). Naive Bayes, Text Classification and Sentiment. In Speech and Language Processing (3rd ed., Chapter 4). Prentice Hall.
