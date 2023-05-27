@@ -194,7 +194,7 @@ In a paired bootstrap test, we create a large number of *virtual* test sets $$b$
 Once we have the $$b$$ virtual test sets, we can see how often $$A$$ has an accidental advantage. One way to do this is to state that assuming $$H_0$$, we can expect that $$\delta(t) \le 0$$ if we average over many test sets, as this is literally what $$H_0$$ is stating. A much higher value than $$0$$ would therefore be surprising. We could therefore define the p-value as the empirical probability in which $$\delta(t)$$, the performance difference of $$A$$ over $$B$$ on test set $$t$$, is greater than $$0$$ by $$\delta(T)$$ or more *assuming the null hypothesis holds true*:
 
 $$
-\text{p-value}(t) = \frac{1}{b}\sum_{i=1}^b \mathbb{1}\left( \delta(t) - \delta(T) \ge 0 \right)\vphantom{\sum_{i=1}^b}
+\text{p-value}(t) = \frac{1}{b}\sum_{i=1}^b \mathbb{1}\bigl( \delta(t) - \delta(T) \ge 0 \bigr)
 $$
 
 
