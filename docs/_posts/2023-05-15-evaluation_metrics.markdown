@@ -215,7 +215,7 @@ $$\text{p-value}(t) = \frac{1}{b}\sum_{i=1}^b \mathbb{1}\bigl( \delta(t) - \delt
 
 $$\implies \text{p-value}(t) = \frac{1}{b}\sum_{i=1}^b \mathbb{1}\bigl( \delta(t) \ge 2\delta(T) \bigr)$$
 
-If we set a threshold of $$p \le 0.05$$, that is to say that there's a $$5\%$$ chance that for some test set $$t$$ $$\delta(t) \ge 2 \delta(T)$$ *while the null hypothesis holds*, that on average $$\delta(t) \le \delta(T)$$ for our mean-biased dataset. If our p-value is less than this, we are fine with the likelihood being small enough that we can discard the null hypothesis and declare that $$A$$ is better than $$B$$.
+If we set a threshold of $$p \le 0.05$$, that is to say that there's a $$5\%$$ chance for some test set $$t$$ that $$\delta(t) \ge 2 \delta(T)$$ *while the null hypothesis holds*, that on average $$\delta(t) \le \delta(T)$$ for our mean-biased dataset. If our p-value is less than this, we are fine with the likelihood being small enough that we can discard the null hypothesis and declare that $$A$$ is better than $$B$$.
 
 ## References
 Jurafsky, D., & Martin, J. H. (2019). Naive Bayes, Text Classification and Sentiment. In Speech and Language Processing (3rd ed., Chapter 4). Prentice Hall.
