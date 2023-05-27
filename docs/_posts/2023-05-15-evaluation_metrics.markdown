@@ -125,11 +125,11 @@ $$F_\beta = \frac{(\beta^2 + 1)PR}{\beta^2 P + R}$$
 
 $$\beta^2$$ is now a weighting factor that you can use to prefer precision or recall. $$\beta^2 < 1$$ favors precision, while $$\beta^2 > 1$$ favors recall. It's important to understand why. As $$\beta^2 \to 0$$, we have $$\beta^2P + R \to R$$, and $$\beta^2 + 1 \to 1$$, so we are left with something converging to 
 
-$$\lim_{\beta^2 \to 0} F_\beta = \frac{PR}{R} = P$$
+$$\lim_{\beta^2 \to 0} F_\beta \to \frac{PR}{R} \to P$$
 
 conversely if $$\beta^2 \ge 1$$ and as $$\beta^2 \to \infty$$ we have $$\beta^2 P + R \to \beta^2 P$$ and $$(\beta^2 + 1) \to \beta^2$$ so we are left with 
 
-$$\lim_{\beta^2 \to \infty} F_\beta = \frac{PR}{P} = R$$
+$$\lim_{\beta^2 \to \infty} F_\beta \to \frac{PR}{P} \to R$$
 
 With $$\beta^2 = 1$$, precision and recall are equally weighted. This is the most frequently used version of $$F$$-measure, called $$F_{\beta = 1}$$ or $$F_1$$:
 
@@ -184,10 +184,12 @@ $$p = P(\delta(t) \ge \delta(T) \ | \ H_0 \ \text{is true})$$
 
 This probability is called a *p-value*. You might've seen the p-value before in studies and stuff, where it's usually set to something like $$0.05$$, which means there is a $$95\%$$ chance the null hypothesis is not true: that whatever $$B$$ is (in studies talking about medical interventions this is often called a placebo!) cannot be considered on par with or better than $$A$$ at some test statistic, like the difference in $$F_1$$ scores or the difference in amyloid deposition in the brain for an Alzheimer's drug. It's an *incredibly powerful* statistic. The result of $$A$$ being better than $$B$$ is *statistically significant* if the probability we defined is below a threshold we decided on, such as $$p \le 0.05$$. 
 
-In NLP, we approach computing this probability $$p$$ generally using non-parametric tests, (as parametric tests don't generally work with our data because data in NLP is rarely normal) such as a bootstrap test, which I'm going to be discussing here. 
+In NLP, we approach computing this probability $$p$$ generally using non-parametric tests, (as parametric tests don't generally work with our data because data in NLP is rarely Gaussian) such as a bootstrap test, which I'm going to be discussing here. 
 
 ## Paired Bootstrap Test
 Bootstrapping is a word in statistics used to describe random sampling *with replacement*, which basically means once a datapoint is sampled, that datapoint has an equal likelihood of being sampled as it had before. It's not out of the available pool of datapoints to be sampled. It's like if you were to sample a ball out of a bag of red, green and blue balls, but once you took one out of the bag, before you sampled it again you'd put that ball back. It's actually also quite important in decision trees, and is not an unreasonable thing to do as long as you are able to assume that the bootstrapped sample is representative, which is a fairly reliable assumption to make with a large enough sample size, the data collection process not introducing any bias or systematic errors that would be propogated, and the data being independent and identically distributed (ie not dealing with weird/complex data structures with spatial, temporal or hierarchical dependencies). 
+
+In a paired bootstrap test, we create a large number of *virtual* test sets of some size $$n$$. Let's say model $$A$$'s predictions on the test set are $$\hat y_A$$ and for $$B$$ we have $$\hat y_B$$. We can create a vector $$\hat y_{AB}$$ that encodes the performances of both. You can just use a binary encoding, where $$1$$ is a correct prediction and $$0$$ is an incorrect prediction, so that one of the vectors could look like $$y_{AB}_i$$ = $$01$$ where $$A$$ got it wrong and $$B$$ got it right. Ultimately you just need to know which was wrong and which was right per sample.
 
 
 ## References
