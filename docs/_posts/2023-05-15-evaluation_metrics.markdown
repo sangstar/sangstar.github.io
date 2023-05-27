@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "Evaluation metrics in NLP"
+title:  "Evaluation metrics in classification"
 date:   2023-05-15 10:15
-categories: nlp
+categories: ml
 usemathjax: true
 ---
 
@@ -17,6 +17,7 @@ usemathjax: true
 {% endif %}
 
 I've written about some important things when it comes to evaluation in previous articles, but I wanted to dedicate one solely to it as it's probably the most important area of knowledge to be proficient in when using ML to solve problems in the real world. Without clear ways to judge the performance of a model and its performance against others designed to tackle the same problem, your model will not (or at least should not) make it out of a dev environment. I will be covering a way to do both. 
+
 
 
 ## Precision and Recall
