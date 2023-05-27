@@ -47,18 +47,18 @@ $$
 $$
 \begin{array}{cc} 
 &
-\begin{array}{ccccc} A & B & C & D & E\\
+\begin{array}{ccccc} A & B & C\\
 \end{array}
 \\
 \begin{matrix}
-\hat A \\ \hat B \\ \hat C \\ \hat D \\ \hat E \\
+\hat A \\ \hat B \\ \hat C \\
 \end{matrix}
 &
 \left[
 \begin{array}{ccccc}
-h & e & l & l & o \\
-m & s & e & * & * \\
-m & e & t & a & *
+d & e & l \\
+m & s & e \\
+m & e & t \\
 \end{array}
 \right]
 \end{array}
