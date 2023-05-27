@@ -74,6 +74,9 @@ $$\beta^2$$ is now a weighting factor that you can use to prefer precision or re
 
 $$\lim_{\beta^2 \to 0} F_\beta = \frac{PR}{R} = P$$
 
+conversely if $$\beta^2 \ge 1$$ and as $$\beta^2 \to \infty$$ we have $$\beta^2 P + R \to \beta^2 P$$ and $$(\beta^2 + 1) \to \beta^2$$ so we are left with 
+
+$$\lim_{\beta^2 \to \infty} F_\beta = \frac{PR}{P} = R$$
 
 
 ## Statistical Significance
