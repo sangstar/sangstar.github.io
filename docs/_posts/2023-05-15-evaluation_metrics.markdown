@@ -16,7 +16,7 @@ usemathjax: true
   <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 {% endif %}
 
-I've written about some important things when it comes to evaluation in previous articles, but I wanted to dedicate one solely to it as it's probably the most important area of knowledge to be proficient in when using ML to solve problems in the real world. Without clear ways to judge the performance of a model and its performance against others designed to tackle the same problem, your model will not (or at least should not) make it out of a dev environment. I will be covering a way to do both. 
+I've written about some important things when it comes to evaluation in previous articles, but I wanted to dedicate one solely to it as it's probably the most important area of knowledge to be proficient in when using ML to solve problems in the real world. Without clear ways to judge the performance of a model and its performance against others designed to tackle the same problem, your model will not (or at least should not) make it out of a dev environment. I will be covering a way to do both. These sections apply to classification generally, but I get into non-parametric tests which are more NLP-centric.
 
 
 
@@ -189,8 +189,15 @@ In NLP, we approach computing this probability $$p$$ generally using non-paramet
 ## Paired Bootstrap Test
 Bootstrapping is a word in statistics used to describe random sampling *with replacement*, which basically means once a datapoint is sampled, that datapoint has an equal likelihood of being sampled as it had before. It's not out of the available pool of datapoints to be sampled. It's like if you were to sample a ball out of a bag of red, green and blue balls, but once you took one out of the bag, before you sampled it again you'd put that ball back. It's actually also quite important in decision trees, and is not an unreasonable thing to do as long as you are able to assume that the bootstrapped sample is representative, which is a fairly reliable assumption to make with a large enough sample size, the data collection process not introducing any bias or systematic errors that would be propogated, and the data being independent and identically distributed (ie not dealing with weird/complex data structures with spatial, temporal or hierarchical dependencies). 
 
-In a paired bootstrap test, we create a large number of *virtual* test sets of some size $$n$$. Let's say model $$A$$'s predictions on the test set are $$\hat y_A$$ and for $$B$$ we have $$\hat y_B$$. We can create a vector $$\hat y_{AB}$$ that encodes the performances of both. You can just use a binary encoding, where $$1$$ is a correct prediction and $$0$$ is an incorrect prediction, so that one of the vectors could look like $$y_{AB}_i$$ = $$01$$ where $$A$$ got it wrong and $$B$$ got it right. Ultimately you just need to know which was wrong and which was right per sample.
+In a paired bootstrap test, we create a large number of *virtual* test sets $$b$$ of some size $$n$$. Let's say model $$A$$'s predictions on the test set are $$\hat y_A$$ and for $$B$$ we have $$\hat y_B$$. We can create a vector $$\hat y_{AB}$$ that encodes the performances of both. You can just use a binary encoding, where $$1$$ is a correct prediction and $$0$$ is an incorrect prediction, so that one of the vectors could look like $$y_{AB}_i$$ = $$01$$ where $$A$$ got it wrong and $$B$$ got it right. Ultimately you just need to know which was wrong and which was right per sample.
+
+Once we have the $$b$$ virtual test sets, we can see how often $$A$$ has an accidental advantage. One way to do this is to state that assuming $$H_0$$, we can expect that $$\delta(t) \le 0$$ if we average over many test sets, as this is literally what $$H_0$$ is stating. A much higher value than $$0$$ would therefore be surprising. We could therefore define the $$p$$-value as the empirical probability in which $$\delta(t)$$ is greater than $$0$$ by $$\delta(T)$$ or more:
+
+$$\text{p-value}(t) = \frac{1}{b}\sum_{i=1}^b \mathbb{1}\left(\delta(t) - \delta(T) \ge 0\right)$$
 
 
 ## References
 Jurafsky, D., & Martin, J. H. (2019). Naive Bayes, Text Classification and Sentiment. In Speech and Language Processing (3rd ed., Chapter 4). Prentice Hall.
+
+Berg-Kirkpatrick, T., D. Burkett, and
+D. Klein. 2012. An empirical investigation of statistical significance in NLP. EMNLP.
