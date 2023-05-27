@@ -34,7 +34,18 @@ $$\text{Accuracy} = \frac{t_p + t_n}{t_p + f_p + t_n + f_n}$$
 
 In this case, a "nothing is about our pie" classifier would have $$999,900$$ true negatives and $$100$$ false negatives, boasting an accuracy of $$99.99\%$$. Yet it would have $$0$$ true positives (never classifying anything as about *Delicious Pie Company* pie), and therefore would have a recall of $$0$$! Not so potent now. The precision would similarly also be $$0$$. The true positives being alone in the numerator, unable to be buffered by true negatives like in accuracy is what makes the two metrics so popular -- we typically in business cases are more concerned with true positives (ability to detect some important outcome like whether there were tweets about pie) than overall accuracy.
 
+
 ## Confusion matrices and F-measure
+
+You'll commonly want to combine the metrics instead of working with two. Probably the most notable combination is the *F-measure*:
+
+$$F_\Beta$$ = \frac{(\Beta^2 + 1)PR}{\Beta^2 P + R}$$
+
+Expanding this, this is:
+
+$$F_\Beta$$ = \frac{\Beta^2 PR + PR}{\Beta^2 P + R}$$
+
+
 
 
 ## Statistical Significance
