@@ -44,6 +44,24 @@ f_p & t_n \\
 \end{bmatrix}
 $$
 
+$$
+\begin{array}{cc} 
+&
+\begin{array}{ccccc} 1 & 2 & 3 & 4 & 5\\
+\end{array}
+\\
+A =
+&
+\left[
+\begin{array}{ccccc}
+h & e & l & l & o \\
+m & s & e & * & * \\
+m & e & t & a & *
+\end{array}
+\right]
+\end{array}
+$$
+
 which can be extended quite easily to multiple classes by just adding more columns and rows. You may have noticed that a classifier with minimal misclassification tends to diagonality, and it makes for a cool way to visually check how your classifier is doing in terms of precision and recall *per class*.
 
 
