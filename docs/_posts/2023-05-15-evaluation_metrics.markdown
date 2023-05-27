@@ -70,6 +70,15 @@ In this example, the row labels corresond to the predictions by the models by it
 
 You may have noticed that a classifier with minimal misclassification tends to diagonality, and it makes for a cool way to visually check how your classifier is doing in terms of precision and recall *per class*. For example, the model is poor at classifying $$C$$, but strong at classifying $$B$$ and $$A$$.
 
+Calculating precision and recall for multiple classes is fairly easy after forming the confusion matrix. Precision is simply the prevalence of the diagonal element (the true positive) compared to the entire row, and recall is the prevalence of the diagonal element compared to the entire column. 
+
+$$\text{Precision}_i = \frac{t_p}{\sum_{j=1}^n a_{i,j}}$$
+
+So for row $$1$$ with our $$3 \ \cross \ 3$$ matrix:
+
+$$\text{Precision}_1 = \frac{t_p}{\sum_{j=1}^3 a_{i,j}}$$
+
+$$ = \text{Precision}_1 = \frac{15}{15 + 2 + 0} = 0.8823..$$
 
 ## F-measure
 
