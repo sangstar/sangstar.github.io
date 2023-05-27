@@ -39,11 +39,11 @@ In this case, a "nothing is about our pie" classifier would have $$999,900$$ tru
 
 You'll commonly want to combine the metrics instead of working with two. Probably the most notable combination is the *F-measure*:
 
-$$F_\beta$$ = \frac{(\beta^2 + 1)PR}{\beta^2 P + R}$$
+$$F_\beta = \frac{(\beta^2 + 1)PR}{\beta^2 P + R}$$
 
 Expanding this, this is:
 
-$$F_\beta$$ = \frac{\beta^2 PR + PR}{\beta^2 P + R}$$
+$$F_\beta = \frac{\beta^2 PR + PR}{\beta^2 P + R}$$
 
 
 
