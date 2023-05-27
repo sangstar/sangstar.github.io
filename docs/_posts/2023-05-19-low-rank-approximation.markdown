@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Fine-tuning an LLM and its pitfalls"
+title:  "Fine-tuning LLMs"
 date:   2023-05-19 10:15
 categories: nlp
 usemathjax: true
