@@ -56,9 +56,9 @@ $$
 &
 \left[
 \begin{array}{ccccc}
-d & e & l \\
-m & s & e \\
-m & e & t \\
+15 & 2 & 5 \\
+1 & 35 & 3 \\
+22 & 5 & 25 \\
 \end{array}
 \right]
 \end{array}
