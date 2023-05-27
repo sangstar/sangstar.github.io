@@ -44,6 +44,8 @@ f_p & t_n \\
 \end{bmatrix}
 $$
 
+which can be extended quite easily to multiple classes by just adding more columns and rows. You may have noticed that a classifier with minimal misclassification tends to diagonality, and it makes for a cool way to visually check how your classifier is doing in terms of precision and recall *per class*.
+
 
 ## F-measure
 
