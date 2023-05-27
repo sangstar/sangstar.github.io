@@ -34,8 +34,22 @@ $$\text{Accuracy} = \frac{t_p + t_n}{t_p + f_p + t_n + f_n}$$
 
 In this case, a "nothing is about our pie" classifier would have $$999,900$$ true negatives and $$100$$ false negatives, boasting an accuracy of $$99.99\%$$. Yet it would have $$0$$ true positives (never classifying anything as about *Delicious Pie Company* pie), and therefore would have a recall of $$0$$! Not so potent now. The precision would similarly also be $$0$$. The true positives being alone in the numerator, unable to be buffered by true negatives like in accuracy is what makes the two metrics so popular -- we typically in business cases are more concerned with true positives (ability to detect some important outcome like whether there were tweets about pie) than overall accuracy.
 
+## Confusion matrices
+A really useful tool for evaluating classification performance is from developing a *confusion matrix*. A confusion matrix is a matrix with the following structure:
 
-## Confusion matrices and F-measure
+$$
+\begin{array}{cc}
+&
+\begin{array}{cccc} gold positive & gold negative
+\end{array}
+\begin{bmatrix}
+t_p & f_p \\
+f_p & t_n \\
+\end{bmatrix}
+$$
+
+
+## F-measure
 
 You'll commonly want to combine the metrics instead of working with two. Probably the most notable combination is the *F-measure*. The *harmonic mean* of a set of numbers $$\{v_i\}_{i=1}^n$$ is:
 
@@ -77,6 +91,7 @@ $$\lim_{\beta^2 \to 0} F_\beta = \frac{PR}{R} = P$$
 conversely if $$\beta^2 \ge 1$$ and as $$\beta^2 \to \infty$$ we have $$\beta^2 P + R \to \beta^2 P$$ and $$(\beta^2 + 1) \to \beta^2$$ so we are left with 
 
 $$\lim_{\beta^2 \to \infty} F_\beta = \frac{PR}{P} = R$$
+
 
 
 ## Statistical Significance
