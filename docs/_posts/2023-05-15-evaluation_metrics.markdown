@@ -57,9 +57,15 @@ multiplying all terms by $$\frac{1-\alpha}{\alpha}$$..
 
 $$ \frac{\frac{1-\alpha}{\alpha}PR}{(1-\alpha)R + \frac{(1-\alpha)^2}{\alpha}P}$$
 
-$$\implies  \frac{\frac{1-\alpha}{\alpha}PR}{(1-\alpha)(R + \frac{(1-\alpha)}{\alpha}P)}$$
+$$\frac{\frac{1-\alpha}{\alpha}PR}{(1-\alpha)(R + \frac{(1-\alpha)}{\alpha}P)}$$
 
-$$\implies  \frac{\frac{1}{\alpha}PR}{R + \frac{(1-\alpha)}{\alpha}P}$$
+$$\frac{\frac{1}{\alpha}PR}{R + \frac{(1-\alpha)}{\alpha}P}$$
+
+Then, making the substitution $$\beta^2 = \frac{1-\alpha}{\alpha}$$:
+
+$$\frac{\frac{1}{\alpha}PR}{R + \beta^2 P}$$
+
+and noting that $$\beta^2 + 1 = \frac{1}{\alpha}:
 
 
 $$F_\beta = \frac{(\beta^2 + 1)PR}{\beta^2 P + R}$$
