@@ -53,9 +53,7 @@ optimizing the design of a saturable absorber for an integrated semiconducting l
 *Bachelors in Physics with Honors*  
 Fife, UK  
 2016 - 2020  
-Upper second class honors
-
-Recipient of Student Staff Council Vacation Award (2018)
+Upper second class honors 
 
 ## First Author Publications
 **S Steel**, M Wielgus, L Blackburn, S Issaoun, MD Johnson. “Global calibration of instrumental polarimetric phase

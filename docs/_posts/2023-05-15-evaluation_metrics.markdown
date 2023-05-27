@@ -20,8 +20,22 @@ I've written about some important things when it comes to evaluation in previous
 
 
 ## Precision and Recall
+In my article on [the misconceptions of the imbalanced dataset](https://sangstar.github.io/ml/2023/04/22/imbalanced-datasets.html) I make it clear that accuracy is typically an undesirable metric for classification. For the latter, the two big metrics of note are *precision* and *recall*. Precision measures the percentage of items that the model detected (labeled as positive) that are actually positive, 
+
+$$ \text{Precision} = \frac{t_p}{t_p + f_p}$$
+
+(where $$t_p$$ and $$f_p$$ corresponds to true and false positive respectively) while recall measures the percentage of correctly identified inputs:
+
+$$ \text{Recall}  = \frac{t_p}{t_p + f_n}$$
+
+where $$f_n$$ represents false negatives. Consider the wonderful "nothing is about our pie" classifier from Jurafsky and Martin's *Speech and Language Processing* (my favorite textbook on NLP) which is a model that predicts every input -- trained on a million tweets unrelated to (0) or specifically discussing his/her love or hatred about pie made by the fictional *Delicious Pie Company* (1) -- as "not about our pie". In this example, only 100 of the million samples actually discuss the pie. Accuracy is defined as the percentage of true classifications overall:
+
+$$\text{Accuracy} = \frac{t_p + t_n}{t_p + f_p + t_n + f_n}$$
+
+In this case, a "nothing is about our pie" classifier would have $$999,900$$ true negatives and $$100$$ false negatives, boasting an accuracy of $$99.99%\$$. Yet it would have $$0$$ true positives (never classifying anything as about *Delicious Pie Company* pie), and therefore would have a recall of $$0$$! Not so potent now. The precision would similarly also be $$0$$. The true positives being alone in the numerator, unable to be buffered by true negatives like in accuracy is what makes the two metrics so popular -- we typically in business cases are more concerned with true positives (ability to detect some important outcome) than overall accuracy.
 
 ## Confusion matrices and F-measure
+
 
 ## Statistical Significance
 When trying to work out if model $$A$$ is superior to model $$B$$, comparing them on one test set is bad practice and would be unacceptable evidence in most bodies of scientific literature. You will need to enter the domain of statistical hypothesis testing. 
