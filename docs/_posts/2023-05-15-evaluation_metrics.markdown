@@ -52,7 +52,9 @@ $$F = \frac{1}{\alpha \frac{1}{P} + (1-\alpha) \frac{1}{R}}$$
 and simplifying further
 
 $$ F = \frac{PR}{\alpha R + (1-\alpha) P} $$
+
 $$ \frac{\frac{1-\alpha}{\alpha}PR}{(1-\alpha)R + \frac{(1-\alpha)^2}{\alpha}P}$$
+
 $$ \frac{\frac{1-\alpha}{\alpha}PR}{(1-\alpha)(R + \frac{(1-\alpha)}{\alpha}P)}$$
 
 
