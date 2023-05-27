@@ -43,9 +43,16 @@ $$H = \frac{n}{\frac{1}{v_1} + \frac{1}{v_2} + ... + \frac{1}{v_n}}$$
 
 and since we're combining two metrics by averaging in some way, keeping in mind that they're ratios, this is a good place to start. The harmonic mean for precision and recall can be written as:
 
-$$F = \frac{1}{\alpha \frac{1}{P} + (1-\alpha)\frac{1}{R}}$$
+$$F = \frac{1}{\alpha \frac{1}{P} + \gamma \frac{1}{R}}$$
 
+Where the constants are used to weight the metrics by just having them appear more times in the sum. $$\gamma$$ is traditionally set to $$\gamma = 1 - \alpha$$ which renders
 
+$$F = \frac{1}{\alpha \frac{1}{P} + (1-\alpha) \frac{1}{R}}$$
+
+and simplifying further
+
+$$ F = \frac{PR}{\alpha R + (1-\alpha) P} $$
+$$ \frac{\frac{1-\alpha}{\alpha}PR}{(1-\alpha)R + \frac{(1-\alpha)^2}{\alpha}P}$$
 
 $$F_\beta = \frac{(\beta^2 + 1)PR}{\beta^2 P + R}$$
 
