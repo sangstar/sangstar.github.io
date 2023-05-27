@@ -149,7 +149,7 @@ Another technique is *microaveraging*, where instead of separating computing eac
 
 $$P_{\text{micro}} = \frac{15 + 35 + 25}{(15 + 35 + 25) + (2 + 4 + 22)} = 0.728...$$
 
-Due to pooling in microaveraging, it's dominated by the larger terms (the more frequent classes). As such macroaveraging is far more sensitive to the less frequent classes. 
+Due to pooling in microaveraging, it's dominated by the larger terms (the more frequent classes). As such macroaveraging is far more sensitive to the less frequent classes. This is reflected in my example. The model did rather poorly in classifying the most popular class in $$C$$, but did well in classifying the least popular class in $$A$$, and as such macroaveraging argued for a higher overall precision than microaveraging. 
 
 ## Statistical Significance
 When trying to work out if model $$A$$ is superior to model $$B$$, comparing them on one test set is bad practice and would be unacceptable evidence in most bodies of scientific literature. You will need to enter the domain of statistical hypothesis testing. 
