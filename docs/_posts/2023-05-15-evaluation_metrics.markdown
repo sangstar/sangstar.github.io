@@ -39,7 +39,7 @@ In this case, a "nothing is about our pie" classifier would have $$999,900$$ tru
 
 You'll commonly want to combine the metrics instead of working with two. Probably the most notable combination is the *F-measure*. The *harmonic mean* of a set of numbers $$\{v_i\}_{i=1}^n$$ is:
 
-$$H = \frac{n}{1/v_1 + 1/v_2 + ... + 1/v_n}$$
+$$H = \frac{n}{\frac{1}{v_1} + \frac{1}{v_2} + ... + \frac{1}{v_n}}$$
 
 and since we're combining two metrics by averaging in some way, keeping in mind that they're ratios, this is a good place to start. The harmonic mean for precision and recall can be written as:
 
