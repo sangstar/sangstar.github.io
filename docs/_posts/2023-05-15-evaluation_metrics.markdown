@@ -20,7 +20,7 @@ I've written about some important things when it comes to evaluation in previous
 
 
 ## Precision and Recall
-In my article on [the misconceptions of the imbalanced dataset](https://sangstar.github.io/ml/2023/04/22/imbalanced-datasets.html) I make it clear that accuracy is typically an undesirable metric for classification. For the latter, the two big metrics of note are *precision* and *recall*. Precision measures the percentage of items that the model detected (labeled as positive) that are actually positive, 
+In my article on [the misconceptions of the imbalanced dataset](https://sangstar.github.io/ml/2023/04/22/imbalanced-datasets.html) I make it clear that accuracy is typically an undesirable metric for classification. For the latter, the two big metrics of note are *precision* and *recall*. Precision measures the percentage of items that the model detected (labeled as positive) that are actually positive (true positive and false positives ), 
 
 $$ \text{Precision} = \frac{t_p}{t_p + f_p}$$
 
@@ -28,7 +28,7 @@ $$ \text{Precision} = \frac{t_p}{t_p + f_p}$$
 
 $$ \text{Recall}  = \frac{t_p}{t_p + f_n}$$
 
-where $$f_n$$ represents false negatives. Consider the wonderful "nothing is about our pie" classifier from Jurafsky and Martin's *Speech and Language Processing* (my favorite textbook on NLP) which is a model that predicts every input -- trained on a million tweets unrelated to (0) or specifically discussing his/her love or hatred about pie made by the fictional *Delicious Pie Company* (1) -- as "not about our pie". In this example, only 100 of the million samples actually discuss the pie. Accuracy is defined as the percentage of true classifications overall:
+where $$f_n$$ represents false negatives (the denominator represents all positive cases -- true positives and false negatives both being all positives). Consider the wonderful "nothing is about our pie" classifier from Jurafsky and Martin's *Speech and Language Processing* (my favorite textbook on NLP) which is a model that predicts every input -- trained on a million tweets unrelated to (0) or specifically discussing his/her love or hatred about pie made by the fictional *Delicious Pie Company* (1) -- as "not about our pie". In this example, only 100 of the million samples actually discuss the pie. Accuracy is defined as the percentage of true classifications overall:
 
 $$\text{Accuracy} = \frac{t_p + t_n}{t_p + f_p + t_n + f_n}$$
 
@@ -37,7 +37,7 @@ In this case, a "nothing is about our pie" classifier would have $$999,900$$ tru
 
 ## Confusion matrices and F-measure
 
-You'll commonly want to combine the metrics instead of working with two. Probably the most notable combination is the *F-measure*:
+You'll commonly want to combine the metrics instead of working with two. Probably the most notable combination is the *F-measure*. The *harmonic mean* of a set of numbers $$\{v\}_{i=1}^n$$ is:
 
 $$F_\beta = \frac{(\beta^2 + 1)PR}{\beta^2 P + R}$$
 
