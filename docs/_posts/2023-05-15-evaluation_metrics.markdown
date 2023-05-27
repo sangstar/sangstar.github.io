@@ -139,7 +139,7 @@ We however previously talked about having a precision and recall score for each 
 There are a couple ways to do this. In *macroaveraging*, we get the scores for each class, and then average over classes. So this would be in our example 
 
 $$P_{\text{macro}} = \frac{P_A + P_B + P_C}{3}$$
-$$ = \frac{0.88 + 0.89 + 0.53}{3} = 0.766...
+$$ = \frac{0.88 + 0.89 + 0.53}{3} = 0.766...$$
 
 Where recall is computed in the same way
 
@@ -147,9 +147,9 @@ $$R_{\text{macro}} = \frac{R_A + R_B + R_C}{3}$$
 
 Another technique is *microaveraging*, where instead of separating computing each precision and recall score, you pool all true positives and misclassifications and compute the precisions and recalls of those pooled metrics. For example, for a microaverage precision, we have:
 
-$$P_{\text{micro}} = \frac{15 + 35 + 25}{(15 + 35 + 25) + (2 + 4 + 22)} = 0.728...
+$$P_{\text{micro}} = \frac{15 + 35 + 25}{(15 + 35 + 25) + (2 + 4 + 22)} = 0.728...$$
 
-
+Due to pooling in microaveraging, it's dominated by the larger terms (the more frequent classes). As such macroaveraging is far more sensitive to the less frequent classes. 
 
 ## Statistical Significance
 When trying to work out if model $$A$$ is superior to model $$B$$, comparing them on one test set is bad practice and would be unacceptable evidence in most bodies of scientific literature. You will need to enter the domain of statistical hypothesis testing. 
