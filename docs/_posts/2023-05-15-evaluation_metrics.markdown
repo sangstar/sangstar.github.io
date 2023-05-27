@@ -72,13 +72,19 @@ You may have noticed that a classifier with minimal misclassification tends to d
 
 Calculating precision and recall for multiple classes is fairly easy after forming the confusion matrix. Precision is simply the prevalence of the diagonal element (the true positive) compared to the entire row, and recall is the prevalence of the diagonal element compared to the entire column. 
 
-$$\text{Precision}_i = \frac{t_p}{\sum_{j=1}^n a_{i,j}}$$
+$$\text{Precision}_i = \frac{a_{i,i}}{\sum_{j=1}^n a_{j,i}}$$
 
-So for row $$1$$ with our $$3 \ \cross \ 3$$ matrix:
+So for row $$1$$ with our $$3 \ \times \ 3$$ matrix:
 
-$$\text{Precision}_1 = \frac{t_p}{\sum_{j=1}^3 a_{i,j}}$$
+$$\text{Precision}_1 = \frac{t_p}{\sum_{j=1}^3 a_{j,i}}$$
 
-$$ = \text{Precision}_1 = \frac{15}{15 + 2 + 0} = 0.8823..$$
+$$ \implies \text{Precision}_1 = \frac{15}{15 + 2 + 0} = 0.8823..$$
+
+Whereas for recall we have:
+
+$$\text{Recall}_i = \frac{a_{i,i}}{\sum_{j=1}^n a_{i,j}}$$
+
+
 
 ## F-measure
 
@@ -123,7 +129,9 @@ conversely if $$\beta^2 \ge 1$$ and as $$\beta^2 \to \infty$$ we have $$\beta^2 
 
 $$\lim_{\beta^2 \to \infty} F_\beta = \frac{PR}{P} = R$$
 
+With $$\beta^2 = 1$$, precision and recall are equally weighted. This is the most frequently used version of $$F$$-measure, called $$F_{\beta = 1}$$ or $$F_1$$:
 
+$$F_1 = \frac{2PR}{P+R}$$
 
 ## Statistical Significance
 When trying to work out if model $$A$$ is superior to model $$B$$, comparing them on one test set is bad practice and would be unacceptable evidence in most bodies of scientific literature. You will need to enter the domain of statistical hypothesis testing. 
