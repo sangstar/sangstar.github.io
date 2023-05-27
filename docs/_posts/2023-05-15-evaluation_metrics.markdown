@@ -139,6 +139,7 @@ We however previously talked about having a precision and recall score for each 
 There are a couple ways to do this. In *macroaveraging*, we get the scores for each class, and then average over classes. So this would be in our example 
 
 $$P_{\text{macro}} = \frac{P_A + P_B + P_C}{3}$$
+
 $$ = \frac{0.88 + 0.89 + 0.53}{3} = 0.766...$$
 
 Where recall is computed in the same way
