@@ -38,10 +38,6 @@ In this case, a "nothing is about our pie" classifier would have $$999,900$$ tru
 A really useful tool for evaluating classification performance is from developing a *confusion matrix*. A confusion matrix is a matrix with the following structure:
 
 $$
-\begin{array}{cc}
-&
-\begin{array}{cccc} gold positive & gold negative
-\end{array}
 \begin{bmatrix}
 t_p & f_p \\
 f_p & t_n \\
