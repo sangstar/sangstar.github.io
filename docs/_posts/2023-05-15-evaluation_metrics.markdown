@@ -53,6 +53,8 @@ and simplifying further
 
 $$ F = \frac{PR}{\alpha R + (1-\alpha) P} $$
 $$ \frac{\frac{1-\alpha}{\alpha}PR}{(1-\alpha)R + \frac{(1-\alpha)^2}{\alpha}P}$$
+$$ \frac{\frac{1-\alpha}{\alpha}PR}{(1-\alpha)(R + \frac{(1-\alpha)}{\alpha}P)}$$
+
 
 $$F_\beta = \frac{(\beta^2 + 1)PR}{\beta^2 P + R}$$
 
