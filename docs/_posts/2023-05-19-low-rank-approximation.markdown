@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Fine-tuning LLMs"
+title:  "Fine-tuning LLMs with low-rank adapation"
 date:   2023-05-19 10:15
 categories: nlp
 usemathjax: true
