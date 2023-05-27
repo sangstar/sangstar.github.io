@@ -78,12 +78,13 @@ So for row $$1$$ with our $$3 \ \times \ 3$$ matrix:
 
 $$\text{Precision}_1 = \frac{t_p}{\sum_{j=1}^3 a_{j,i}}$$
 
-$$ \implies \text{Precision}_1 = \frac{15}{15 + 2 + 0} = 0.8823..$$
+$$ \implies \text{Precision}_A = \frac{15}{15 + 2 + 0} = 0.8823..$$
 
 Whereas for recall we have:
 
 $$\text{Recall}_i = \frac{a_{i,i}}{\sum_{j=1}^n a_{i,j}}$$
 
+$$ \implies \text{Recall}_A = \frac{15}{15 + 1 + 22} = 0.3947..$$
 
 
 ## F-measure
@@ -132,6 +133,23 @@ $$\lim_{\beta^2 \to \infty} F_\beta = \frac{PR}{P} = R$$
 With $$\beta^2 = 1$$, precision and recall are equally weighted. This is the most frequently used version of $$F$$-measure, called $$F_{\beta = 1}$$ or $$F_1$$:
 
 $$F_1 = \frac{2PR}{P+R}$$
+
+We however previously talked about having a precision and recall score for each class with multiple classes. How do we get a uniform $$F_1$$ score?
+
+There are a couple ways to do this. In *macroaveraging*, we get the scores for each class, and then average over classes. So this would be in our example 
+
+$$P_{\text{macro}} = \frac{P_A + P_B + P_C}{3}$$
+$$ = \frac{0.88 + 0.89 + 0.53}{3} = 0.766...
+
+Where recall is computed in the same way
+
+$$R_{\text{macro}} = \frac{R_A + R_B + R_C}{3}$$
+
+Another technique is *microaveraging*, where instead of separating computing each precision and recall score, you pool all true positives and misclassifications and compute the precisions and recalls of those pooled metrics. For example, for a microaverage precision, we have:
+
+$$P_{\text{micro}} = \frac{15 + 35 + 25}{(15 + 35 + 25) + (2 + 4 + 22)} = 0.728...
+
+
 
 ## Statistical Significance
 When trying to work out if model $$A$$ is superior to model $$B$$, comparing them on one test set is bad practice and would be unacceptable evidence in most bodies of scientific literature. You will need to enter the domain of statistical hypothesis testing. 
