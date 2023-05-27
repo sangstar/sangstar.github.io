@@ -191,9 +191,13 @@ Bootstrapping is a word in statistics used to describe random sampling *with rep
 
 In a paired bootstrap test, we create a large number of *virtual* test sets $$b$$ of some size $$n$$. Let's say model $$A$$'s predictions on the test set are $$\hat y_A$$ and for $$B$$ we have $$\hat y_B$$. We can create a vector $$\hat y_{AB}$$ that encodes the performances of both. You can just use a binary encoding, where $$1$$ is a correct prediction and $$0$$ is an incorrect prediction, so that one of the vectors could look like $$y_{AB_i} = 01$$ where $$A$$ got it wrong and $$B$$ got it right. Ultimately you just need to know which was wrong and which was right per sample.
 
-Once we have the $$b$$ virtual test sets, we can see how often $$A$$ has an accidental advantage. One way to do this is to state that assuming $$H_0$$, we can expect that $$\delta(t) \le 0$$ if we average over many test sets, as this is literally what $$H_0$$ is stating. A much higher value than $$0$$ would therefore be surprising. We could therefore define the $$p$$-value as the empirical probability in which $$\delta(t)$$ is greater than $$0$$ by $$\delta(T)$$ or more:
+Once we have the $$b$$ virtual test sets, we can see how often $$A$$ has an accidental advantage. One way to do this is to state that assuming $$H_0$$, we can expect that $$\delta(t) \le 0$$ if we average over many test sets, as this is literally what $$H_0$$ is stating. A much higher value than $$0$$ would therefore be surprising. We could therefore define the $$p$$-value as the empirical probability in which $$\delta(t)$$ is greater than $$0$$ by $$\delta(T)$$ or more *assuming the null hypothesis holds true*:
 
-$$\text{p-value}(t) = \frac{1}{b}\sum_{i=1}^b \mathbb{1}\left( \delta(t) - \delta(T) \ge 0 \right)$$
+$$
+\text{p-value}(t) = \frac{1}{b}\sum_{i=1}^b \mathbb{1}\left( \delta(t) - \delta(T) \ge 0 \right)\vphantom{\sum_{i=1}^b}
+$$
+
+
 
 Where 
 
