@@ -56,9 +56,9 @@ $$
 &
 \left[
 \begin{array}{ccccc}
-15 & 2 & 5 \\
+15 & 2 & 0 \\
 1 & 35 & 3 \\
-22 & 5 & 25 \\
+22 & 0 & 25 \\
 \end{array}
 \right]
 \end{array}
