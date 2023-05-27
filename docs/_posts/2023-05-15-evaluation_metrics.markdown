@@ -49,13 +49,17 @@ Where the constants are used to weight the metrics by just having them appear mo
 
 $$F = \frac{1}{\alpha \frac{1}{P} + (1-\alpha) \frac{1}{R}}$$
 
-and simplifying further
+and simplifying further, multiplying all terms by $$PR$$:
 
 $$ F = \frac{PR}{\alpha R + (1-\alpha) P} $$
 
+multiplying all terms by $$\frac{1-\alpha}{\alpha}$$..
+
 $$ \frac{\frac{1-\alpha}{\alpha}PR}{(1-\alpha)R + \frac{(1-\alpha)^2}{\alpha}P}$$
 
-$$ \frac{\frac{1-\alpha}{\alpha}PR}{(1-\alpha)(R + \frac{(1-\alpha)}{\alpha}P)}$$
+$$\implies  \frac{\frac{1-\alpha}{\alpha}PR}{(1-\alpha)(R + \frac{(1-\alpha)}{\alpha}P)}$$
+
+$$\implies  \frac{\frac{1}{\alpha}PR}{R + \frac{(1-\alpha)}{\alpha}P}$$
 
 
 $$F_\beta = \frac{(\beta^2 + 1)PR}{\beta^2 P + R}$$
