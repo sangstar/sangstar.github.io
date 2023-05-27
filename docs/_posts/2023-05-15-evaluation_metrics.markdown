@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Evaluation metrics in classification"
+title:  "Performance metrics in classification"
 date:   2023-05-15 10:15
 categories: ml
 usemathjax: true
