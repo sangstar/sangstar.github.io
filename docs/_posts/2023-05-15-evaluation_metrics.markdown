@@ -70,7 +70,7 @@ and noting that $$\beta^2 + 1 = \frac{1}{\alpha}$$:
 
 $$F_\beta = \frac{(\beta^2 + 1)PR}{\beta^2 P + R}$$
 
-$$\beta^2$$ is now a weighting factor that you can use to prefer precision or recall. $$\beta^2 < 1$$ favors precision, while $$\beta^2 > 1$$ favors recall. It's important to understand why. As $$\beta^2 \to 0$$, $$\beta^2P + R \to R$$, and $$\beta^2 + 1 \to 1$$, so we are left with something converging to 
+$$\beta^2$$ is now a weighting factor that you can use to prefer precision or recall. $$\beta^2 < 1$$ favors precision, while $$\beta^2 > 1$$ favors recall. It's important to understand why. As $$\beta^2 \to 0$$, we have $$\beta^2P + R \to R$$, and $$\beta^2 + 1 \to 1$$, so we are left with something converging to 
 
 $$\lim_{\beta^2 \to 0} F_\beta = \frac{PR}{R} = P$$
 
