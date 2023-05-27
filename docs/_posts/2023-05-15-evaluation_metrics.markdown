@@ -47,10 +47,12 @@ $$
 $$
 \begin{array}{cc} 
 &
-\begin{array}{ccccc} 1 & 2 & 3 & 4 & 5\\
+\begin{array}{ccccc} A & B & C & D & E\\
 \end{array}
 \\
-A =
+\begin{matrix}
+\hat A \\ \hat B \\ \hat C \\ \hat D \\ \hat E \\
+\end{matrix}
 &
 \left[
 \begin{array}{ccccc}
