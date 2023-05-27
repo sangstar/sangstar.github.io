@@ -1,8 +1,8 @@
 ---
 layout: post
-title:  "Performance metrics in classification"
+title:  "Performance metrics in NLP"
 date:   2023-05-15 10:15
-categories: ml
+categories: nlp
 usemathjax: true
 ---
 
