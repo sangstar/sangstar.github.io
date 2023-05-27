@@ -44,6 +44,8 @@ f_p & t_n \\
 \end{bmatrix}
 $$
 
+which can be extended quite easily to multiple classes by just adding more columns and rows.
+
 $$
 \begin{array}{cc} 
 &
@@ -64,7 +66,9 @@ $$
 \end{array}
 $$
 
-which can be extended quite easily to multiple classes by just adding more columns and rows. You may have noticed that a classifier with minimal misclassification tends to diagonality, and it makes for a cool way to visually check how your classifier is doing in terms of precision and recall *per class*.
+In this example, the row labels corresond to the predictions by the models by its associated row elements, and the column labels are the "true" or "gold" labels. Rows off the diagonal, such as that marked by $$1$$, would be a false positive label for $$B$$, where the correct label is $$A$$. "False positive" and "false negative" kind of break down with more classes, so it's more just saying that it's either on the diagonal and a true positive, or a misclassification of a gold label. 
+
+You may have noticed that a classifier with minimal misclassification tends to diagonality, and it makes for a cool way to visually check how your classifier is doing in terms of precision and recall *per class*.
 
 
 ## F-measure
