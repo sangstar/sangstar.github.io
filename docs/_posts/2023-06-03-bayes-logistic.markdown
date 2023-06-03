@@ -19,9 +19,9 @@ usemathjax: true
 When learning about machine learning models, especially in the context of classification (and NLP), it is usually a pretty good idea to learn simpler models and then build up to more complex ones. A fairly common order is naive Bayes and then logistic regression. Logistic regression is a good precursor to more complex stuff like neural networks, as it captures all the weights optimization stuff while still being pretty interpretable. I've talked a bit about logistic regression in the past briefly (see my [article](https://sangstar.github.io/ml/2022/11/24/classifying-with-regression.html)) but haven't delved into it formally, and I've never touched on naive Bayes. You probably won't ever use them (especially naive Bayes) if you value performance above everything, but they're still incredibly important to learn foundationally. They're also different "philosophically", in that they represent two different approaches to classification; naive Bayes being a *generative* model, and logistic regression being a *discriminative* model. I'm going to talk about all of this in this article, starting with naive Bayes and the generative model.
 
 ## Naive Bayes and the goal of Classification
-The naive Bayes model for classification in NLP is a good next thing to learn after starting with the $$n$$-gram model. The goal of all classifiers $$\hat c$$ is to satisfy the following:
+The naive Bayes model for classification in NLP is a good next thing to learn after starting with the $$n$$-gram model. The goal of any classifier $$\hat c$$ is to satisfy the following:
 
-$$c = \text{argmax}_\underset{c \in C} \ P(c|d)$$
+$$c = \underset{c \in C}{\text{argmax}} \ P(c|d)$$
 
 The naive Bayes classifier then applies the Bayes rule in statistics:
 
