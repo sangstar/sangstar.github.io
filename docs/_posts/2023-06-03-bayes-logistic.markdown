@@ -25,3 +25,8 @@ $$c = \text{argmax}_\underset{c \in C} \ P(c|d)$$
 
 The naive Bayes classifier then applies the Bayes rule in statistics:
 
+$$P(x|y) = \frac{P(y|x)P(x)}{P(y)}$$
+
+such that it views a classifier's task as
+
+$$c = \text{argmax}_\underset{c \in C} \ \frac{P(d|c)P(d)}{P(c)}$$
