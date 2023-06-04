@@ -16,7 +16,7 @@ usemathjax: true
   <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 {% endif %}
 
-When learning about machine learning models, especially in the context of classification (and NLP), it is usually a pretty good idea to learn simpler models and then build up to more complex ones. A fairly common order is naive Bayes and then logistic regression. Logistic regression is a good precursor to more complex stuff like neural networks, as it captures all the weights optimization stuff while still being pretty interpretable. I've talked a bit about logistic regression in the past briefly (see my [article](https://sangstar.github.io/ml/2022/11/24/classifying-with-regression.html)) but haven't delved into it formally, and I've never touched on naive Bayes. You probably won't ever use them (especially naive Bayes) if you value performance above everything, but they're still incredibly important to learn foundationally. They're also different "philosophically", in that they represent two different approaches to classification; naive Bayes being a *generative* model, and logistic regression being a *discriminative* model. I'm going to talk about all of this in this article, starting with naive Bayes and the generative model.
+When learning about machine learning models, especially in the context of classification (and NLP), it is usually a pretty good idea to learn simpler models and then build up to more complex ones. A fairly common order is naive Bayes and then logistic regression. Logistic regression is a good precursor to more complex stuff like neural networks, as it captures all the weights optimization stuff while still being pretty interpretable. I've talked a bit about logistic regression in the past briefly (see my [article](https://sangstar.github.io/ml/2022/11/24/classifying-with-regression.html)) but haven't delved into it formally, and I've never touched on naive Bayes. You probably won't ever use them (especially naive Bayes) if you value performance above everything, but they're still incredibly important to learn foundationally. They're also different "philosophically", in that they represent two different approaches to classification; naive Bayes being a *generative* model, and logistic regression being a *discriminative* model. I'm going to talk about all of this in this article, starting with naive Bayes and the generative model. I'm also going to get into this towards the end: naive Bayes is **not** traditionally a linear classifier, and I'll get into why.
 
 ## Naive Bayes and the goal of Classification
 The naive Bayes model for classification in NLP is a good next thing to learn after starting with the $$n$$-gram model. The goal of any classifier $$\hat c$$ is to satisfy the following:
@@ -124,7 +124,7 @@ Now applying the law of total probability (which we can because we have distinct
 
 $$P(c) = P(x_i \vert c = 1)P(c = 1) + P(x_i \vert c = 0) P(c=0)$$
 
-Denoting $$d$$ as $$x_i$$ but implying $$d = \left{x_i\right}_{i=1}^n$$. Hence we have 
+Denoting $$d$$ as $$x_i$$ but implying $$d = \{x_i\}_{i=1}^n$$. Hence we have 
 
 $$P(c \vert d) = \frac{P(d|c)P(d)}{P(x_i \vert c = 1)P(c = 1) + P(x_i \vert c = 0) P(c=0)}$$
 
@@ -135,7 +135,9 @@ $$ = \frac{1}{1+\exp{\left(-\log{\frac{P(x_i \vert c = 1) P(c=1)}{P(x_i \vert c 
 $$ = \sigma \left( \sum_i \log \frac{p(x_i \mid c = 1)}{p(x_i \mid c = 0)} + \log \frac{p(c = 1)}{p(c = 0)} \right)
 $$
 
-This is decidedly not of the form $$\sigma(\mathbf{w}  \cdot  \mathbf{x} + b)$$. As such, naive Bayes **is not** by default a linear classifier. So where does this misconception come from? The answer, as aptly answered [here](https://stats.stackexchange.com/questions/142215/how-is-naive-bayes-a-linear-classifier#_=_) is that *it can be* if the likelihood factors $$p(x_i \vert c)$$ are sampled from [exponential families](https://en.wikipedia.org/wiki/Exponential_family)
+This is decidedly not of the form $$\sigma(\mathbf{w}  \cdot  \mathbf{x} + b)$$. As such, naive Bayes **is not** by default a linear classifier. So where does this misconception come from? The answer, as aptly answered [here](https://stats.stackexchange.com/questions/142215/how-is-naive-bayes-a-linear-classifier#_=_) is that *it can be* if the likelihood factors $$p(x_i \vert c)$$ are sampled from [exponential families.](https://en.wikipedia.org/wiki/Exponential_family)
+
+Exponentional families form the group of common distributions you've heard of: normal, exponential, Bernoulli, Poisson -- all exponential family distributions. If $$p*
 
 ## References
 
