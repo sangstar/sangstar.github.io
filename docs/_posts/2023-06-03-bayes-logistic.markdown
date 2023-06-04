@@ -110,7 +110,7 @@ If you Google whether Naive Bayes is a linear classifier, lots of stuff you'll r
 
 Formally speaking, a linear classifier is a model that makes a classification decision using a linear combination of its features and some scalars (not arbitrarily considering calars would be to imply that all scalars are always equal to unity):
 
-$$y = f \bigl(\sum_j w_j x_j \rightl)$$
+$$y = f \bigl(\sum_j w_j x_j \bigr)$$
 
 Let's start with the definition of a classifier after applying Bayes' theorem
 
