@@ -11,7 +11,8 @@ This website serves as a personal online portfolio for me where I mostly ramble 
 # My personal favorites:
 
 1. [Transformers and ChatGPT](https://sangstar.github.io/nlp/2023/03/03/chatgpt.html)
-2. [Performance metrics in NLP](https://sangstar.github.io/nlp/2023/05/15/evaluation_metrics.html)
-3. [The misconceptions of the imbalanced dataset](https://sangstar.github.io/ml/2023/04/22/imbalanced-datasets.html)
+2  [Generative models, discriminative models, and what everyone gets wrong about naive Bayes](https://sangstar.github.io/nlp/2023/06/03/bayes-logistic.html)
+3. [Performance metrics in NLP](https://sangstar.github.io/nlp/2023/05/15/evaluation_metrics.html)
+4. [The misconceptions of the imbalanced dataset](https://sangstar.github.io/ml/2023/04/22/imbalanced-datasets.html)
 
 
