@@ -43,11 +43,11 @@ for $$p(x) > 0$$. As such, naive Bayes actually attempts to model the joint prob
 
 Noting that a document $$d$$ is a vector of features (tokens) we can express our original classifier as 
 
-$$ \hat c = \underset{c \in C}{\text{argmax}} \ P(w_1, w_2, w_3, ..., w_n \vert c) \ P(c)$$
+$$ \hat c = \underset{c \in C}{\text{argmax}} \ P(w_1, w_2, w_3, \ \ldots \ , w_n \vert c) \ P(c)$$
 
 Keep in mind that we have reached this equation with no loss of generality -- this is true for all classifiers. However, the whole point of naive Bayes is arriving at the above equation and applying the **naive Bayes assumption**: that the probabilities given the class $$c$$ for $$P(w_i \vert c)$$ are 'naively' considered *independent* and are therefore able to be multiplied. The naive Bayes assumption is therefore:
 
-$$P(w_1, w_2, ..., w_n \vert c) = P(w_1 \vert c) \cdot P(w_2 \vert c) \ \cdot \ \ldot \  \cdot P(w_{n-1} \vert c) \cdot P(w_n \vert c)$$
+$$P(w_1, w_2, ..., w_n \vert c) = P(w_1 \vert c) \cdot P(w_2 \vert c) \ \cdot \ \ldots \  \cdot P(w_{n-1} \vert c) \cdot P(w_n \vert c)$$
 
 Thus our naive Bayes classifier is:
 
