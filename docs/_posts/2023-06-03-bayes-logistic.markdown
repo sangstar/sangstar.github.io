@@ -51,4 +51,4 @@ $$P(w_1, w_2, ..., w_n \vert c) = P(w_1 \vert c) \cdot P(w_2 \vert c) \ \cdot ..
 
 Thus our naive Bayes classifier is:
 
-$$\hat c = C_{NB} = \underset{c \in C}{\text{argmax}} \ P(c) \ \underset{i}{P(w \vert c)}$$
+$$\hat c = c_{NB} = \underset{c \in C}{\text{argmax}} \ P(c) \ \underset{i}{\Pi} P(w \vert c)$$
