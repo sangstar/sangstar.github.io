@@ -108,7 +108,7 @@ $$c_{NB} = \underset{c \in C}{\text{argmax}} \ \log{P(c)} \ \underset{i}{\sum} \
 ## An aside: a common misconception about naive Bayes as a linear classifier
 If you Google whether Naive Bayes is a linear classifier, lots of stuff you'll read will say that it is, yet at the same time looking at images of naive Bayes will show non-linear decision boundaries. What gives? Hopefully this will clear things up.
 
-Formally speaking, a linear classifier is a model that makes a classification decision using a linear combination of its features and some scalars (not arbitrarily considering calars would be to imply that all scalars are always equal to unity):
+Formally speaking, a linear classifier is a model that makes a classification decision using a linear combination of its features and some scalars:
 
 $$y = f \bigl(\sum_j w_j x_j \bigr)$$
 
