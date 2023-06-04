@@ -124,7 +124,7 @@ $$P(c) = P(x \vert c = 1)P(c = 1) + P(x \vert c = 0) P(c=0)$$
 
 Hence we have 
 
-$$P(c \vert d) \frac{P(d|c)P(d)}{P(x \vert c = 1)P(c = 1) + P(x \vert c = 0) P(c=0)}$$
+$$P(c \vert d) = \frac{P(d|c)P(d)}{P(x \vert c = 1)P(c = 1) + P(x \vert c = 0) P(c=0)}$$
 
 ## References
 Jurafsky, D., & Martin, J. H. (2019). Naive Bayes, Text Classification and Sentiment. In Speech and Language Processing (3rd ed., Chapter 4). Prentice Hall.
