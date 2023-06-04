@@ -137,7 +137,22 @@ $$
 
 This is decidedly not of the form $$\sigma(\mathbf{w}  \cdot  \mathbf{x} + b)$$. As such, naive Bayes **is not** by default a linear classifier. So where does this misconception come from? The answer, as aptly answered [here](https://stats.stackexchange.com/questions/142215/how-is-naive-bayes-a-linear-classifier#_=_) is that *it can be* if the likelihood factors $$p(x_i \vert c)$$ are sampled from [exponential families.](https://en.wikipedia.org/wiki/Exponential_family)
 
-Exponentional families form the group of common distributions you've heard of: normal, exponential, Bernoulli, Poisson -- all exponential family distributions. If $$p*
+Exponentional families form the group of common distributions you've heard of: normal, exponential, Bernoulli, Poisson -- all exponential family distributions. If $$p(x_i \vert c)$$ samples from a exponential family distribution, it can be uniquely expressed in the following way:
+
+$$p(x_i \mid c) = h_i(x_i)\exp\left(\mathbf{u}_{ic}^\top \phi_i(x_i) - A_i(\mathbf{u}_{ic})\right),$$
+
+and if we make the substitutions 
+
+$$
+\mathbf{w}_i &= \mathbf{u}_{i1} - \mathbf{u}_{i0}, \\
+b &= \log \frac{p(c = 1)}{p(c = 0)} - \sum_i \left( A_i(\mathbf{u}_{i1}) - A_i(\mathbf{u}_{i0}) \right).
+$$
+
+we can therefore restate this as 
+
+$$p(c = 1 \mid \mathbf{x}) = \sigma\left( \sum_i \mathbf{w}_i^\top \phi_i(x_i) + b \right),$$
+
+as shown by SE user [Lucas](https://stats.stackexchange.com/users/7733/lucas).
 
 ## References
 
