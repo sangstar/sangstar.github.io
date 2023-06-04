@@ -141,7 +141,7 @@ Exponentional families form the group of common distributions you've heard of: n
 
 $$p(x_i \mid c) = h_i(x_i)\exp\left(\mathbf{u}_{ic}^\top \phi_i(x_i) - A_i(\mathbf{u}_{ic})\right),$$
 
-and if we make the substitutions 
+where $$h$$, $$\phi$$ and $$A$$ are known functions. If we make the substitutions 
 
 $$
 \mathbf{w}_i = \mathbf{u}_{i1} - \mathbf{u}_{i0}, \\
