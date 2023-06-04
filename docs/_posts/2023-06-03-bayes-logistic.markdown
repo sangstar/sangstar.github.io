@@ -21,7 +21,7 @@ When learning about machine learning models, especially in the context of classi
 ## Naive Bayes and the goal of Classification
 The naive Bayes model for classification in NLP is a good next thing to learn after starting with the $$n$$-gram model. The goal of any classifier $$\hat c$$ is to satisfy the following:
 
-$$c = \underset{c \in C}{\text{argmax}} \ P(c|d)$$
+$$\hat c = \underset{c \in C}{\text{argmax}} \ P(c|d)$$
 
 The naive Bayes classifier then applies the Bayes rule in statistics:
 
@@ -29,17 +29,17 @@ $$P(x|y) = \frac{P(y|x)P(x)}{P(y)}$$
 
 such that it views a classifier's task as
 
-$$c = \underset{c \in C}{\text{argmax}} \ \frac{P(d|c)P(d)}{P(c)}$$
+$$\hat c = \underset{c \in C}{\text{argmax}} \ \frac{P(d|c)P(d)}{P(c)}$$
 
 Since we are computing the equation above for each possible class, $$P(d)$$ is a constant throughout all our calculations and can be discarded as it has no bearing on the result. Therefore we can express it as:
 
-$$c = \underset{c \in C}{\text{argmax}} \ P(d|c)P(d)$$
+$$\hat c = \underset{c \in C}{\text{argmax}} \ P(d|c)P(d)$$
 
 Naive Bayes is called a *generative* model. $$P(d \vert c)P(d)$$ can be expressed as the joint probability distribution $$P(c,d)$$ due to the conditional probability density function
 
 $$p(y|x) = \frac{p(x,y)}{p(x)}$$
 
-for $$p(x) > 0$$. As such, naive Bayes actually attempts to model the joint probability $$P(c,d)$$ rather than $$P(c \vert d)$$ directly. Models of this form are called generative in that they learn the joint probability distribution $$P(c, d)$$ and can thereby theoretically generate text by fixing a $$c$$ and sampling documents in $$P(d \vert c)$$. 
+for $$p(x) > 0$$. As such, naive Bayes actually attempts to model the joint probability $$P(c,d)$$ rather than $$P(c \vert d)$$ directly. Models of this form are called generative in that they learn the joint probability distribution $$P(c, d)$$ and can thereby theoretically generate documents by fixing a $$c$$ and sampling documents in $$P(d \vert c)$$. 
 
 Noting that a document $$d$$ is a vector of features (tokens) we can express our original classifier as 
 
@@ -64,9 +64,9 @@ Naive Bayes's assumption is generally a rather poor one, but it tends to do bett
 ## Linear regression 
 Let's return to the original classification model from before.
 
-$$c = \underset{c \in C}{\text{argmax}} \ P(c|d) = P(d|c)P(d)$$
+$$\hat c = \underset{c \in C}{\text{argmax}} \ P(c|d) = P(d|c)P(d)$$
 
-A linear regression model is a *discriminative* one. That is to say that instead of applying Bayes's rule, we aim to directly calculate $$P(c \vert d)$$. This is actually a key distinction. While a generative model can "understand" the classes in a sense by being able to generate examples belonging to them, a discriminative model cannot. It is purely considered with separating classes and isn't concerned with what characterizes them. This is because generative models force themselves to model the joint probability distribution $$P(c,d))$$ to inform their predictions, while discriminative is *only* concerned with finding $$P(c \vert d)$$. If a logistic regression classifier was trained to classify horses or humans, it won't necessarily be able to tell you that humans have five fingers -- just that they don't have hooves. A generative model meanwhile could analogously "draw" a human. 
+A linear regression model is a *discriminative* one. That is to say that instead of applying Bayes's rule, we aim to directly calculate $$P(c \vert d)$$. This is actually a key distinction. While a generative model can "understand" the classes in a sense by being able to generate examples belonging to them, a discriminative model cannot. It is purely concerned with separating classes and isn't concerned with what characterizes them. This is because generative models force themselves to model the joint probability distribution $$P(c,d))$$ to inform their predictions, while discriminative is *only* concerned with finding $$P(c \vert d)$$. If a logistic regression classifier was trained to classify horses or humans, it won't necessarily be able to tell you that humans have five fingers -- just that they don't have hooves. A generative model meanwhile could analogously "draw" a human. 
 
 Anyway, the way logistic regression computes $$P(c \vert d)$$ is completely different to naive Bayes and more inline with "conventional" machine learning. Traditionally, it seeks to solve the probability of a positive class given feature vector $$x$$ $$P(y = 1 \vert x)$$ and the probability of a negative class $$P(y = 0 \vert x)$$ It learns from a training set a vector of weights and a bias term. Each weight $$w_i$$, well, *weighs* $$x_i$$. A scalar value whose magnitude indicates its "importance" when making a classification prediction, and its parity representing its sway towards the positive or negative class. The bias term is tacked on to the end as an intercept. Each feature $$x_i$$ is weighed by $$w_i$$ and summed, then offset by bias $$b$$:
 
@@ -100,9 +100,13 @@ $$ = 1 - \frac{1}{1+\exp{(-(\sigma(\mathbf{w}  \cdot  \mathbf{x} + b)))}}$$
 
 $$ = \frac{\exp{(-(\sigma(\mathbf{w}  \cdot  \mathbf{x} + b)))}}{1+\exp{(-(\sigma(\mathbf{w}  \cdot  \mathbf{x} + b)))}}$$
 
-Keep in mind, logistic regression in NLP *does not require* a specific structure for the features -- it doesn't have to be a bag of words or word embeddings or whatever. Any property from the input can be a feature. I've already written an article talking about decision boundaries in logistic regression, but I want to stress that this existence of a decision boundary is what makes this model discriminative, and its linearity is what makes it a linear classifier -- that and the fact that we use a weighted (but linear) sum of features to make a prediction. Naive Bayes does this too, remember?
+Keep in mind, logistic regression in NLP *does not require* a specific structure for the features -- it doesn't have to be a bag of words or word embeddings or whatever. Any property from the input can be a feature. I've already written an article talking about decision boundaries in logistic regression, but I want to stress that this existence of a decision boundary to make predictions is what makes this model discriminative, and its linearity is what makes it a linear classifier -- that and the fact that we use a weighted (but linear) sum of features to make a prediction. Naive Bayes does this too, remember?
 
 $$c_{NB} = \underset{c \in C}{\text{argmax}} \ \log{P(c)} \ \underset{i}{\sum} \log{P(w_i \vert c)}$$
+
+
+## An aside: a common misconception about naive Bayes as a linear classifier
+However, the topic of whether naive Bayes is a linear classifier or not is actually a bit complicated. If you Google whether Naive Bayes is a linear classifier, lots of stuff you'll read will say that it is, yet at the same time looking at images of naive Bayes will show non-linear decision boundaries. 
 
 ## References
 Jurafsky, D., & Martin, J. H. (2019). Naive Bayes, Text Classification and Sentiment. In Speech and Language Processing (3rd ed., Chapter 4). Prentice Hall.
