@@ -55,7 +55,7 @@ $$\hat c = c_{NB} = \underset{c \in C}{\text{argmax}} \ P(c) \ \underset{i}{\pro
 
 where $$i$$ are the word positions in the document $$w$$, so basically just making sure the product is taking into account word order. The calculation is typically done in log space to avoid underflow due to a product of probabilities, so we rewrite as:
 
-$$c_{NB} = \underset{c \in C}{\text{argmax}} \ P(c) \ \underset{i}{\sum} P(w_i \vert c)$$
+$$c_{NB} = \underset{c \in C}{\text{argmax}} \ \log{P(c)} \ \underset{i}{\sum} \log{P(w_i \vert c)}$$
 
 We've now turned out classifier into argmaxxing a sum of linear sum of features. Keep that in mind for later. I'm not going to get into how naive Bayes is trained, but it uses maximum likelihood estimate to calculate $$P(w_i \vert c)$$. 
 
@@ -100,7 +100,9 @@ $$ = 1 - \frac{1}{1+\exp{(-(\sigma(\mathbf{w}  \cdot  \mathbf{x} + b)))}}$$
 
 $$ = \frac{\exp{(-(\sigma(\mathbf{w}  \cdot  \mathbf{x} + b)))}}{1+\exp{(-(\sigma(\mathbf{w}  \cdot  \mathbf{x} + b)))}}$$
 
+Keep in mind, logistic regression in NLP *does not require* a specific structure for the features -- it doesn't have to be a bag of words or word embeddings or whatever. Any property from the input can be a feature. I've already written an article talking about decision boundaries in logistic regression, but I want to stress that this existence of a decision boundary is what makes this model discriminative, and its linearity is what makes it a linear classifier -- that and the fact that we use a weighted (but linear) sum of features to make a prediction. Naive Bayes does this too, remember?
 
+$$c_{NB} = \underset{c \in C}{\text{argmax}} \ \log{P(c)} \ \underset{i}{\sum} \log{P(w_i \vert c)}$$
 
 ## References
 Jurafsky, D., & Martin, J. H. (2019). Naive Bayes, Text Classification and Sentiment. In Speech and Language Processing (3rd ed., Chapter 4). Prentice Hall.
