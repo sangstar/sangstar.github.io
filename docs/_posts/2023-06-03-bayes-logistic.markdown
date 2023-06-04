@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Generative and Discriminant models: Naive Bayes and Logistic Regression"
+title:  "Generative models, discriminative models, and what everyone gets wrong about naive Bayes"
 date:   2023-06-03 10:42
 categories: nlp
 usemathjax: true
@@ -59,14 +59,14 @@ $$c_{NB} = \underset{c \in C}{\text{argmax}} \ \log{P(c)} \ \underset{i}{\sum} \
 
 We've now turned out classifier into argmaxxing a sum of linear sum of features. Keep that in mind for later. I'm not going to get into how naive Bayes is trained, but it uses maximum likelihood estimate to calculate $$P(w_i \vert c)$$. 
 
-Naive Bayes's assumption is generally a rather poor one, but it tends to do better than one might think given its "naivety". Since it works using maximum likelihood estimation it scales wonderfully, handling both small and large training datasets well, and excels in higher dimensional data due to training in linear time and can ignore feature dependencies irrelevant to the classification tasks (as it ignores all of them). It also does surprisingly well in NLP since for text data, even though Naive Byaes disregards dependencies between words, often just the occurences of words in a document is enough information to make decent predictions. 
+Naive Bayes' assumption is generally a rather poor one, but it tends to do better than one might think given its "naivety". Since it works using maximum likelihood estimation it scales wonderfully, handling both small and large training datasets well, and excels in higher dimensional data due to training in linear time and can ignore feature dependencies irrelevant to the classification tasks (as it ignores all of them). It also does surprisingly well in NLP since for text data, even though Naive Byaes disregards dependencies between words, often just the occurences of words in a document is enough information to make decent predictions. 
 
 ## Linear regression 
 Let's return to the original classification model from before.
 
 $$\hat c = \underset{c \in C}{\text{argmax}} \ P(c|d) = P(d|c)P(d)$$
 
-A linear regression model is a *discriminative* one. That is to say that instead of applying Bayes's rule, we aim to directly calculate $$P(c \vert d)$$. This is actually a key distinction. While a generative model can "understand" the classes in a sense by being able to generate examples belonging to them, a discriminative model cannot. It is purely concerned with separating classes and isn't concerned with what characterizes them. This is because generative models force themselves to model the joint probability distribution $$P(c,d))$$ to inform their predictions, while discriminative is *only* concerned with finding $$P(c \vert d)$$. If a logistic regression classifier was trained to classify horses or humans, it won't necessarily be able to tell you that humans have five fingers -- just that they don't have hooves. A generative model meanwhile could analogously "draw" a human. 
+A linear regression model is a *discriminative* one. That is to say that instead of applying Bayes' rule, we aim to directly calculate $$P(c \vert d)$$. This is actually a key distinction. While a generative model can "understand" the classes in a sense by being able to generate examples belonging to them, a discriminative model cannot. It is purely concerned with separating classes and isn't concerned with what characterizes them. This is because generative models force themselves to model the joint probability distribution $$P(c,d))$$ to inform their predictions, while discriminative is *only* concerned with finding $$P(c \vert d)$$. If a logistic regression classifier was trained to classify horses or humans, it won't necessarily be able to tell you that humans have five fingers -- just that they don't have hooves. A generative model meanwhile could analogously "draw" a human. 
 
 Anyway, the way logistic regression computes $$P(c \vert d)$$ is completely different to naive Bayes and more inline with "conventional" machine learning. Traditionally, it seeks to solve the probability of a positive class given feature vector $$x$$ $$P(y = 1 \vert x)$$ and the probability of a negative class $$P(y = 0 \vert x)$$ It learns from a training set a vector of weights and a bias term. Each weight $$w_i$$, well, *weighs* $$x_i$$. A scalar value whose magnitude indicates its "importance" when making a classification prediction, and its parity representing its sway towards the positive or negative class. The bias term is tacked on to the end as an intercept. Each feature $$x_i$$ is weighed by $$w_i$$ and summed, then offset by bias $$b$$:
 
@@ -100,13 +100,23 @@ $$ = 1 - \frac{1}{1+\exp{(-(\mathbf{w}  \cdot  \mathbf{x} + b))}}$$
 
 $$ = \frac{\exp{(-(\mathbf{w}  \cdot  \mathbf{x} + b))}}{1+\exp{(-(\mathbf{w}  \cdot  \mathbf{x} + b))}}$$
 
-Keep in mind, logistic regression in NLP *does not require* a specific structure for the features -- it doesn't have to be a bag of words or word embeddings or whatever. Any property from the input can be a feature. I've already written an article talking about decision boundaries in logistic regression, but I want to stress that this existence of a decision boundary to make predictions is what makes this model discriminative, and its linearity is what makes it a linear classifier -- that and the fact that we use a weighted (but linear) sum of features to make a prediction. Naive Bayes does this too, remember?
+Keep in mind, logistic regression in NLP *does not require* a specific structure for the features -- it doesn't have to be a bag of words or word embeddings or whatever. Any property from the input can be a feature. I've already written an article talking about decision boundaries in logistic regression, but I want to stress that this existence of a decision boundary to make predictions is what makes this model discriminative, and its linearity is what makes it a linear classifier -- that and the fact that we use a weighted (but linear) sum of features to make a prediction. Naive Bayes does this too, remember? However, the topic of whether naive Bayes is a linear classifier or not is actually a bit complicated. 
 
 $$c_{NB} = \underset{c \in C}{\text{argmax}} \ \log{P(c)} \ \underset{i}{\sum} \log{P(w_i \vert c)}$$
 
 
 ## An aside: a common misconception about naive Bayes as a linear classifier
-However, the topic of whether naive Bayes is a linear classifier or not is actually a bit complicated. If you Google whether Naive Bayes is a linear classifier, lots of stuff you'll read will say that it is, yet at the same time looking at images of naive Bayes will show non-linear decision boundaries. 
+If you Google whether Naive Bayes is a linear classifier, lots of stuff you'll read will say that it is, yet at the same time looking at images of naive Bayes will show non-linear decision boundaries. What gives? Hopefully this will clear things up.
+
+Formally speaking, a linear classifier is a model that makes a classification decision using a linear combination of its features and some scalars (not arbitrarily considering calars would be to imply that all scalars are always equal to unity):
+
+$$y = f \bigl(\sum_j w_j x_j \rightl)$$
+
+Let's start with the definition of a classifier after applying Bayes' theorem
+
+$$\hat c = \underset{c \in C}{\text{argmax}} \ \frac{P(d|c)P(d)}{P(c)}$$
+
+Now applying the law of total probability to $$P(c)$$ we can rewrite this as
 
 ## References
 Jurafsky, D., & Martin, J. H. (2019). Naive Bayes, Text Classification and Sentiment. In Speech and Language Processing (3rd ed., Chapter 4). Prentice Hall.
