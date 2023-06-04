@@ -80,4 +80,8 @@ What we have so far is not a probability. It is not bounded between $$0$$ and $$
 
 $$\sigma(z) = \frac{1}{1+\exp{(-z)}}$$
 
-This is actually more specifically a logistic function, a specific kind of sigmoid, hence *logistic regression*.
+<p align="center">
+  <img width="auto" height="auto" src="/assets/logistic.jpg">
+</p>
+
+This is actually more specifically a logistic function, a specific kind of sigmoid (hence *logistic regression*). Sigmoids are amazingly ubiquitous in ML, and its appearance here gives a few good examples. For one, it obviously has the desired range between $$0$$ and $$1$$ and this prevents outliers from having an undue influence as flattening occurs near the edges. 
