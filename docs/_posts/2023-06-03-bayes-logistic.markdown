@@ -110,7 +110,7 @@ If you Google whether Naive Bayes is a linear classifier, lots of stuff you'll r
 
 Formally speaking, a linear classifier is a model that makes a classification decision using a linear combination of its features and some scalars:
 
-$$y = f \bigl(\sum_j w_j x_j \bigr)$$
+$$y = f \left(\sum_j w_j x_j \right)$$
 
 where $$f$$ is some *threshold function* that we want to scale things from $$0$$ to $$1$$ for a probability and help us to establish a decision boundary. Recall that for logistic regression we literally derived 
 
@@ -122,18 +122,20 @@ $$P(c \vert d) = \frac{P(d|c)P(d)}{P(c)}$$
 
 Now applying the law of total probability (which we can because we have distinct events of $$y=1$$ or $$y=0$$) to $$P(c)$$ we can rewrite this as
 
-$$P(c) = P(x \vert c = 1)P(c = 1) + P(x \vert c = 0) P(c=0)$$
+$$P(c) = P(x_i \vert c = 1)P(c = 1) + P(x_i \vert c = 0) P(c=0)$$
 
-Hence we have 
+Denoting $$d$$ as $$x_i$$ but implying $$d = \left{x_i\right}_{i=1}^n$$. Hence we have 
 
-$$P(c \vert d) = \frac{P(d|c)P(d)}{P(x \vert c = 1)P(c = 1) + P(x \vert c = 0) P(c=0)}$$
+$$P(c \vert d) = \frac{P(d|c)P(d)}{P(x_i \vert c = 1)P(c = 1) + P(x_i \vert c = 0) P(c=0)}$$
 
-$$ = \frac{1}{1+\frac{P(x \vert c = 0) P(c=0)}{P(x \vert c = 1)P(c = 1)}}$$
+$$ = \frac{1}{1+\frac{P(x_i \vert c = 0) P(c=0)}{P(x_i \vert c = 1)P(c = 1)}}$$
 
-$$ = \frac{1}{1+\exp{\left(-\log{\frac{P(x \vert c = 1) P(c=1)}{P(x \vert c = 0)P(c = 0)}}\right)}}$$
+$$ = \frac{1}{1+\exp{\left(-\log{\frac{P(x_i \vert c = 1) P(c=1)}{P(x_i \vert c = 0)P(c = 0)}}\right)}}$$
 
 $$ = \sigma \left( \sum_i \log \frac{p(x_i \mid c = 1)}{p(x_i \mid c = 0)} + \log \frac{p(c = 1)}{p(c = 0)} \right)
 $$
+
+This is decidedly not of the form $$\sigma(\mathbf{w}  \cdot  \mathbf{x} + b)$$. As such, naive Bayes **is not** by default a linear classifier. So where does this misconception come from? The answer, as aptly answered [here](https://stats.stackexchange.com/questions/142215/how-is-naive-bayes-a-linear-classifier#_=_) is that it can be if the likelihood factors 
 
 ## References
 
