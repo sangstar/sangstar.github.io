@@ -35,7 +35,7 @@ Since we are computing the equation above for each possible class, $$P(d)$$ is a
 
 $$c = \underset{c \in C}{\text{argmax}} \ P(d|c)P(d)$$
 
-This is called a generative model. $$P(d|c)P(d)$$ can be expressed as the joint probability distribution $$P(c,d)$$ due to the conditional probability density function
+This is called a generative model. $$P(d \| c)P(d)$$ can be expressed as the joint probability distribution $$P(c,d)$$ due to the conditional probability density function
 
 $$p(y|x) = \frac{p(x,y)}{p(x)}$$
 
