@@ -139,18 +139,18 @@ This is decidedly not of the form $$\sigma(\mathbf{w}  \cdot  \mathbf{x} + b)$$.
 
 Exponentional families form the group of common distributions you've heard of: normal, exponential, Bernoulli, Poisson -- all exponential family distributions. If $$p(x_i \vert c)$$ samples from a exponential family distribution, it can be uniquely expressed in the following way:
 
-$$p(x_i \mid c) = h_i(x_i)\exp\left(\mathbf{u}_{ic}^\top \phi_i(x_i) - A_i(\mathbf{u}_{ic})\right),$$
+$$p(x_i \mid c) = h_i(x_i)\exp\left(u_{ic}^\top \phi_i(x_i) - A_i(u_{ic})\right),$$
 
 where $$h$$, $$\phi$$ and $$A$$ are known functions. If we make the substitutions 
 
 $$
-\mathbf{w}_i = \mathbf{u}_{i1} - \mathbf{u}_{i0}, \\
-b = \log \frac{p(c = 1)}{p(c = 0)} - \sum_i \left( A_i(\mathbf{u}_{i1}) - A_i(\mathbf{u}_{i0}) \right)
+w_i = u_{i1} - u_{i0}, \\
+b = \log \frac{p(c = 1)}{p(c = 0)} - \sum_i \left( A_i(u_{i1}) - A_i(u_{i0}) \right)
 $$
 
 we can therefore restate this as 
 
-$$p(c = 1 \mid \mathbf{x}) = \sigma\left( \sum_i \mathbf{w}_i^\top \phi_i(x_i) + b \right)$$
+$$p(c = 1 \mid x) = \sigma\left( \sum_i w_i^\top \phi_i(x_i) + b \right)$$
 
 as shown by Stats SE user [Lucas](https://stats.stackexchange.com/users/7733/lucas). As long as $$\phi_i (x_i)$$ is a linear function of the features $$x_i$$, this is still a linear combination of input features and therefore a linear classifier. So, yes, naive Bayes can be linear classifier, but **only if** $$p(x_i \vert c)$$ is sampled from an exponential family distribution and its feature function is also linear. Otherwise it is non-linear. 
 
