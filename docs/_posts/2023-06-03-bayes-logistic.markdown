@@ -127,4 +127,7 @@ Hence we have
 $$P(c \vert d) = \frac{P(d|c)P(d)}{P(x \vert c = 1)P(c = 1) + P(x \vert c = 0) P(c=0)}$$
 
 ## References
+
+Lucas (https://stats.stackexchange.com/users/7733/lucas), How is Naive Bayes a Linear Classifier?, URL (version: 2015-03-18): https://stats.stackexchange.com/q/142258
+
 Jurafsky, D., & Martin, J. H. (2019). Naive Bayes, Text Classification and Sentiment. In Speech and Language Processing (3rd ed., Chapter 4). Prentice Hall.
