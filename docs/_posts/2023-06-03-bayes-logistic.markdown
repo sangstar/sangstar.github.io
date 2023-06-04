@@ -35,8 +35,16 @@ Since we are computing the equation above for each possible class, $$P(d)$$ is a
 
 $$c = \underset{c \in C}{\text{argmax}} \ P(d|c)P(d)$$
 
-This is called a generative model. $$P(d \vert c)P(d)$$ can be expressed as the joint probability distribution $$P(c,d)$$ due to the conditional probability density function
+Naive Bayes is called a *generative* model. $$P(d \vert c)P(d)$$ can be expressed as the joint probability distribution $$P(c,d)$$ due to the conditional probability density function
 
 $$p(y|x) = \frac{p(x,y)}{p(x)}$$
 
-for $$p(x) > 0$$. As such, naive Bayes actually attempts to model the joint probability $$P(c,d)$$ rather than $$P(c \vert d)$$ directly. Models of this form are called generative in that they learn the joint probability distribution $$P(c, d)$$, which allows them to find $$P(c \vert d)$$ by for each $$c$$ generating documents $$d$$ to maximize $$P(d \vert c)P(c)$$.
+for $$p(x) > 0$$. As such, naive Bayes actually attempts to model the joint probability $$P(c,d)$$ rather than $$P(c \vert d)$$ directly. Models of this form are called generative in that they learn the joint probability distribution $$P(c, d)$$ and can thereby theoretically generate text by fixing a $$c$$ and sampling documents in $$P(d \vert c)$$. 
+
+Noting that a document $$d$$ is a vector of features (tokens) we can express our original classifier as 
+
+$$ \hat c = \underset{c \in C}{\text{argmax}} P(w_1, w_2, w_3, ..., w_n \vert c) P(c)$$
+
+Keep in mind that we have reached this equation with no loss of generality -- this is true for all classifiers. However, the whole point of naive Bayes is arriving at the above equation and applying the **naive Bayes assumption**: that the probabilities given the class $$c$$ for $$P(w_i \vert c)$$ are 'naively' considered *independent* and are therefore able to be multiplied. The naive Bayes assumption is therefore:
+
+$$P(w_1, w_2, ..., w_n, \vert c) = P(w_1 \vert c) \times P(w_2 \vert c) \times ... P(w_n \vert c)$$
