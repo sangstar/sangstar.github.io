@@ -64,6 +64,6 @@ Naive Bayes's assumption is generally a rather poor one, but it tends to do bett
 ## Linear regression 
 Let's return to the original classification model from before.
 
-$$c = \underset{c \in C}{\text{argmax}} \ P(c|d) = \frac{P(d|c)P(d)$$
+$$c = \underset{c \in C}{\text{argmax}} \ P(c|d) = P(d|c)P(d)$$
 
 A linear regression model is a *discriminant* one. That is to say that instead of applying Bayes's rule and expressing the argmax as a product of likelihood and prior, we aim to directly calculate $$P(c \vert d)$$. 
