@@ -72,7 +72,7 @@ Anyway, the way logistic regression computes $$P(c \vert d)$$ is completely diff
 
 $$z = \sum_{i=1}^n w_i x_i + b$$
 
-The sum is definitially a dot product so we can succinctly express this as
+The sum is definitionally a dot product so we can succinctly express this as
 
 $$ z = \mathbf{w}  \cdot  \mathbf{x} + b$$
 
