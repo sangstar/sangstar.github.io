@@ -144,7 +144,7 @@ $$p(x_i \mid c) = h_i(x_i)\exp\left(\mathbf{u}_{ic}^\top \phi_i(x_i) - A_i(\math
 and if we make the substitutions 
 
 $$
-\mathbf{w}_i &= \mathbf{u}_{i1} - \mathbf{u}_{i0}, \\
+\mathbf{w}_i = \mathbf{u}_{i1} - \mathbf{u}_{i0}, \\
 b = \log \frac{p(c = 1)}{p(c = 0)} - \sum_i \left( A_i(\mathbf{u}_{i1}) - A_i(\mathbf{u}_{i0}) \right)
 $$
 
