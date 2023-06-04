@@ -128,9 +128,9 @@ Hence we have
 
 $$P(c \vert d) = \frac{P(d|c)P(d)}{P(x \vert c = 1)P(c = 1) + P(x \vert c = 0) P(c=0)}$$
 
-$$ = \frac{1}{1+\frac{P(x \vert c = 0) P(c=0)}}{P(x \vert c = 1)P(c = 1)}}$$
+$$ = \frac{1}{1+\frac{P(x \vert c = 0) P(c=0)}{P(x \vert c = 1)P(c = 1)}}$$
 
-$$ = \frac{1}{1+\exp{-\log{\frac{P(x \vert c = 1) P(c=1)}}{P(x \vert c = 0)P(c = 0)}}} $$
+$$ = \frac{1}{1+\exp{-\log{\frac{P(x \vert c = 1) P(c=1)}{P(x \vert c = 0)P(c = 0)}}}} $$
 
 ## References
 
