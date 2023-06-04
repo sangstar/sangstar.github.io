@@ -37,7 +37,7 @@ $$\hat c = \underset{c \in C}{\text{argmax}} \ P(d|c)P(d)$$
 
 Naive Bayes is called a *generative* model. $$P(d \vert c)P(d)$$ can be expressed as the joint probability distribution $$P(c,d)$$ due to the conditional probability density function
 
-$$p(y|x) = \frac{p(x,y)}{p(x)}$$
+$$P(y|x) = \frac{P(x,y)}{P(x)}$$
 
 for $$p(x) > 0$$. As such, naive Bayes actually attempts to model the joint probability $$P(c,d)$$ rather than $$P(c \vert d)$$ directly. Models of this form are called generative in that they learn the joint probability distribution $$P(c, d)$$ and can thereby theoretically generate documents by fixing a $$c$$ and sampling documents in $$P(d \vert c)$$. 
 
