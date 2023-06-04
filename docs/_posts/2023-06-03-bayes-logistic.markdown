@@ -62,3 +62,8 @@ We've now turned out classifier into argmaxxing a sum of linear sum of features.
 Naive Bayes's assumption is generally a rather poor one, but it tends to do better than one might think given its "naivety". Since it works using maximum likelihood estimation it scales wonderfully, handling both small and large training datasets well, and excels in higher dimensional data due to training in linear time and can ignore feature dependencies irrelevant to the classification tasks (as it ignores all of them). It also does surprisingly well in NLP since for text data, even though Naive Byaes disregards dependencies between words, often just the occurences of words in a document is enough information to make decent predictions. 
 
 ## Linear regression 
+Let's return to the original classification model from before.
+
+$$c = \underset{c \in C}{\text{argmax}} \ P(c|d) = \frac{P(d|c)P(d)$$
+
+A linear regression model is a *discriminant* one. That is to say that instead of applying Bayes's rule and expressing the argmax as a product of likelihood and prior, we aim to directly calculate $$P(c \vert d)$$. 
