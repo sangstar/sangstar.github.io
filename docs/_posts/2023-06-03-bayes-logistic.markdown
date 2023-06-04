@@ -16,7 +16,7 @@ usemathjax: true
   <script type="text/javascript" async src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 {% endif %}
 
-When learning about machine learning models, especially in the context of classification (and NLP), it is usually a pretty good idea to learn simpler models and then build up to more complex ones. A fairly common order is naive Bayes and then logistic regression. Logistic regression is a good precursor to more complex stuff like neural networks, as it captures all the weights optimization stuff while still being pretty interpretable. I've talked a bit about logistic regression in the past briefly (see my [article](https://sangstar.github.io/ml/2022/11/24/classifying-with-regression.html)) but haven't delved into it formally, and I've never touched on naive Bayes. You probably won't ever use them (especially naive Bayes) if you value performance above everything, but they're still incredibly important to learn foundationally. They're also different "philosophically", in that they represent two different approaches to classification; naive Bayes being a *generative* model, and logistic regression being a *discriminative* model. I'm going to talk about all of this in this article, starting with naive Bayes and the generative model. I'm also going to get into this towards the end: naive Bayes is **not** traditionally a linear classifier, and I'll get into why.
+When learning about machine learning models, especially in the context of classification (and NLP), it is usually a pretty good idea to learn simpler models and then build up to more complex ones. A fairly common order is naive Bayes and then logistic regression. Logistic regression is a good precursor to more complex stuff like neural networks, as it captures all the weights optimization stuff while still being pretty interpretable. I've talked a bit about logistic regression in the past briefly (see my [article](https://sangstar.github.io/ml/2022/11/24/classifying-with-regression.html)) but haven't delved into it formally, and I've never touched on naive Bayes. You probably won't ever use them (especially naive Bayes) if you value performance above everything, but they're still incredibly important to learn foundationally. They're also different "philosophically", in that they represent two different approaches to classification; naive Bayes being a *generative* model, and logistic regression being a *discriminative* model. I'm going to talk about all of this in this article, starting with naive Bayes and the generative model. I'm also going to get into this towards the end: naive Bayes is **not** traditionally a linear classifier, and I explain why.
 
 ## Naive Bayes and the goal of Classification
 The naive Bayes model for classification in NLP is a good next thing to learn after starting with the $$n$$-gram model. The goal of any classifier $$\hat c$$ is to satisfy the following:
@@ -39,7 +39,7 @@ Naive Bayes is called a *generative* model. $$P(d \vert c)P(d)$$ can be expresse
 
 $$P(y|x) = \frac{P(x,y)}{P(x)}$$
 
-for $$p(x) > 0$$. As such, naive Bayes actually attempts to model the joint probability $$P(c,d)$$ rather than $$P(c \vert d)$$ directly. Models of this form are called generative in that they learn the joint probability distribution $$P(c, d)$$ and can thereby theoretically generate documents by fixing a $$c$$ and sampling documents in $$P(d \vert c)$$. 
+for $$P(x) > 0$$. As such, naive Bayes actually attempts to model the joint probability $$P(c,d)$$ rather than $$P(c \vert d)$$ directly. Models of this form are called generative in that they learn the joint probability distribution $$P(c, d)$$ and can thereby theoretically generate documents by fixing a $$c$$ and sampling documents in $$P(d \vert c)$$. 
 
 Noting that a document $$d$$ is a vector of features (tokens) we can express our original classifier as 
 
@@ -66,9 +66,9 @@ Let's return to the original classification model from before.
 
 $$\hat c = \underset{c \in C}{\text{argmax}} \ P(c|d) = P(d|c)P(d)$$
 
-A linear regression model is a *discriminative* one. That is to say that instead of applying Bayes' rule, we aim to directly calculate $$P(c \vert d)$$. This is actually a key distinction. While a generative model can "understand" the classes in a sense by being able to generate examples belonging to them, a discriminative model cannot. It is purely concerned with separating classes and isn't concerned with what characterizes them. This is because generative models force themselves to model the joint probability distribution $$P(c,d))$$ to inform their predictions, while discriminative is *only* concerned with finding $$P(c \vert d)$$. If a logistic regression classifier was trained to classify horses or humans, it won't necessarily be able to tell you that humans have five fingers -- just that they don't have hooves. A generative model meanwhile could analogously "draw" a human. 
+A linear regression model is a *discriminative* one. That is to say that instead of applying Bayes' rule, we aim to directly calculate $$P(c \vert d)$$. This is actually a key distinction. While a generative model can "understand" the classes in a sense by being able to generate examples belonging to them, a discriminative model cannot. It is purely concerned with separating classes and isn't concerned with what characterizes them. This is because generative models force themselves to model the joint probability distribution $$P(c,d)$$ to inform their predictions, while discriminative is *only* concerned with finding $$P(c \vert d)$$. If a logistic regression classifier was trained to classify horses or humans, it won't necessarily be able to tell you that humans have five fingers -- just that they don't have hooves. A generative model meanwhile could analogously "draw" a human. 
 
-Anyway, the way logistic regression computes $$P(c \vert d)$$ is completely different to naive Bayes and more inline with "conventional" machine learning. Traditionally, it seeks to solve the probability of a positive class given feature vector $$x$$ $$P(y = 1 \vert x)$$ and the probability of a negative class $$P(y = 0 \vert x)$$ It learns from a training set a vector of weights and a bias term. Each weight $$w_i$$, well, *weighs* $$x_i$$. A scalar value whose magnitude indicates its "importance" when making a classification prediction, and its parity representing its sway towards the positive or negative class. The bias term is tacked on to the end as an intercept. Each feature $$x_i$$ is weighed by $$w_i$$ and summed, then offset by bias $$b$$:
+Anyway, the way logistic regression computes $$P(c \vert d)$$ is completely different to naive Bayes and more inline with "conventional" machine learning. Traditionally, it seeks to solve the probability of a positive class given feature vector $$x$$ denoted $$P(y = 1 \vert x)$$ and the probability of a negative class $$P(y = 0 \vert x)$$. It learns from a training set a vector of weights and a bias term. Each weight $$w_i$$, well, *weighs* $$x_i$$ with a scalar value whose magnitude indicates its "importance" when making a classification prediction, and its parity representing its sway towards the positive or negative class. The bias term is tacked on to the end as an intercept. Each feature $$x_i$$ is weighed by $$w_i$$ and summed, then offset by bias $$b$$:
 
 $$z = \sum_{i=1}^n w_i x_i + b$$
 
@@ -76,7 +76,7 @@ The sum is definitionally a dot product so we can succinctly express this as
 
 $$ z = \mathbf{w}  \cdot  \mathbf{x} + b$$
 
-What we have so far is not a probability. It is not bounded between $$0$$ and $$1$$. Weights are real-valued and have no implicit restriction on their magnitude, so $$z$$ has unbound range. We've actually just derived *linear* regression. To output a probability, we need to pass this output through some mapping that constricts it between $$0$$ and $$1$$. Sigmoids are perfect for this. Let's wrap $$z$$ up in a sigmoid:
+What we have so far is not a probability. It is not bounded between $$0$$ and $$1$$. Weights are real-valued and have no implicit restriction on their magnitude, so $$z$$ has unrestricted range. We've actually just derived *linear* regression. To output a probability, we need to pass this output through some mapping that constricts it between $$0$$ and $$1$$. Sigmoids are perfect for this. Let's wrap $$z$$ up in a sigmoid:
 
 $$\sigma(z) = \frac{1}{1+\exp{(-z)}}$$
 
@@ -100,10 +100,11 @@ $$ = 1 - \frac{1}{1+\exp{(-(\mathbf{w}  \cdot  \mathbf{x} + b))}}$$
 
 $$ = \frac{\exp{(-(\mathbf{w}  \cdot  \mathbf{x} + b))}}{1+\exp{(-(\mathbf{w}  \cdot  \mathbf{x} + b))}}$$
 
-Keep in mind, logistic regression in NLP *does not require* a specific structure for the features -- it doesn't have to be a bag of words or word embeddings or whatever. Any property from the input can be a feature. I've already written an article talking about decision boundaries in logistic regression, but I want to stress that this existence of a decision boundary to make predictions is what makes this model discriminative, and its linearity is what makes it a linear classifier -- that and the fact that we use a weighted (but linear) sum of features to make a prediction. Naive Bayes does this too, remember? However, the topic of whether naive Bayes is a linear classifier or not is actually a bit complicated. 
+Keep in mind, logistic regression in NLP *does not require* a specific structure for the features -- it doesn't have to be a bag of words or word embeddings or whatever. Any property from the input can be a feature. I've already written an article talking about decision boundaries in logistic regression, but I want to stress that this existence of a decision boundary to make predictions is what makes this model discriminative, and its linearity is what makes it a linear classifier -- that and the fact that we use a weighted (but linear) sum of features to make a prediction. Naive Bayes does this too, remember? 
 
 $$c_{NB} = \underset{c \in C}{\text{argmax}} \ \log{P(c)} \ \underset{i}{\sum} \log{P(w_i \vert c)}$$
 
+However, the topic of whether naive Bayes is a linear classifier or not is actually a bit complicated. What I've written above is after some assumptions, simplifications, and modifications to reduce underflow. Let's look at this again. 
 
 ## An aside: a common misconception about naive Bayes as a linear classifier
 If you Google whether Naive Bayes is a linear classifier, lots of stuff you'll read will say that it is, yet at the same time looking at images of naive Bayes will show non-linear decision boundaries. What gives? Hopefully this will clear things up.
@@ -132,28 +133,27 @@ $$ = \frac{1}{1+\frac{P(x_i \vert c = 0) P(c=0)}{P(x_i \vert c = 1)P(c = 1)}}$$
 
 $$ = \frac{1}{1+\exp{\left(-\log{\frac{P(x_i \vert c = 1) P(c=1)}{P(x_i \vert c = 0)P(c = 0)}}\right)}}$$
 
-$$ = \sigma \left( \sum_i \log \frac{p(x_i \mid c = 1)}{p(x_i \mid c = 0)} + \log \frac{p(c = 1)}{p(c = 0)} \right)
+$$ = \sigma \left( \sum_i \log \frac{P(x_i \mid c = 1)}{P(x_i \mid c = 0)} + \log \frac{P(c = 1)}{P(c = 0)} \right)
 $$
 
 This is decidedly not of the form $$\sigma(\mathbf{w}  \cdot  \mathbf{x} + b)$$. As such, naive Bayes **is not** by default a linear classifier. So where does this misconception come from? The answer, as aptly answered [here,](https://stats.stackexchange.com/questions/142215/how-is-naive-bayes-a-linear-classifier#_=_) is that *it can be* if the likelihood factors $$p(x_i \vert c)$$ are sampled from [exponential families.](https://en.wikipedia.org/wiki/Exponential_family)
 
-Exponentional families form the group of common distributions you've heard of: normal, exponential, Bernoulli, Poisson -- all exponential family distributions. If $$p(x_i \vert c)$$ samples from a exponential family distribution, it can be uniquely expressed in the following way:
+Exponentional families form the group of common distributions you've heard of: normal, exponential, Bernoulli, Poisson -- all exponential family distributions. If $$P(x_i \vert c)$$ samples from a exponential family distribution, it can be uniquely expressed in the following way:
 
-$$p(x_i \mid c) = h_i(x_i)\exp\left(u_{ic}^\top \phi_i(x_i) - A_i(u_{ic})\right),$$
+$$P(x_i \mid c) = h_i(x_i)\exp\left(u_{ic}^\top \phi_i(x_i) - A_i(u_{ic})\right),$$
 
 where $$h$$, $$\phi$$ and $$A$$ are known functions. If we make the substitutions 
 
 $$
 w_i = u_{i1} - u_{i0}, \\
-b = \log \frac{p(c = 1)}{p(c = 0)} - \sum_i \left( A_i(u_{i1}) - A_i(u_{i0}) \right)
+b = \log \frac{P(c = 1)}{P(c = 0)} - \sum_i \left( A_i(u_{i1}) - A_i(u_{i0}) \right)
 $$
 
 we can therefore restate this as 
 
-$$p(c = 1 \mid x) = \sigma\left( \sum_i w_i^\top \phi_i(x_i) + b \right)$$
+$$P(c = 1 \mid x) = \sigma\left( \sum_i w_i^\top \phi_i(x_i) + b \right)$$
 
-as shown by Stats SE user [Lucas](https://stats.stackexchange.com/users/7733/lucas). As long as the feature functoin $$\phi_i (x_i)$$ is a linear function of the features $$x_i$$, this is still a linear combination of input features and therefore a linear classifier. So, yes, naive Bayes can be linear classifier, but **only if** $$p(x_i \vert c)$$ is sampled from an exponential family distribution and its feature function (technically known as a sufficient statistic in this case) is also linear. Otherwise it is non-linear. 
-
+as shown by Stats SE user [Lucas](https://stats.stackexchange.com/users/7733/lucas). As long as the feature function $$\phi_i (x_i)$$ is a linear function of the features $$x_i$$, this is still a linear combination of input features and therefore a linear classifier. So, yes, naive Bayes can be linear classifier, but **only if** $$p(x_i \vert c)$$ is sampled from an exponential family distribution and its feature function (technically known as a sufficient statistic in this case) is also linear. Otherwise it is non-linear. The cool thing about this though is that I managed to make a naive Bayes classifier and logistic regression have the same functional form given a few assumptions. This is no mistake, and it's why the two are considered a *generative-discriminative pair*. You can think of the two as two sides of the same coin -- quite literally (given the previous assumptions) the same model, where naive Bayes fits the probability model $$\sigma\left( \sum_i w_i^\top \phi_i(x_i) + b \right)$$ to optimize the joint probability distribution $$P(c,d)$$ while logistic regression fits the same $$\sigma\left( \sum_i w_i^\top \phi_i(x_i) + b \right)$$ model to optimize the conditional probability $$P(c = 1 \mid x)$$.
 ## References
 
 Lucas (https://stats.stackexchange.com/users/7733/lucas), How is Naive Bayes a Linear Classifier?, URL (version: 2015-03-18): https://stats.stackexchange.com/q/142258
