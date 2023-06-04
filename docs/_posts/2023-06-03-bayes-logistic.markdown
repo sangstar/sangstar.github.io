@@ -145,14 +145,14 @@ and if we make the substitutions
 
 $$
 \mathbf{w}_i &= \mathbf{u}_{i1} - \mathbf{u}_{i0}, \\
-b &= \log \frac{p(c = 1)}{p(c = 0)} - \sum_i \left( A_i(\mathbf{u}_{i1}) - A_i(\mathbf{u}_{i0}) \right).
+b = \log \frac{p(c = 1)}{p(c = 0)} - \sum_i \left( A_i(\mathbf{u}_{i1}) - A_i(\mathbf{u}_{i0}) \right)
 $$
 
 we can therefore restate this as 
 
 $$p(c = 1 \mid \mathbf{x}) = \sigma\left( \sum_i \mathbf{w}_i^\top \phi_i(x_i) + b \right),$$
 
-as shown by SE user [Lucas](https://stats.stackexchange.com/users/7733/lucas).
+as shown by Stats SE user [Lucas](https://stats.stackexchange.com/users/7733/lucas).
 
 ## References
 
