@@ -23,7 +23,7 @@ The naive Bayes model for classification in NLP is a good next thing to learn af
 
 $$\hat c = \underset{c \in C}{\text{argmax}} \ P(c|d)$$
 
-The naive Bayes classifier then applies the Bayes rule in statistics:
+The naive Bayes classifier then applies  Bayes' rule in statistics:
 
 $$P(x|y) = \frac{P(y|x)P(x)}{P(y)}$$
 
@@ -112,9 +112,11 @@ Formally speaking, a linear classifier is a model that makes a classification de
 
 $$y = f \bigl(\sum_j w_j x_j \bigr)$$
 
-Let's start with the definition of a classifier after applying Bayes' theorem
+where $$f$$ is some *threshold function* that we want to scale things from $$0$$ to $$1$$ for a probability and help us to establish a decision boundary. Recall that for 
 
-$$\hat c = \underset{c \in C}{\text{argmax}} \ \frac{P(d|c)P(d)}{P(c)}$$
+Let's start with Bayes' rule:
+
+$$P(c \vert d) = \frac{P(d|c)P(d)}{P(c)}$$
 
 Now applying the law of total probability (which we can because we have distinct events of $$y=1$$ or $$y=0$$) to $$P(c)$$ we can rewrite this as
 
@@ -122,7 +124,7 @@ $$P(c) = P(x \vert c = 1)P(c = 1) + P(x \vert c = 0) P(c=0)$$
 
 Hence we have 
 
-$$\hat c = \underset{c \in C}{\text{argmax}} \ \frac{P(d|c)P(d)}{P(x \vert c = 1)P(c = 1) + P(x \vert c = 0) P(c=0)}$$
+$$P(c \vert d) \frac{P(d|c)P(d)}{P(x \vert c = 1)P(c = 1) + P(x \vert c = 0) P(c=0)}$$
 
 ## References
 Jurafsky, D., & Martin, J. H. (2019). Naive Bayes, Text Classification and Sentiment. In Speech and Language Processing (3rd ed., Chapter 4). Prentice Hall.
