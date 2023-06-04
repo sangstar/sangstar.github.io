@@ -96,7 +96,8 @@ $$P(y=0) = 1 - P(y=1) = 1 - \sigma(\mathbf{w}  \cdot  \mathbf{x} + b)$$
 
 $$ = 1 - \frac{1}{1+\exp{(-(\sigma(\mathbf{w}  \cdot  \mathbf{x} + b)))}}$$
 
-$$ = \frac{\exp{(-z)}}{1+\exp{(-(\sigma(\mathbf{w}  \cdot  \mathbf{x} + b)))}}$$
+$$ = \frac{\exp{(-(\sigma(\mathbf{w}  \cdot  \mathbf{x} + b)))}}{1+\exp{(-(\sigma(\mathbf{w}  \cdot  \mathbf{x} + b)))}}$$
+
 
 
 ## References
