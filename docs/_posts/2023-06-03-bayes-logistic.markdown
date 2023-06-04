@@ -51,7 +51,7 @@ $$P(w_1, w_2, ..., w_n \vert c) = P(w_1 \vert c) \cdot P(w_2 \vert c) \ \cdot ..
 
 Thus our naive Bayes classifier is:
 
-$$\hat c = c_{NB} = \underset{c \in C}{\text{argmax}} \ P(c) \ \underset{i}{\Pi} P(w \vert c)$$
+$$\hat c = c_{NB} = \underset{c \in C}{\text{argmax}} \ P(c) \ \underset{i}{\prod} P(w \vert c)$$
 
 where $$i$$ are the word positions in the document $$w$$, so basically just making sure the product is taking into account word order. The calculation is typically done in log space to avoid underflow due to a product of probabilities, so we rewrite as:
 
