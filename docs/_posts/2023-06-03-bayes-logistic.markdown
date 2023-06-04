@@ -92,7 +92,9 @@ Since our only other outcome is $$y=0$$, we require $$P(y=1) + P(y=0) = 1$$.
 
 Hence,
 
-$$P(y=0) = 1 - P(y=1) = 1 - \sigma(\mathbf{w}  \cdot  \mathbf{x} + b)$$
+$$P(y=0) = 1 - P(y=1) $$
+
+$$ = 1 - \sigma(\mathbf{w}  \cdot  \mathbf{x} + b)$$
 
 $$ = 1 - \frac{1}{1+\exp{(-(\sigma(\mathbf{w}  \cdot  \mathbf{x} + b)))}}$$
 
