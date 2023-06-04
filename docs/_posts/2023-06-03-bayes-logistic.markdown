@@ -96,9 +96,9 @@ $$P(y=0) = 1 - P(y=1) $$
 
 $$ = 1 - \sigma(\mathbf{w}  \cdot  \mathbf{x} + b)$$
 
-$$ = 1 - \frac{1}{1+\exp{(-(\sigma(\mathbf{w}  \cdot  \mathbf{x} + b)))}}$$
+$$ = 1 - \frac{1}{1+\exp{(-(\mathbf{w}  \cdot  \mathbf{x} + b))}}$$
 
-$$ = \frac{\exp{(-(\sigma(\mathbf{w}  \cdot  \mathbf{x} + b)))}}{1+\exp{(-(\sigma(\mathbf{w}  \cdot  \mathbf{x} + b)))}}$$
+$$ = \frac{\exp{(-(\mathbf{w}  \cdot  \mathbf{x} + b))}}{1+\exp{(-(\mathbf{w}  \cdot  \mathbf{x} + b))}}$$
 
 Keep in mind, logistic regression in NLP *does not require* a specific structure for the features -- it doesn't have to be a bag of words or word embeddings or whatever. Any property from the input can be a feature. I've already written an article talking about decision boundaries in logistic regression, but I want to stress that this existence of a decision boundary to make predictions is what makes this model discriminative, and its linearity is what makes it a linear classifier -- that and the fact that we use a weighted (but linear) sum of features to make a prediction. Naive Bayes does this too, remember?
 
