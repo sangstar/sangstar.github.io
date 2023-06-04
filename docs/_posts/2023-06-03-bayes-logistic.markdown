@@ -35,8 +35,8 @@ Since we are computing the equation above for each possible class, $$P(d)$$ is a
 
 $$c = \underset{c \in C}{\text{argmax}} \ P(d|c)P(d)$$
 
-This is called a generative model. $$P(d \| c)P(d)$$ can be expressed as the joint probability distribution $$P(c,d)$$ due to the conditional probability density function
+This is called a generative model. $$P(d \vert c)P(d)$$ can be expressed as the joint probability distribution $$P(c,d)$$ due to the conditional probability density function
 
 $$p(y|x) = \frac{p(x,y)}{p(x)}$$
 
-for $$p(x) > 0$$. As such, naive Bayes actually attempts to model the joint probability $$P(c,d)$$ rather than $$P(c|d)$$ directly. Models of this form are called generative in that they learn the joint probability distribution $$P(c, d)$$, which allows them to find $$P(c|d)$$ by for each $$c$$ generating documents $$d$$ to maximize $$P(d|c)P(c)$$.
+for $$p(x) > 0$$. As such, naive Bayes actually attempts to model the joint probability $$P(c,d)$$ rather than $$P(c \vert d)$$ directly. Models of this form are called generative in that they learn the joint probability distribution $$P(c, d)$$, which allows them to find $$P(c|d)$$ by for each $$c$$ generating documents $$d$$ to maximize $$P(d|c)P(c)$$.
