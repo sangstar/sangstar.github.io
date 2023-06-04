@@ -152,7 +152,7 @@ we can therefore restate this as
 
 $$p(c = 1 \mid x) = \sigma\left( \sum_i w_i^\top \phi_i(x_i) + b \right)$$
 
-as shown by Stats SE user [Lucas](https://stats.stackexchange.com/users/7733/lucas). As long as $$\phi_i (x_i)$$ is a linear function of the features $$x_i$$, this is still a linear combination of input features and therefore a linear classifier. So, yes, naive Bayes can be linear classifier, but **only if** $$p(x_i \vert c)$$ is sampled from an exponential family distribution and its feature function is also linear. Otherwise it is non-linear. 
+as shown by Stats SE user [Lucas](https://stats.stackexchange.com/users/7733/lucas). As long as the feature functoin $$\phi_i (x_i)$$ is a linear function of the features $$x_i$$, this is still a linear combination of input features and therefore a linear classifier. So, yes, naive Bayes can be linear classifier, but **only if** $$p(x_i \vert c)$$ is sampled from an exponential family distribution and its feature function (technically known as a sufficient statistic in this case) is also linear. Otherwise it is non-linear. 
 
 ## References
 
