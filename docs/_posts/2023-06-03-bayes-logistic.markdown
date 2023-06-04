@@ -112,7 +112,9 @@ Formally speaking, a linear classifier is a model that makes a classification de
 
 $$y = f \bigl(\sum_j w_j x_j \bigr)$$
 
-where $$f$$ is some *threshold function* that we want to scale things from $$0$$ to $$1$$ for a probability and help us to establish a decision boundary. Recall that for 
+where $$f$$ is some *threshold function* that we want to scale things from $$0$$ to $$1$$ for a probability and help us to establish a decision boundary. Recall that for logistic regression we literally derived 
+
+$$P(y=1) = \sigma(\mathbf{w}  \cdot  \mathbf{x} + b)$$
 
 Let's start with Bayes' rule:
 
@@ -125,6 +127,10 @@ $$P(c) = P(x \vert c = 1)P(c = 1) + P(x \vert c = 0) P(c=0)$$
 Hence we have 
 
 $$P(c \vert d) = \frac{P(d|c)P(d)}{P(x \vert c = 1)P(c = 1) + P(x \vert c = 0) P(c=0)}$$
+
+$$ = \frac{1}{1+\frac{P(x \vert c = 0) P(c=0)}}{P(x \vert c = 1)P(c = 1)}}$$
+
+$$ = \frac{1}{1+\exp{-\log{\frac{P(x \vert c = 1) P(c=1)}}{P(x \vert c = 0)P(c = 0)}}} $$
 
 ## References
 
