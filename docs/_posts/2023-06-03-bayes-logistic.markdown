@@ -68,10 +68,16 @@ $$c = \underset{c \in C}{\text{argmax}} \ P(c|d) = P(d|c)P(d)$$
 
 A linear regression model is a *discriminative* one. That is to say that instead of applying Bayes's rule, we aim to directly calculate $$P(c \vert d)$$. This is actually a key distinction. While a generative model can "understand" the classes in a sense by being able to generate examples belonging to them, a discriminative model cannot. It is purely considered with separating classes and isn't concerned with what characterizes them. This is because generative models force themselves to model the joint probability distribution $$P(c,d))$$ to inform their predictions, while discriminative is *only* concerned with finding $$P(c \vert d)$$. If a logistic regression classifier was trained to classify horses or humans, it won't necessarily be able to tell you that humans have five fingers -- just that they don't have hooves. A generative model meanwhile could analogously "draw" a human. 
 
-Anyway, the way logistic regression computes $$P(c \vert d)$$ is completely different to naive Bayes and more inline with "conventional" machine learning. It learns from a training set a vector of weights and a bias term. Each weight $$w_i$$, well, *weighs* $$x_i$$. A scalar value whose magnitude indicates its "importance" when making a classification prediction, and its parity representing its sway towards the positive or negative class. The bias term is tacked on to the end as an intercept. Each feature $$x_i$$ is weighed by $$w_i$$ and summed, then offset by bias $$b$$:
+Anyway, the way logistic regression computes $$P(c \vert d)$$ is completely different to naive Bayes and more inline with "conventional" machine learning. Traditionally, it seeks to solve the probability of a positive class given feature vector $$x$$ $$P(y = 1 \vert x)$$ and the probability of a negative class $$P(y = 0 \vert x)$$ It learns from a training set a vector of weights and a bias term. Each weight $$w_i$$, well, *weighs* $$x_i$$. A scalar value whose magnitude indicates its "importance" when making a classification prediction, and its parity representing its sway towards the positive or negative class. The bias term is tacked on to the end as an intercept. Each feature $$x_i$$ is weighed by $$w_i$$ and summed, then offset by bias $$b$$:
 
 $$z = \sum_{i=1}^n w_i x_i + b$$
 
 The sum is definitially a dot product so we can succinctly express this as
 
 $$ z = \mathbb{w} \ \cdot \ \mathbb{x} + b$$
+
+What we have so far is not a probability. It is not bounded between $$0$$ and $$1$$. Weights are real-valued and have no implicit restriction on their magnitude, so $$z$$ has unbound range. We've actually just derived *linear* regression. To output a probability, we need to pass this output through some mapping that constricts it between $$0$$ and $$1$$. Sigmoids are perfect for this. Let's wrap $$z$$ up in a sigmoid:
+
+$$\sigma(z) = \frac{1}{1+\exp{(-z)}}$$
+
+This is actually more specifically a logistic function, a specific kind of sigmoid, hence *logistic regression*.
