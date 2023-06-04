@@ -84,4 +84,20 @@ $$\sigma(z) = \frac{1}{1+\exp{(-z)}}$$
   <img width="auto" height="auto" src="/assets/logistic.jpg">
 </p>
 
-This is actually more specifically a logistic function, a specific kind of sigmoid (hence *logistic regression*). Sigmoids are amazingly ubiquitous in ML, and its appearance here gives a few good examples. For one, it obviously has the desired range between $$0$$ and $$1$$ and this prevents outliers from having an undue influence as flattening occurs near the edges. 
+This is actually more specifically a logistic function, a specific kind of sigmoid (hence *logistic regression*). Sigmoids are amazingly ubiquitous in ML, and its appearance here gives a few good examples. For one, it obviously has the desired range between $$0$$ and $$1$$ and this prevents outliers from having an undue influence as flattening occurs near the edges. It's also differentiable, which is always nice for models that fit using gradient descent. If we decide we want our sigmoid to model the probability that $$y = 1$$, we can state:
+
+$$P(y=1) = \sigma(\mathbf{w}  \cdot  \mathbf{x} + b)$$
+
+Since our only other outcome is $$y=0$$, we require $$P(y=1) + P(y=0) = 1$$. 
+
+Hence,
+
+$$P(y=0) = 1 - P(y=1) = 1 - \sigma(\mathbf{w}  \cdot  \mathbf{x} + b)$$
+
+$$ = 1 - \frac{1}{1+\exp{(-(\sigma(\mathbf{w}  \cdot  \mathbf{x} + b)))}}$$
+
+$$ = \frac{\exp{(-z)}}{1+\exp{(-(\sigma(\mathbf{w}  \cdot  \mathbf{x} + b)))}}$$
+
+
+## References
+Jurafsky, D., & Martin, J. H. (2019). Naive Bayes, Text Classification and Sentiment. In Speech and Language Processing (3rd ed., Chapter 4). Prentice Hall.
