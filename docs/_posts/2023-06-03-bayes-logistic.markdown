@@ -53,4 +53,7 @@ Thus our naive Bayes classifier is:
 
 $$\hat c = c_{NB} = \underset{c \in C}{\text{argmax}} \ P(c) \ \underset{i}{\Pi} P(w \vert c)$$
 
-where $$i$$ are the word positions in the document $$w$$, so basically just making sure the product is taking into account word order.
+where $$i$$ are the word positions in the document $$w$$, so basically just making sure the product is taking into account word order. The calculation is typically done in log space to avoid underflow due to a product of probabilities, so we rewrite as:
+
+$$c_{NB} = \underset{c \in C}{\text{argmax}} \ P(c) \ \underset{i}{\sum} P(w \vert c)$$
+
