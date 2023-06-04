@@ -74,7 +74,7 @@ $$z = \sum_{i=1}^n w_i x_i + b$$
 
 The sum is definitially a dot product so we can succinctly express this as
 
-$$ z = \mathbb{w} \ \cdot \ \mathbb{x} + b$$
+$$ z = \mathbf{w}  \cdot  \mathbf{x} + b$$
 
 What we have so far is not a probability. It is not bounded between $$0$$ and $$1$$. Weights are real-valued and have no implicit restriction on their magnitude, so $$z$$ has unbound range. We've actually just derived *linear* regression. To output a probability, we need to pass this output through some mapping that constricts it between $$0$$ and $$1$$. Sigmoids are perfect for this. Let's wrap $$z$$ up in a sigmoid:
 
