@@ -29,4 +29,14 @@ $$P(x|y) = \frac{P(y|x)P(x)}{P(y)}$$
 
 such that it views a classifier's task as
 
-$$c = \text{argmax}_\underset{c \in C} \ \frac{P(d|c)P(d)}{P(c)}$$
+$$c = \underset{c \in C}{\text{argmax}} \ \frac{P(d|c)P(d)}{P(c)}$$
+
+Since we are computing the equation above for each possible class, $$P(d)$$ is a constant throughout all our calculations and can be discarded as it has no bearing on the result. Therefore we can express it as:
+
+$$c = \underset{c \in C}{\text{argmax}} \ P(d|c)P(d)$$
+
+This is called a *generative model*. $$P(d|c)P(d)$$ can be expressed as the *joint probability distribution* $$P(c,d)$$ due to the conditional probability density function
+
+$$p(y|x) = \frac{p(x,y)}{p(x)}$$
+
+for $$p(x) > 0$$. As such, naive Bayes actually attempts to model the **joint probability** $$P(c,d)$$ rather than $$P(c|d)$$ directly. Models of this form are called *generative* in that they learn the joint probability distribution $$P(c, d)$$, which allows them to find $$P(c|d)$$ by for each $$c$$ generating documents $$d$$ to maximize $$P(d|c)P(c)$$.
