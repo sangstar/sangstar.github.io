@@ -135,7 +135,7 @@ $$ = \frac{1}{1+\exp{\left(-\log{\frac{P(x_i \vert c = 1) P(c=1)}{P(x_i \vert c 
 $$ = \sigma \left( \sum_i \log \frac{p(x_i \mid c = 1)}{p(x_i \mid c = 0)} + \log \frac{p(c = 1)}{p(c = 0)} \right)
 $$
 
-This is decidedly not of the form $$\sigma(\mathbf{w}  \cdot  \mathbf{x} + b)$$. As such, naive Bayes **is not** by default a linear classifier. So where does this misconception come from? The answer, as aptly answered [here](https://stats.stackexchange.com/questions/142215/how-is-naive-bayes-a-linear-classifier#_=_) is that *it can be* if the likelihood factors $$p(x_i \vert c)$$ are sampled from [exponential families.](https://en.wikipedia.org/wiki/Exponential_family)
+This is decidedly not of the form $$\sigma(\mathbf{w}  \cdot  \mathbf{x} + b)$$. As such, naive Bayes **is not** by default a linear classifier. So where does this misconception come from? The answer, as aptly answered [here,](https://stats.stackexchange.com/questions/142215/how-is-naive-bayes-a-linear-classifier#_=_) is that *it can be* if the likelihood factors $$p(x_i \vert c)$$ are sampled from [exponential families.](https://en.wikipedia.org/wiki/Exponential_family)
 
 Exponentional families form the group of common distributions you've heard of: normal, exponential, Bernoulli, Poisson -- all exponential family distributions. If $$p(x_i \vert c)$$ samples from a exponential family distribution, it can be uniquely expressed in the following way:
 
