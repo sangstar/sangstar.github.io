@@ -153,7 +153,7 @@ we can therefore restate this as
 
 $$P(c = 1 \mid x) = \sigma\left( \sum_i w_i^\top \phi_i(x_i) + b \right)$$
 
-as shown by Stats SE user [Lucas](https://stats.stackexchange.com/users/7733/lucas). As long as the sufficient statistic $$\phi_i (x_i)$$ is a linear function of the features $$x_i$$, this is still a linear combination of input features and therefore a linear classifier. In fact, the sufficient statistic $$\phi(x)$$ for naive Bayes classifiers depends on the specific type of naive Bayes classifier used, but it always amounts to some scalar $$\gamma_i$$ applied to $$x_i$$. So we can actually rewrite our weights $$\hat w_i = w_i^\top \gamma_i x_i$$ so our overall conditional probability is 
+as shown by Stats SE user Lucas in the question I linked. As long as the sufficient statistic $$\phi_i (x_i)$$ is a linear function of the features $$x_i$$, this is still a linear combination of input features and therefore a linear classifier. In fact, the sufficient statistic $$\phi(x)$$ for naive Bayes classifiers depends on the specific type of naive Bayes classifier used, but it always amounts to some scalar $$\gamma_i$$ applied to $$x_i$$. So we can actually rewrite our weights $$\hat w_i = w_i^\top \gamma_i x_i$$ so our overall conditional probability is 
 
 $$P(c = 1 \mid x) = \sigma\left( \sum_i \hat w_i^\top x_i + b \right)$$
 
