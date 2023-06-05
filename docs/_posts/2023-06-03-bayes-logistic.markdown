@@ -29,13 +29,13 @@ $$P(x|y) = \frac{P(y|x)P(x)}{P(y)}$$
 
 such that it views a classifier's task as
 
-$$\hat c = \underset{c \in C}{\text{argmax}} \ \frac{P(d|c)P(d)}{P(c)}$$
+$$\hat c = \underset{c \in C}{\text{argmax}} \ \frac{P(d|c)P(c)}{P(d)}$$
 
 Since we are computing the equation above for each possible class, $$P(d)$$ is a constant throughout all our calculations and can be discarded as it has no bearing on the result. Therefore we can express it as:
 
-$$\hat c = \underset{c \in C}{\text{argmax}} \ P(d|c)P(d)$$
+$$\hat c = \underset{c \in C}{\text{argmax}} \ P(d|c)P(c)$$
 
-Naive Bayes is called a *generative* model. $$P(d \vert c)P(d)$$ can be expressed as the joint probability distribution $$P(c,d)$$ due to the conditional probability density function
+Naive Bayes is called a *generative* model. $$P(d \vert c)P(c)$$ can be expressed as the joint probability distribution $$P(c,d)$$ due to the conditional probability density function
 
 $$P(y|x) = \frac{P(x,y)}{P(x)}$$
 
@@ -127,7 +127,7 @@ $$P(d) = P(x_i \vert c = 1)P(c = 1) + P(x_i \vert c = 0) P(c=0)$$
 
 Denoting $$d$$ as $$x_i$$ but implying $$d = \{x_i\}_{i=1}^n$$. Hence we have 
 
-$$P(c = 1\vert d) = \frac{P(d|c=1)P(c)}{P(x_i \vert c = 1)P(c = 1) + P(x_i \vert c = 0) P(c=0)}$$
+$$P(c = 1\vert d) = \frac{P(d|c=1)P(c=1)}{P(x_i \vert c = 1)P(c = 1) + P(x_i \vert c = 0) P(c=0)}$$
 
 $$ = \frac{1}{1+\frac{P(x_i \vert c = 0) P(c=0)}{P(x_i \vert c = 1)P(c = 1)}}$$
 
