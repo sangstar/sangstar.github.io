@@ -64,7 +64,7 @@ Naive Bayes' assumption is generally a rather poor one, but it tends to do bette
 ## Linear regression 
 Let's return to the original classification model from before.
 
-$$\hat c = \underset{c \in C}{\text{argmax}} \ P(c|d) = P(d|c)P(d)$$
+$$\hat c = \underset{c \in C}{\text{argmax}} \ P(c|d) = P(d|c)P(c)$$
 
 A linear regression model is a *discriminative* one. That is to say that instead of applying Bayes' rule, we aim to directly calculate $$P(c \vert d)$$. This is actually a key distinction. While a generative model can "understand" the classes in a sense by being able to generate examples belonging to them, a discriminative model cannot. It is purely concerned with separating classes and isn't concerned with what characterizes them. This is because generative models force themselves to model the joint probability distribution $$P(c,d)$$ to inform their predictions, while discriminative is *only* concerned with finding $$P(c \vert d)$$. If a logistic regression classifier was trained to classify horses or humans, it won't necessarily be able to tell you that humans have five fingers -- just that they don't have hooves. A generative model meanwhile could analogously "draw" a human. 
 
@@ -119,15 +119,15 @@ $$P(y=1) = \sigma(\mathbf{w}  \cdot  \mathbf{x} + b)$$
 
 Let's start with Bayes' rule:
 
-$$P(c \vert d) = \frac{P(d|c)P(d)}{P(c)}$$
+$$P(c \vert d) = \frac{P(d|c)P(c)}{P(d)}$$
 
 Now applying the law of total probability (which we can because we have distinct events of $$y=1$$ or $$y=0$$) to $$P(c)$$ we can rewrite this as
 
-$$P(c) = P(x_i \vert c = 1)P(c = 1) + P(x_i \vert c = 0) P(c=0)$$
+$$P(d) = P(x_i \vert c = 1)P(c = 1) + P(x_i \vert c = 0) P(c=0)$$
 
 Denoting $$d$$ as $$x_i$$ but implying $$d = \{x_i\}_{i=1}^n$$. Hence we have 
 
-$$P(c \vert d) = \frac{P(d|c)P(d)}{P(x_i \vert c = 1)P(c = 1) + P(x_i \vert c = 0) P(c=0)}$$
+$$P(c = 1\vert d) = \frac{P(d|c=1)P(c)}{P(x_i \vert c = 1)P(c = 1) + P(x_i \vert c = 0) P(c=0)}$$
 
 $$ = \frac{1}{1+\frac{P(x_i \vert c = 0) P(c=0)}{P(x_i \vert c = 1)P(c = 1)}}$$
 
