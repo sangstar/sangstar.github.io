@@ -160,7 +160,7 @@ This process is repeated until, I assume, the prompts dataset is exhausted or so
 
 - To describe as much as possible, I talked about an encoder-decoder transformer, but not all LLM's are based off this design. Some, like BART, are in this framework, while BERT is an encoder-only model, and LLM's like GPT (all generations) and LlaMa are decoder-only (Bard might be too but I've read conflicting information on it). 
 
-- Decoder-only transformers are more common for autoregressive text generation LLMs. They doesn't seem to have any need for encoders because there is seemingly not much benefit to learning the latent vector representation of the input sequence when only attending to currently generated tokens. 
+- Decoder-only transformers are more common for autoregressive text generation LLMs. They don't seem to have any need for encoders because there is seemingly not much benefit to learning the latent vector representation of the input sequence when only attending to currently generated tokens. 
 
 Encoder-decoder transformers seem to work great for applications where long-range contextual understanding of the input sequence is important (encoders are great for this) and text generation is desired (decoders), like with language translation.
 
