@@ -49,7 +49,7 @@ $$\text{Attention}_i = \sum_{j=1}^n a_{i,j} v_{i,j}$$
 
 Packing each $$\text{Attention}_i$$ into a matrix is considered the formal calculation for an attention head. Indeed, it is common to combine all the query vectors into one query matrix $$Q$$, all key vectors into one key matrix $$K$$, and all value vectors into one value matrix $$V$$ so that you can express the above equation as:
 
-$$\text{Attention} = \text{softmax} \left(\frac{QK^T}{\sqrt(n)}\right) V$$
+$$\text{Attention} = \text{softmax} \left(\frac{QK^T}{\sqrt{n}}\right) V$$
 
 Where you might define $$\text{softmax} \left(\frac{QK^T}{\sqrt{n}}\right)$$ as an attention weights matrix $$A$$.
 
