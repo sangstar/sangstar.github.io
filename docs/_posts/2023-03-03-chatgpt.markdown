@@ -49,7 +49,7 @@ $$\text{Attention}_i = \sum_{j=1}^n a_{i,j} v_{i,j}$$
 
 Packing each $$\text{Attention}_i$$ into a matrix is considered the formal calculation for an attention head. Indeed, it is common to combine all the query vectors into one query matrix $$Q$$, all key vectors into one key matrix $$K$$, and all value vectors into one value matrix $$V$$ so that you can express the above equation as:
 
-$$\text{Attention} = \text{softmax} \left(\frac{QK^T}{\sqrt(n)}\right V$$
+$$\text{Attention} = \text{softmax} \left(\frac{QK^T}{\sqrt(n)}\right) V$$
 
 Where you might define $$\text{softmax} \left(\frac{QK^T}{\sqrt(n)}\right)$$ as an attention weights matrix $$A$$.
 
@@ -65,8 +65,9 @@ which is fed to a feed-forward neural network as essentially an "enhanced" versi
 
 This was a lot, so let me summarize: 
 
-- The traditional function of an encoder is for each document it receives is to endow each token $$u_i$$ with key, query and value vectors. - Each token *attends* to every token in the document, including itself, performing a normalized dot product with its own query vector with every key vector from the tokens in the document, creating a vector of attention units $$(a_{i,1}, a_{i,2}, ..., a_{i,n})$$. 
-- Each token's attention vector is then dotted with 
+- The traditional function of an encoder is for each document it receives is to endow each token $$u_i$$ with key, query and value vectors. - Each token *attends* to every token in the document, including itself, performing a normalized dot product with its own query vector with every key vector from the tokens in the document, creating a vector of attention weights $$(a_{i,1}, a_{i,2}, ..., a_{i,n})$$. 
+- Each token's attention weights are then dotted with its value vector to compute its vector of attention units $$\text{Attention}_i$$
+- Each vector of attention units for each token are combined as the final output for an attention head: a matrix corresponding to all of the attention unit vectors for each token thrown in a matrix.
 
 It's usually then passed to an $$\text{Add&Norm}$$ layer which adds the input used to generate the output with that latter output. That sounds confusing, but for example the first $$\text{Add&Norm}$$ layer adds the input embeddings with the result of the first multi-head attention layer, and the second layer adds the output of the feed-forward layer to the output of the multiheaded attention layer (which serves as the $$\text{Add&Norm}$$ input as it's used as output for the feed-forward). $$\text{Add&Norm}$$ layers help to reduce the risk of vanishing gradients. 
 
