@@ -75,6 +75,7 @@ This is known as an encoder. There usually are a number of these in popular tran
 
 I'm going to skip positional encoding other than to say it provides a way to capture the order of an input sequence, which is good because otherwise it couldn't distinguish between two tokens that have the same value vector but appear at different positions in the input sequence.
 
+I also recommend you give [this article](http://jalammar.github.io/illustrated-transformer/) a look if you want a visual explanation. It's lovely.
 
 # Decoders
 The decoder is responsible for actually producing the output. For text generation, it takes as input the previously generated output tokens in the output, and the output of the encoding layers. If no tokens have been generated so far it starts with a start-of-sequence token $$\text{SOS}$$. 
