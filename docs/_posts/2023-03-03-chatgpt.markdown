@@ -42,19 +42,33 @@ Therefore, for a position $$i$$, corresponding to a token $$t_i$$, we have a que
 
 $$\alpha_{i,j} = \frac{q_i^T k_j}{\sqrt{n}}$$
 
-which can be thought of as the relevance of token $$i$$ on token $$j$$. These attention weight are computed for all $$n$$ tokens, so that for token $$i$$ you have a vector of attention units $$(\alpha_{i,1}, \alpha_{i,2}, ... , \alpha_{i,n})$$ which includes $$\alpha_{i,i}$$, for completeness sake. The vector is softmaxxed so that all the scalars add up to unity, and to denote that I will rewrite the attention units as $$(a_{i,1}, a_{i,2}, ... , a_{i,n})$$. This vector then acts as weight for the weighted sum of value vectors for each position:
+which can be thought of as the relevance of token $$i$$ on token $$j$$. These attention weight are computed for all $$n$$ tokens, so that for token $$i$$ you have a vector of attention weights $$(\alpha_{i,1}, \alpha_{i,2}, ... , \alpha_{i,n})$$. This inclues an attention weight for itself, $$a_{i,i}$$. The vector is softmaxxed so that all the scalars add up to unity, and to denote that I will rewrite the attention weights as $$(a_{i,1}, a_{i,2}, ... , a_{i,n})$$. This vector then acts as weight for the weighted sum of value vectors for each position, creating a vector of *attention units*.
 
-$$\text{Attention}_i = \sum_{j=1}^n a_{i,j} v_j$$
+$$\text{Attention}_i = \sum_{j=1}^n a_{i,j} v_{i,j}$$
 
-where $$a_i$$ is known as the *attention* for token or position $$i$$. By doing this for all tokens, you've self-attended your document $$d$$. Notice that through all these vectorized operations we've managed to enable full-range context dependency on all of our tokens, which RNN's aren't able to do. In addition, this setup allows for asymmetry between tokens $$i$$ and $$j$$. As $$\alpha_{i,j} \ne \alpha_{j,i}$$, this means that the influence of token $$i$$ on $$j$$ can be large while the influence of token $$j$$ on $$i$$ can be mild and vice versa. 
+
+Packing each $$\text{Attention}_i$$ into a matrix is considered the formal calculation for an attention head. Indeed, it is common to combine all the query vectors into one query matrix $$Q$$, all key vectors into one key matrix $$K$$, and all value vectors into one value matrix $$V$$ so that you can express the above equation as:
+
+$$\text{Attention} = \text{softmax} \left(\frac{QK^T}{\sqrt(n)}\right V$$
+
+Where you might define $$\text{softmax} \left(\frac{QK^T}{\sqrt(n)}\right)$$ as an attention weights matrix $$A$$.
+
+By doing this for all tokens, you've self-attended your document $$d$$. Notice that through all these vectorized operations we've managed to enable full-range context dependency on all of our tokens, which RNN's aren't able to do. In addition, this setup allows for asymmetry between tokens $$i$$ and $$j$$. As $$\alpha_{i,j} \ne \alpha_{j,i}$$, this means that the influence of token $$i$$ on $$j$$ can be large while the influence of token $$j$$ on $$i$$ can be mild and vice versa. 
 
 One set of weights matrices each is referred to as an *attention head*, and each attention layer will have multiple heads, as you can see from the "multi-head attention" stuff in the above image. The reason why you want to use multiple heads is similar to why you want to use multiple hidden layers in a neural net, in that it allows more insights to be picked up by combining the "ideas" of all the heads. 
 
-The final multi-headed attention's output is a concatenation of all of the attention vectors multiplied by a final weights matrix $$W_O$$:
+ The final multi-headed attention's output is a concatenation of all of the attention vectors multiplied by a final weights matrix $$W_O$$:
 
 $$\text{MultiheadAttention(Q,K,V)} = \text{Concat}(\text{Attention}_i)W_O$$
 
-which is fed to a feed-forward neural network as essentially an "enhanced" version of a word embedding, holding more contextual information through self attention, usually then passed to an $$\text{Add&Norm}$$ layer which adds the input used to generate the output with that latter output. That sounds confusing, but for example the first $$\text{Add&Norm}$$ layer adds the input embeddings with the result of the first multi-head attention layer, and the second layer adds the output of the feed-forward layer to the output of the multiheaded attention layer (which serves as the $$\text{Add&Norm}$$ input as it's used as output for the feed-forward). $$\text{Add&Norm}$$ layers help to reduce the risk of vanishing gradients. 
+which is fed to a feed-forward neural network as essentially an "enhanced" version of a word embedding, holding more contextual information through self attention, sometimes called a *thought vector*. 
+
+This was a lot, so let me summarize: 
+
+- The traditional function of an encoder is for each document it receives is to endow each token $$u_i$$ with key, query and value vectors. - Each token *attends* to every token in the document, including itself, performing a normalized dot product with its own query vector with every key vector from the tokens in the document, creating a vector of attention units $$(a_{i,1}, a_{i,2}, ..., a_{i,n})$$. 
+- Each token's attention vector is then dotted with 
+
+It's usually then passed to an $$\text{Add&Norm}$$ layer which adds the input used to generate the output with that latter output. That sounds confusing, but for example the first $$\text{Add&Norm}$$ layer adds the input embeddings with the result of the first multi-head attention layer, and the second layer adds the output of the feed-forward layer to the output of the multiheaded attention layer (which serves as the $$\text{Add&Norm}$$ input as it's used as output for the feed-forward). $$\text{Add&Norm}$$ layers help to reduce the risk of vanishing gradients. 
 
 This is known as an encoder. There usually are a number of these in popular transformers. The first encoder takes word embeddings as input, while the subsequent encoders take encodings. 
 
@@ -168,6 +182,5 @@ Wolfram, S. (2023, February 28). What Is ChatGPT Doing (and Why Does It Work)? R
 Hugging Face. (2021, October 27). RLHF: A Dataset for High Stakes, Multi-Agent RL. Retrieved January 4, 2023, from https://huggingface.co/blog/rlhf
 
 Vaswani, Ashish; Shazeer, Noam; Parmar, Niki; Uszkoreit, Jakob; Jones, Llion; Gomez, Aidan N.; Kaiser, Lukasz; Polosukhin, Illia (2017-06-12). "Attention Is All You Need". arXiv:1706.03762 [cs.CL].
-https://lukesalamone.github.io/posts/what-is-temperature/
 
 Salamone, L. (n.d.). What is Temperature? Retrieved March 6, 2023, from https://lukesalamone.github.io/posts/what-is-temperature/
