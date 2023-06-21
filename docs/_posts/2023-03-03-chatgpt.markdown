@@ -51,7 +51,7 @@ Packing each $$\text{Attention}_i$$ into a matrix is considered the formal calcu
 
 $$\text{Attention} = \text{softmax} \left(\frac{QK^T}{\sqrt(n)}\right) V$$
 
-Where you might define $$\text{softmax} \left(\frac{QK^T}{\sqrt(n)}\right)$$ as an attention weights matrix $$A$$.
+Where you might define $$\text{softmax} \left(\frac{QK^T}{\sqrt{n}}\right)$$ as an attention weights matrix $$A$$.
 
 By doing this for all tokens, you've self-attended your document $$d$$. Notice that through all these vectorized operations we've managed to enable full-range context dependency on all of our tokens, which RNN's aren't able to do. In addition, this setup allows for asymmetry between tokens $$i$$ and $$j$$. As $$\alpha_{i,j} \ne \alpha_{j,i}$$, this means that the influence of token $$i$$ on $$j$$ can be large while the influence of token $$j$$ on $$i$$ can be mild and vice versa. 
 
