@@ -44,7 +44,7 @@ $$\alpha_{i,j} = \frac{q_i^T k_j}{\sqrt{n}}$$
 
 which can be thought of as the relevance of token $$i$$ on token $$j$$. These attention weight are computed for all $$n$$ tokens, so that for token $$i$$ you have a vector of attention weights $$(\alpha_{i,1}, \alpha_{i,2}, ... , \alpha_{i,n})$$. This inclues an attention weight for itself, $$a_{i,i}$$. The vector is softmaxxed so that all the scalars add up to unity, and to denote that I will rewrite the attention weights as $$(a_{i,1}, a_{i,2}, ... , a_{i,n})$$. This vector then acts as weight for the weighted sum of value vectors for each position, creating a vector of *attention units*.
 
-$$\text{Attention}_i = \sum_{j=1}^n a_{i,j} v_{i,j}$$
+$$\text{Attention}_i = \sum_{j=1}^n a_{i,j} v_{j, i}$$
 
 
 Packing each $$\text{Attention}_i$$ into a matrix is considered the formal calculation for an attention head. Indeed, it is common to combine all the query vectors into one query matrix $$Q$$, all key vectors into one key matrix $$K$$, and all value vectors into one value matrix $$V$$ so that you can express the above equation as:
