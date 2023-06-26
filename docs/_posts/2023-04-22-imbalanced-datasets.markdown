@@ -128,7 +128,7 @@ So that for a minibatch of $$100$$ datapoints, our loss would be:
 
 $$L = - \frac{1}{100} \sum_{i=1}^{100} \sum_{j=1}^m y^w_{i,j} \log{(\hat y_{i,j})}$$
 
-Reminding ourselves that $$\hat y$$ is the output of the model, a vector of probabilities for each class, no different than simply $$p$$ from the binary case. I could've easily called it $$\mathbf{p}$$ but model outputs are traditionally written as $$\hat y$$ and I like to keep to convention.
+Reminding ourselves that $$\hat y$$ is the output of the model, a vector of probabilities for each class, no different than simply $$p$$ from the binary case. I could've easily called it $$\mathbf{p}$$ but model outputs are traditionally written as $$\hat y$$ and I like to keep to convention. Speaking of convention, I really wish $$i$$ and $$j$$ weren't common letters used for indices because I hate how the comma and the $$j$$ get all smushed with $$i,j$$. Lame.
 
 Another way to help minority class prediction would be to adjust decision boundaries after the fact to allow minority classes more leniency to be predicted.
 
