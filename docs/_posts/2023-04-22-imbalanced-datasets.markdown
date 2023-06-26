@@ -84,7 +84,7 @@ $$L = \frac{1}{100} \sum_{i=1}^{100} -\mathbf{y}_i \cdot \log{(\mathbf{\hat y}_i
 
 where each vector is two-dimensional. This can be expanded as:
 
-$$L = \frac{1}{100} \sum_{i=1}^{100} - \sum_{j=1}^2 y_{i,j} \log{(\hat y_{i,j})}$$
+$$L = - \frac{1}{100} \sum_{i=1}^{100} \sum_{j=1}^2 y_{i,j} \log{(\hat y_{i,j})}$$
 
 And to calculate..
 
