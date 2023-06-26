@@ -76,14 +76,17 @@ The computation of which, looks like this for binary cross-entropy:
 
 $$L = - \sum_{i=1}^2 y_i \log{(\hat y_i)}$$
 
-Cross-entropy is super nice for classification because it's convex (which is obviously ideal for a loss function) and well-suited to backpropagation. The logarithm in its equation is also particularly handy, punishing incorrect classifications (due to its behavior $$x \to 0$$) by blowing up if the probability of the correct class is low. It also handles multiclass beautifully by simply adding more terms to the sum.  
+Subject to the fact that for specifically binary classification $$y_2 = (1-y_1)$$. Cross-entropy is super nice for classification because it's convex (which is obviously ideal for a loss function) and well-suited to backpropagation. The logarithm in its equation is also particularly handy, punishing incorrect classifications (due to its behavior $$x \to 0$$) by blowing up if the probability of the correct class is low. It also handles multiclass beautifully by simply adding more terms to the sum.  
 
 For our example here, suppose the real data has class $$A$$ appear 90% of the time and class $$B$$ appears 10% of the time, and suppose for the sake of the example our predictor is perfectly calibrated and wants to predict class $$A$$ 90% of the time and class $$B$$ 10% of the time as is the case in the real data (a calibrated predictor means its predicted probabilities match the true probabilities, implying that if a class appears 90% of the time in a dataset its average prediction probability is 90%) . That leaves our loss function as follows, if we are solving for 100 datapoints. I'll start with the total loss over all the datapoints
 
 $$L = \frac{1}{100} \sum_{i=1}^{100} -\mathbf{y}_i \cdot \log{(\mathbf{\hat y}_i)}$$
 
-where each vector is two-dimensional. 
+where each vector is two-dimensional. This can be expanded as:
 
+$$L = \frac{1}{100} \sum_{i=1}^{100} - \sum_{j=1}^2 y_{i,j} \log{(\hat y_{i,j})}$$
+
+And to calculate..
 
 $$L = - \frac{1}{100} \left(90(1 \times \log{(0.90)} + 0 \times \log{(0.1)}) + 10(0 \times \log{(0.90)} + 1 \times \log{(0.1)})\right)$$
 
@@ -111,7 +114,19 @@ Suppose we tack on a constant to the first term:
 
 $$L = -(\alpha y \log{(p)} + (1-y)\log{(1-p)})$$
 
-As this is once again an example for binary cross-entropy, I should note that the first term traditionally relates to what is called *positive* error, as it refers to the error made by the classifier when it misclassifies a positive instance (a label of $$1$$) as negative (a label of $$0$$), and vice versa for the second term -- the *negative error*. If $$ 0 < \alpha < 1$$, we buffer the penalty of positive error, incentivizing precision at all costs and causing even greater minority exclusion. If $$\alpha > 1$$, we exacerbate positive error in favor of negative error, incentivizing better recall by reducing false negatives. When considering this, remind yourself that a term closer to $$0$$ in the logarithm for the non-zero term in the sum is a misclassification. This is one way to combat misclassification cost, known as *weighted cross-entropy*.
+As this is once again an example for binary cross-entropy, I should note that the first term traditionally relates to what is called *positive* error, as it refers to the error made by the classifier when it misclassifies a positive instance (a label of $$1$$) as negative (a label of $$0$$), and vice versa for the second term -- the *negative error*. If $$ 0 < \alpha < 1$$, we buffer the penalty of positive error, incentivizing precision at all costs and causing even greater minority exclusion. If $$\alpha > 1$$, we exacerbate positive error in favor of negative error, incentivizing better recall by reducing false negatives. When considering this, remind yourself that a term closer to $$0$$ in the logarithm for the non-zero term in the sum is a misclassification. This is one way to combat misclassification cost, known as *weighted cross-entropy*. For multiple classes, you turn your scalar $$y$$ that can be $$0$$ or $$1$$ into a one-hot vector where the correct class gets a $$1$$ and the rest get a zero, and your probability is now a vector of probabilities (softmaxxed from your model) corresponding to the probability of each label. 
+
+This is a fairly conventional way of introducing weighted cross-entropy, but I could've just as easily gave both terms their own constants. The point is that when the "wrong class" is classified (the term with a value of $$p$$ that is not the highest of all the other terms), and that term corresponding to its classification is the only term left standing, the scalar you give it will modulate the loss you accrue; larger weights exacerbating misclassifying and lower weights being "more forgiving". Weighted cross-entropy, then, for an arbitrary number of classes $$m$$ can be written as for datapoint $$(x_i,y_i)$$:
+
+$$L = -\mathbf{y^w} \cdot \log{(\mathbf{\hat y})}$$
+
+where I've denoted $$\mathbf{y^w}$$ as the Hadamard product of the original ground truth $$\mathbf{y_i}$$ and a weights vector $$\mathbf{w}$$ such that  $$\mathbf{y^w} = \mathbf{y} \odot \mathbf{w}$$. This can be written as for $$m$$ classes:
+
+$$L = - \sum_{i=1}^m y^w_i \log{(\hat y_i)}$$
+
+So that for a minibatch of $$100$$ datapoints, our loss would be:
+
+$$L = \frac{1}{100} \sum_{i=1}^{100} - \sum_{j=1}^m y^w_{i,j} \log{(\hat y_{i,j})}$$
 
 Another way to help minority class prediction would be to adjust decision boundaries after the fact to allow minority classes more leniency to be predicted.
 
