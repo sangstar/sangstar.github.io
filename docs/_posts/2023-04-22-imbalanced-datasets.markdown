@@ -126,7 +126,7 @@ $$L = - \sum_{i=1}^m y^w_i \log{(\hat y_i)}$$
 
 So that for a minibatch of $$100$$ datapoints, our loss would be:
 
-$$L = \frac{1}{100} \sum_{i=1}^{100} - \sum_{j=1}^m y^w_{i,j} \log{(\hat y_{i,j})}$$
+$$L = - \frac{1}{100} \sum_{i=1}^{100} \sum_{j=1}^m y^w_{i,j} \log{(\hat y_{i,j})}$$
 
 Another way to help minority class prediction would be to adjust decision boundaries after the fact to allow minority classes more leniency to be predicted.
 
