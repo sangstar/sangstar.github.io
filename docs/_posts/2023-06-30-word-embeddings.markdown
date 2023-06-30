@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Words as vectors"
-date:   2023-06-03 10:42
+date:   2023-06-30 10:42
 categories: nlp
 usemathjax: true
 ---
