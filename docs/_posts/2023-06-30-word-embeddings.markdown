@@ -30,11 +30,11 @@ You can thereby represent a word by the three different dimensions here by assig
 $$
 \begin{array}{cc} 
 &
-\begin{array}{ccccc} Valence & Arousal & Dominance\\
+\begin{array}{ccccc} \text{Valence} & \text{Arousal} & \text{Dominance}\\
 \end{array}
 \\
 \begin{matrix}
-word 1 \\ word 2 \\ word 3 \\
+\text{word 1} \\ \text{word 2} \\ \text{word 3} \\
 \end{matrix}
 &
 \left[
