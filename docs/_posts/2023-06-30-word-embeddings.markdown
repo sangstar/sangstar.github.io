@@ -58,6 +58,30 @@ This method for word embeddings involve representing words based on their co-occ
 
 # Term-document matrices
 
-To start with, let's talk about a term-document matrix. This matrix is constructed by having words as rows as words in the vocabulary $$\{w_i\}_{i=1}^V$$ and columns as documents in the corpus $$\{d_i\}_{i=1}^N$$
+To start with, let's talk about a term-document matrix. This matrix is constructed by having words as rows in the vocabulary $$\{w_i\}_{i=1}^V$$ and columns as documents in the corpus $$\{d_i\}_{i=1}^N$$
+
+An example is below:
+
+
+$$
+\begin{array}{cc} 
+&
+\begin{array}{ccccc} d_1 & d_2 & d_3\\
+\end{array}
+\\
+\begin{matrix}
+w_1 \\ w_2 \\ w_3 \\
+\end{matrix}
+&
+\left[
+\begin{array}{ccccc}
+1 & 0 & 25 \\
+36 & 12 & 15 \\
+0 & 0 & 1 \\
+\end{array}
+\right]
+\end{array}
+$$
+
 
 # Term-term matrices
