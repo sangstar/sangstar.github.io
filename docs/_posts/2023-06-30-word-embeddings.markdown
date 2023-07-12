@@ -47,4 +47,7 @@ $$
 \end{array}
 $$
 
-Further studies in the 50s by Joos (1950), Harris (1954), and Firth (1957) posited that words can be defined by its *distribution* in language use: that words that had similar neighboring words were probably similar words (for instance: for "She [rarely/often] speaks in class" rarely or often both appear in the same placement in this sentence and other sentences like this, which conveys a semantic connection due to having a similar *distribution*.)
+Further studies in the 50s by Joos (1950), Harris (1954), and Firth (1957) posited that words can be defined by its *distribution* in language use: that words that had similar neighboring words were probably similar words. For instance: for "She [rarely/often] speaks in class" rarely or often both appear in the same placement in this sentence and other sentences like this, which conveys a semantic connection due to having a similar *distribution*. It's important to stress that words that express opposite meanings *are similar*: they appear in many of the same contexts because they both refer to a frequency.
+
+
+These concepts on assocating words using dimensions and considering words as similar if they have similar distributions led to the emergence of the concept of **vector semantics**, where we represent a word as a point in multidimensional vector space that is derived from the distributions of its word neighbors, where the vectors are known as *embeddings* (this is sometimes pedantically only given to dense vectors like those formed in word2vec, but I think it's fair to say it's used for all vector representations of words including sparse vector spaces like co-occurence spaces which I'm about to touch on), which is the subject of this article.
