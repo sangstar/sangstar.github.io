@@ -46,3 +46,5 @@ $$
 \right]
 \end{array}
 $$
+
+Further studies in the 50s by Joos (1950), Harris (1954), and Firth (1957) posited that words can be defined by its *distribution* in language use: that words that had similar neighboring words were probably similar words (for instance: for "She [rarely/often] speaks in class" rarely or often both appear in the same placement in this sentence and other sentences like this, which conveys a semantic connection due to having a similar *distribution*.)
