@@ -83,5 +83,6 @@ w_1 \\ w_2 \\ w_3 \\
 \end{array}
 $$
 
+Notice that $$0$$'s have appeared in my example. This will be a very commonly occurring characteristic to co-occurence matrices, especially with a larger corpus (which forms a larger vocab). This causes these methods to suffer from sparsity. While my matrix above isn't particularly sparse, sparsity is super unfavorable, as it implies a huge matrix full of mostly $$0$$'s, which feels really bad because you have a sense that the matrix's size is needlessly large, like packaging a cell phone in a 8m by 8m cardboard box. If I wanted to calculate the similarity between two word vectors of a sparse matrix, the vast majority of my operations would be $$0 \times 0$$ and $$0+0$$. Taking into account that each $$0$$ is using memory on your system, and that you get full penalty from the curse of dimensionality, this starts feeling like a huge drag. 
 
 # Term-term matrices
