@@ -56,4 +56,8 @@ These concepts on assocating words using dimensions and considering words as sim
 
 This method for word embeddings involve representing words based on their co-occurence with other documents, known as term-document matrices, or with other words, known as term-term matrices.
 
+# Term-document matrices
+
 To start with, let's talk about a term-document matrix. This matrix is constructed by having words as rows as words in the vocabulary $$\{w_i\}_{i=1}^V$$ and columns as documents in the corpus $$\{d_i\}_{i=1}^N$$
+
+# Term-term matrices
