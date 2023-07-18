@@ -85,4 +85,31 @@ $$
 
 Notice that $$0$$'s have appeared in my example. This will be a very commonly occurring characteristic to co-occurence matrices, especially with a larger corpus (which forms a larger vocab). This causes these methods to suffer from sparsity. While my matrix above isn't particularly sparse as term-document is not nearly as aggregious as term-term, sparsity is super unfavorable, as it implies a huge matrix full of mostly $$0$$'s, which feels really bad because you have a sense that the matrix's size is needlessly large, like packaging a cell phone in a 8m by 8m cardboard box. If I wanted to calculate the similarity between two word vectors of a sparse matrix, the vast majority of my operations would be $$0 \times 0$$ and $$0+0$$. Taking into account that each $$0$$ is using memory on your system, and that you get full penalty from the curse of dimensionality, this starts feeling like a huge drag, and it's partially why dense vector representations like word2vec are far more favorable. Anyway, I'll stop burying the lead. 
 
+
 # Term-term matrices
+
+Term-term matrices are predictably terms in the corpus as rows and columns. 
+
+$$
+\begin{array}{cc} 
+&
+\begin{array}{ccccc} w_1 & w_2 & w_3\\
+\end{array}
+\\
+\begin{matrix}
+w_1 \\ w_2 \\ w_3 \\
+\end{matrix}
+&
+\left[
+\begin{array}{ccccc}
+1 & 0 & 25 \\
+36 & 12 & 15 \\
+0 & 0 & 1 \\
+\end{array}
+\right]
+\end{array}
+$$
+
+It should hopefully make sense that since each word $$w_i$$ appears as a row and as a column, its term-term co-occurence is simply the amount of times it appears in the corpus, as it always appears with itself. 
+
+The sentiment for term-document and term-term 
