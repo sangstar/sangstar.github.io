@@ -141,3 +141,8 @@ The overall tf-idf weight $$w_{t,d}$$ will be the product of the $$tf$$ term and
 $$w_{t,d} = tf_{t,d} \times idf_t$$
 
 What we now have is something that does a pretty reasonable job at assessing a term's "importance" in a document -- one that appears often in the document but not much elsewhere would tend to tell you that the term and document involved are connected in some way.
+
+It's a pretty effective way to embed terms in a term-document space, and is a pretty inexpensive thing to try. It's the premiere way to measure document similarity, as it is the premiere way to weight elements in term-document spaces. Document similarity is simply computed using cosine similarity with the two documents you're comparing which are row vectors in the space. 
+
+## Word2vec
+We now move onto word2vec, which is the truly appropriate underlying framework used to refer to embeddings. These are not at all like vectors formed from co-occurence matrices. Where co-occurence vectors are long and sparse, with dimensions ranging from the number of documents or vocabulary size, embeddings are *short* and *dense* with a dimension usually less than 1000 without much interpretation. They outperform the sparse vectors in *every* NLP task. We don't exactly know why this is, but it may have to do with the fact that our weights matrices are naturally far smaller with short, dense vectors which will allow us to learn and generalize better with our limited data and they may be better at capturing synonymy. 
