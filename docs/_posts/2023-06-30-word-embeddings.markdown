@@ -112,4 +112,17 @@ $$
 
 It should hopefully make sense that since each word $$w_i$$ appears as a row and as a column, its term-term co-occurence is simply the amount of times it appears in the corpus, as it always appears with itself. 
 
-The sentiment for term-document and term-term 
+Weighing by frequency is generally a good idea. While words appearing frequently together is meaningful, words like "the", "it" or "they" will have these enormously inflated embeddings, and it tends to be the case that words with the most magnitude in these vector spaces tend to be unimportant. A balance needs to be struck here, and this is where *tf-idf* comes into play.
+
+# tf-idf
+tf-idf weighting is a common approach for term-document matrices (hence the "d" in "tf-idf") to solving this problem. PPMI is common for solving this problem for term-term, but I'm going to skip this one for brevity. 
+
+The "tf" stands for term frequency like we've dealt with before, however it's often squashed by a $$\log$$ since a logarithmic behavior is generally considered more sensible -- we want the word appearing more times to signify that the word is more relevant to the meaning of the document, but not necessarily have it be the case that the word appearing 100 times means that it's 100 times more likely to be relevant. A sense of diminishing returns is generally accepted, hence the log. We also tack on a $$+1$$ term to it so we avoid the log blowing up if there's a count of $$0$$.
+
+$$tf = \log{(\text{count}(t,d) + 1)}$$
+
+Cool, so now we have term frequency weighting, which we acknowledge is a good concept until we have words like "the" that will have bloated importance for appearing in so many documents. We now need to punish this behavior using **inverse document frequency**, idf. Simply, it's the inverse of a word's document frequency.
+
+A word's document frequency ought to be how frequently it appears in a document, so should appropriately be 
+
+$$ df_w = \frac{\text{Number of documents $$w$$ occurs in}{\text{Number of documents}}$$
