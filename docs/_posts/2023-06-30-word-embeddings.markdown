@@ -125,4 +125,10 @@ Cool, so now we have term frequency weighting, which we acknowledge is a good co
 
 A word's document frequency ought to be how frequently it appears in a document, so should appropriately be 
 
-$$ df_w = \frac{\text{Number of documents $$w$$ occurs in}{\text{Number of documents}}$$
+$$\frac{\text{Number of documents $w$ occurs in}{\text{Number of documents}} = \frac{df_w}{N}$$
+
+Whereas for an inverse document frequency, we just invert the fraction.
+
+$$idf = \frac{N}{df_w}$$
+
+And 
