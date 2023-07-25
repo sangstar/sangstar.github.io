@@ -152,4 +152,4 @@ Embeddings are typically discriminated as being *static*, where one word in the 
 ## Static embeddings
 
 ## Contextual embeddings
-<pg. 236 of textbook, 245 of pdf>
+<!---pg. 236 of textbook, 245 of pdf>
