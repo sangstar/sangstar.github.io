@@ -136,7 +136,8 @@ And also usually temper the result with a log once again, as the number of docum
 $$idf_t = \log{(\frac{N}{df_t})}$$
 
 
-The overall tf-idf weight will be the product of the $$tf$$ term and the $$idf$$ terms
+The overall tf-idf weight $$w_{t,d}$$ will be the product of the $$tf$$ term and the $$idf$$ terms
 
+$$w_{t,d} = tf_{t,d} \times idf_t$$
 
 What we now have is something that does a pretty reasonable job at assessing a term's "importance" in a document -- one that appears often in the document but not much elsewhere would tend to tell you that the term and document involved are connected in some way.
