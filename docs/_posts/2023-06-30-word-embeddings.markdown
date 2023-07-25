@@ -125,11 +125,11 @@ Cool, so now we have term frequency weighting, which we acknowledge is a good co
 
 A term's document frequency ought to be how frequently it appears in a document, so should appropriately be 
 
-$$\frac{\text{Number of documents term occurs in}}{\text{Number of documents}} = \frac{df_t}{N}$$
+$$\frac{\text{Number of documents term occurs in}}{\text{Number of documents}} = \frac{N_t}{N} = df_t$$
 
 Whereas for an inverse document frequency, we just invert the fraction.
 
-$$idf_t = \frac{N}{df_t}$$
+$$idf_t = 1/df_t = \frac{N}{df_t}$$
 
 And also usually temper the result with a log once again, as the number of documents are typically quite large and this causes computational bloat. You can see though that we now have something that punishes the troublesome words mentioned earlier. 
 
