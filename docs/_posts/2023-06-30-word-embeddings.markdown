@@ -123,12 +123,20 @@ $$tf = \log{(\text{count}(t,d) + 1)}$$
 
 Cool, so now we have term frequency weighting, which we acknowledge is a good concept until we have words like "the" that will have bloated importance for appearing in so many documents. We now need to punish this behavior using **inverse document frequency**, idf. Simply, it's the inverse of a word's document frequency.
 
-A word's document frequency ought to be how frequently it appears in a document, so should appropriately be 
+A term's document frequency ought to be how frequently it appears in a document, so should appropriately be 
 
-$$\frac{\text{Number of documents $w$ occurs in}{\text{Number of documents}} = \frac{df_w}{N}$$
+$$\frac{\text{Number of documents term occurs in}{\text{Number of documents}} = \frac{df_t}{N}$$
 
 Whereas for an inverse document frequency, we just invert the fraction.
 
-$$idf = \frac{N}{df_w}$$
+$$idf_t = \frac{N}{df_t}$$
 
-And 
+And also usually temper the result with a log once again, as the number of documents are typically quite large and this causes computational bloat. You can see though that we now have something that punishes the troublesome words mentioned earlier. 
+
+$$idf_t = \log{(\frac{N}{df_t})}$$
+
+
+The overall tf-idf weight will be the product of the $$tf$$ term and the $$idf$$ terms
+
+
+What we now have is something that does a pretty reasonable job at assessing a term's "importance" in a document -- one that appears often in the document but not much elsewhere would tend to tell you that the term and document involved are connected in some way.
