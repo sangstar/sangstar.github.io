@@ -145,4 +145,11 @@ What we now have is something that does a pretty reasonable job at assessing a t
 It's a pretty effective way to embed terms in a term-document space, and is a pretty inexpensive thing to try. It's the premiere way to measure document similarity, as it is the premiere way to weight elements in term-document spaces. Document similarity is simply computed using cosine similarity with the two documents you're comparing which are row vectors in the space. 
 
 ## Word2vec
-We now move onto word2vec, which is the truly appropriate underlying framework used to refer to embeddings. These are not at all like vectors formed from co-occurence matrices. Where co-occurence vectors are long and sparse, with dimensions ranging from the number of documents or vocabulary size, embeddings are *short* and *dense* with a dimension usually less than 1000 but not nearly as interpretable. They outperform the sparse vectors in *every* NLP task. We don't exactly know why this is, but it may have to do with the fact that the far shorter dense vectors don't suffer nearly as much from the curse of dimensionality; weights matrices have far less parameters to learn and thus can generalize without as much of an appetite for data. They may also be better at capturing synonymy. 
+We now move onto word2vec, which is the truly appropriate underlying framework used to refer to embeddings. These are not at all like vectors formed from co-occurence matrices. Where co-occurence vectors are long and sparse, with dimensions ranging from the number of documents or vocabulary size, embeddings are *short* and *dense* with a dimension usually less than 1000 but not nearly as interpretable. They outperform the sparse vectors in *every* NLP task. We don't exactly know why this is, but it may have to do with the fact that the far shorter dense vectors don't suffer nearly as much from the curse of dimensionality; weights matrices have far less parameters to learn and thus can generalize without as much of a voracious appetite for data. They may also be better at capturing synonymy. 
+
+Embeddings are typically discriminated as being *static*, where one word in the vocabulary is given one fixed embeddings, like in traditional word2vec embeddings, or *dynamic/contextual embeddings*, like for the embeddings used by BERT, wherein the vector for each word is different in different contexts.
+
+## Static embeddings
+
+## Contextual embeddings
+pg. 236 of textbook
