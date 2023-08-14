@@ -38,7 +38,7 @@ Cambridge, Mass.
 2019  
 Specialized in developing and validating adaptive algorithms for polarimetric gains calibration and implementation of
 the calibration for the Event Horizon Telescope at the Harvard-Smithsonian Center for Astrophysics, and examining
-polarimetric gains calibration on data from the Global Milimeter VLBI array for the Event Horizon Telescope’s website
+polarimetric gains calibration on data from the Global Milimeter VLBI array using regression for the Event Horizon Telescope’s website
 memo series.
 
 **Synthetic Optics**  
