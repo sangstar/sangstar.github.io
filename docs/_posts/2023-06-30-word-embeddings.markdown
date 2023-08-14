@@ -144,12 +144,11 @@ What we now have is something that does a pretty reasonable job at assessing a t
 
 It's a pretty effective way to embed terms in a term-document space, and is a pretty inexpensive thing to try. It's the premiere way to measure document similarity, as it is the premiere way to weight elements in term-document spaces. Document similarity is simply computed using cosine similarity with the two documents you're comparing which are row vectors in the space. 
 
-## Word2vec
+## Word2vec, static embeddings and contextual embeddings
 We now move onto word2vec, which is the truly appropriate underlying framework used to refer to embeddings. These are not at all like vectors formed from co-occurence matrices. Where co-occurence vectors are long and sparse, with dimensions ranging from the number of documents or vocabulary size, embeddings are *short* and *dense* with a dimension usually less than 1000 but not nearly as interpretable. They outperform the sparse vectors in *every* NLP task. We don't exactly know why this is, but it may have to do with the fact that the far shorter dense vectors don't suffer nearly as much from the curse of dimensionality; weights matrices have far less parameters to learn and thus can generalize without as much of a voracious appetite for data. They may also be better at capturing synonymy. 
 
 Embeddings are typically discriminated as being *static*, where one word in the vocabulary is given one fixed embeddings, like in traditional word2vec embeddings, or *dynamic/contextual embeddings*, like for the embeddings used by BERT, wherein the vector for each word is different in different contexts.
 
-## Static embeddings
+Static embeddings are embeddings that only convey a single meaning per word. Examples include GloVe and FastText, which for each token in its vocabulary provide one single embedding with its dimension that of its vocabulary size. 
 
-## Contextual embeddings
-<!--- pg. 236 of textbook, 245 of pdf --->
+Transformer architectures use contextual embeddings, which are formed using static embeddings. During training, for each attention head a transformer has, each token has a key, query and value vector, which all interplay when each word attends to the other words in a sequence. You can read more about this in my article about [ChatGPT and transformers](https://sangstar.github.io/nlp/2023/03/03/chatgpt.html). The output of an attention head is a sequence of contextual embeddings, a unique vector representation of a token $$t_i$$ based on its context: the other words it appeared with in a sequence. This is what makes transformer architectures so powerful: instead of having the same semantic representation of a token, a transformer endows a token with a *unique* embedding based on its context that conveys its meaning in the sequence in which it appeared, *per attention head*, which is all summed up. It's no wonder transformer architectures took off the way they did.

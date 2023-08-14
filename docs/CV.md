@@ -11,8 +11,8 @@ title: Curriculum Vitæ
 **Chattr**  
 *MLOps Engineer*  
 Tampa, Fl
-2022 - Present  
-Machine learning engineer for Chattr, an AI-powered hiring assistant startup based in Tampa, Fl. Solely responsible for Chattr's ML operations, including planning for, creating, maintaining and monitoring MLOps pipelines; using trunk-based development for the deployment and management of multiple model-serving endpoints, the latter leveraging transformer architectures including that of large language models for text classification, named-entity recognition, summarization, and text generation, additionally using burgeoning new techniques such as prompt engineering. Constantly consuming research in the field to try to improve business outcomes. 
+2022 - 2023  
+Machine learning engineer for Chattr, an AI-powered hiring assistant startup based in Tampa, Fl. Solely responsible for Chattr's ML operations, including planning for, creating, maintaining and monitoring MLOps pipelines; using trunk-based development for the deployment and management of multiple model-serving endpoints, the latter leveraging transformer architectures including that of large language models for text classification, named-entity recognition, summarization, and text generation, additionally leading a team in applying generative AI techniques for business solutions. Constantly consumed research in the field to try to improve business outcomes.
 
 **econscia**  
 *Machine Learning Engineer*  
