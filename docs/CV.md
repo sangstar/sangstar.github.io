@@ -9,15 +9,15 @@ title: Curriculum Vitæ
 ## Work Experience
 ### Full-time positions
 **Chattr**  
-*MLOps Engineer*  
+*Machine Learning Engineer*  
 Tampa, Fl
-2022 - 2023  
+March 2022 - August 2023  
 Machine learning engineer for Chattr, an AI-powered hiring assistant startup based in Tampa, Fl. Solely responsible for Chattr's ML operations, including planning for, creating, maintaining and monitoring MLOps pipelines; using trunk-based development for the deployment and management of multiple model-serving endpoints, the latter leveraging transformer architectures including that of large language models for text classification, named-entity recognition, summarization, and text generation, additionally leading a team in applying generative AI techniques for business solutions. Constantly consumed research in the field to try to improve business outcomes.
 
 **econscia**  
 *Machine Learning Engineer*  
 London  
-2021-2022  
+July 2021- February 2022  
 Machine learning position following a 2 month-long internship at econscia, a carbon accounting startup based in
 London specializing in Scope 3 emissions reporting. Planned and developed the stack’s Scope 3 emissions end-to-end
 solution for pre-processing client data, vendor processing, spend categorization using document similarity techniques,
