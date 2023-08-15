@@ -3,10 +3,11 @@ layout: page
 permalink: /cv/
 title: Curriculum Vitæ
 ---
-
-# Sanger Steel
-sangersteel@gmail.com | 914-708-9301 | github.com/sangstar | sangstar.github.io 
-
+<!---
+Include this when converting to PDF:
+# Sanger Steel <>
+sangersteel@gmail.com | 914-708-9301 | github.com/sangstar | sangstar.github.io <>
+-->
 ## Work Experience
 ### Full-time positions
 **Chattr**  
