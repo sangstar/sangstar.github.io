@@ -23,6 +23,10 @@ London specializing in Scope 3 emissions reporting. Planned and developed the st
 solution for pre-processing client data, vendor processing, spend categorization using document similarity techniques,
 and emissions calculations.
 
+### Projects
+- [GPTeach](https://github.com/sangstar/gpteach)
+- [Fine-tuning Llama 2 7B using Self-Instruct to give tips on how to win with your favorite character in Super Smash Bros. Melee for the Nintendo Gamecube](https://github.com/sangstar/melee-bot)
+
 ### Internships
 **CarbonCulture**  
 *Software Engineer*, Intern   
