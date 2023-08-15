@@ -9,7 +9,7 @@ This website serves as a personal online portfolio for me where I mostly ramble 
 
 
 # My personal favorites:
-1. [Fine-tuning Llama 2 7B using Self-Instruct to give you tips in Super Smash Bros Melee](https://sangstar.github.io/nlp/2023/06/30/melee_bot.html)
+1. [Fine-tuning Llama 2 7B using Self-Instruct to give you tips in Super Smash Bros Melee](https://sangstar.github.io/nlp/2023/08/15/melee_bot.html)
 2. [Transformers and ChatGPT](https://sangstar.github.io/nlp/2023/03/03/chatgpt.html)
 3.  [Generative models, discriminative models, and what everyone gets wrong about naive Bayes](https://sangstar.github.io/nlp/2023/06/03/bayes-logistic.html)
 4. [Performance metrics in NLP](https://sangstar.github.io/nlp/2023/05/15/evaluation_metrics.html)
