@@ -24,8 +24,8 @@ solution for pre-processing client data, vendor processing, spend categorization
 and emissions calculations.
 
 ### Projects
-- [GPTeach](https://github.com/sangstar/gpteach)
-- [Fine-tuning Llama 2 7B using Self-Instruct to give tips on how to win with your favorite character in Super Smash Bros. Melee for the Nintendo Gamecube](https://github.com/sangstar/melee-bot)
+- [GPTeach](https://github.com/sangstar/gpteach) - Using GPT-3.5 or GPT-4 to create Q&A's for any topic for studying or data generation
+- [Melee-bot](https://github.com/sangstar/melee-bot) - Fine-tuning Llama 2 7B using Self-Instruct to give tips on how to win in Super Smash Bros. Melee for the Nintendo Gamecube
 
 ### Internships
 **CarbonCulture**  
