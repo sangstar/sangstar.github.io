@@ -4,10 +4,15 @@ permalink: /cv/
 title: Curriculum Vitæ
 ---
 <!---
-Include this when converting to PDF:
-# Sanger Steel <>
-sangersteel@gmail.com | 914-708-9301 | github.com/sangstar | sangstar.github.io <>
--->
+Sanger Steel
+sangersteel@gmail.com | 914-708-9301 | github.com/sangstar | sangstar.github.io 
+
+- 3+ years experience harnessing large language models (LLMs) to improve business outcomes using PyTorch, Tensorflow, HuggingFace, SpaCy, Scikit-learn
+- 5+ years experience with Python
+- 2+ years working with cloud platforms such as AWS, Azure, GCP 
+
+--->
+
 ## Work Experience
 ### Full-time positions
 **Chattr**  
