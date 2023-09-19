@@ -4,10 +4,10 @@ permalink: /cv/
 title: Curriculum Vitæ
 ---
 <!---
-Sanger Steel
+# Sanger Steel
 sangersteel@gmail.com | 914-708-9301 | github.com/sangstar | sangstar.github.io 
 
-- 3+ years experience harnessing large language models (LLMs) to improve business outcomes using PyTorch, Tensorflow, HuggingFace, SpaCy, Scikit-learn
+- 3 years of professional experience harnessing large language models (LLMs) to improve business outcomes using PyTorch, Tensorflow, HuggingFace, SpaCy, Scikit-learn
 - 5+ years experience with Python
 - 2+ years working with cloud platforms such as AWS, Azure, GCP 
 
@@ -31,6 +31,7 @@ solution for pre-processing client data, vendor processing, spend categorization
 and emissions calculations.
 
 ### Projects
+- [CPT & ICD Fetcher](https://github.com/sangstar/cpt_icd_fetcher) - Fetches CPT and ICD-11 codes using NLP and the ICD API for submitting prior authorizations or orders for medical procedures
 - [GPTeach](https://github.com/sangstar/gpteach) - Using GPT-3.5 or GPT-4 to create Q&A's for any topic for studying or data generation
 - [Melee-bot](https://github.com/sangstar/melee-bot) - Fine-tuning Llama 2 7B using Self-Instruct to give tips on how to win in Super Smash Bros. Melee for the Nintendo Gamecube
 
@@ -49,8 +50,7 @@ Cambridge, Mass.
 2019  
 Specialized in developing and validating adaptive algorithms for polarimetric gains calibration and implementation of
 the calibration for the Event Horizon Telescope at the Harvard-Smithsonian Center for Astrophysics, and examining
-polarimetric gains calibration on data from the Global Milimeter VLBI array using regression for the Event Horizon Telescope’s website
-memo series.
+polarimetric gains calibration on data from the Global Milimeter VLBI array using regression techniques for the Event Horizon Telescope’s website memo series.
 
 **Synthetic Optics**  
 *Research assistant*, Intern  

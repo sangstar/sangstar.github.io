@@ -26,7 +26,7 @@ Despite the enormous number of use cases for machine learning, it all boils down
 
 $$\hat f \left(\{x_i\}_{i=1}^{k}\right) = \{y_i\}_{i=1}^{k}$$
 
-where $$x_i$$ is often called an *input* or a *feature*, and $$y_i$$ is often called an *output* or *target*. In the case of neural networks, by the universal approximatin theorem, there will **always** exist some neural network $$\bar f$$ that can be constructed to approximate $$\hat f$$, such that
+where $$x_i$$ is often called an *input* or a *feature*, and $$y_i$$ is often called an *output* or *target*. In the case of neural networks, by the universal approximation theorem, there will **always** exist some neural network $$\bar f$$ that can be constructed to approximate $$\hat f$$, such that
 
 $$\bar f \left(\{x_i\}_{i=1}^{k}\right) = \{\bar y_i\}_{i=1}^{k}$$
 
@@ -55,7 +55,6 @@ Anyway, as the loss function minimizes the hope is that your $$f$$ converges to 
 
 # The training process
 In order to train a model, say, a perceptron, you start with a dataset and with any luck some labeled data $$
-D = \{x_i,y_i\}_{i=1}^{k}$$. You then want to see how the model does on data it hasn't "seen" before (some values of $$y_i$$ that *haven't* influenced the loss function) to assess how well the trained model does on the dataset. This involves splitting $$D$$ into *training* and *test* sets. It would also be smart to split the data into a *validation* set, but I'm going to neglect going into cross-validation right now but you can read about it in the second part of this series. With your training data, you update the weights of your neural net (or the parameters of your model, generally) by calculating all the gradients until you've reached trained it on a set number of epochs, or when early stopping criteria are met if you have any. After this is done, your model is considered trained, and you can see how the model's predictions $$\{\bar y_i\}_{i=1}^{k}$$ compare to $$\{y_i\}_{i=1}^{k}$$ in your test set. If you're doing classification with more than one class, please don't use accuracy.
-
+D = \{x_i,y_i\}_{i=1}^{k}$$. You then want to see how the model does on data it hasn't "seen" before (some values of $$y_i$$ that *haven't* influenced the loss function) to assess how well the trained model does on the dataset. This involves splitting $$D$$ into *training* and *test* sets. It would also be smart to split the data into a *validation* set, but I'm going to neglect going into cross-validation right now but you can read about it in the second part of this series. With your training data, you update the weights of your neural net (or the parameters of your model, generally) by calculating all the gradients until you've trained it on a set number of epochs, or when early stopping criteria are met if you have any. After this is done, your model is considered trained, and you can see how the model's predictions $$\{\bar y_i\}_{i=1}^{k}$$ compare to $$\{y_i\}_{i=1}^{k}$$ in your test set. 
 
 
