@@ -101,7 +101,7 @@ I'll highlight some of the key parts here that makes the shared object file for 
 
 First, I added:
 
-```
+```cmake
 list(APPEND CMAKE_PREFIX_PATH "<path-to-libtorch>")
 ```
 
@@ -110,7 +110,7 @@ because I wanted to guarantee that `cmake` could find my `libtorch` installation
 
 I added these two lines:
 
-```
+```cmake
 find_package(Torch REQUIRED)
 find_package(Python3 COMPONENTS Development REQUIRED)
 ```
@@ -119,7 +119,7 @@ To ensure that my Python and `torch` header files could be located. I also made 
 
 Finally, I have:
 
-```
+```cmake
 target_link_libraries(adder
         PRIVATE
         "${TORCH_LIBRARIES}"
@@ -135,7 +135,7 @@ The other parts of my CMake afterwards just make sure to copy my shared object f
 ## Writing your extension code
 The hard part is done. Now I can write some LibTorch code for my Python package. Here's a simplistic example.
 
-```
+```c++
 // bindings.cpp
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
@@ -158,7 +158,7 @@ Now, I didn't necessarily have to specify that `a` and `b` were `const torch::Te
 
 Now that the bindings are written, I can finally build my extension and invoke my module `adder`:
 
-```
+```python
 import torch
 import adder
 
@@ -172,7 +172,7 @@ result = adder.my_add(a, b)
 
 As a final question: was the GIL released for this or was this performed sequentially? The answer, in fact, is no. `pybind11` doesn't do this automatically for you. Here's how I could modify my function in `bindings.cpp` to release the GIL.
 
-```
+```c++
 // bindings.cpp
 #include <pybind11/pybind11.h>
 #include <pybind11/stl.h>
