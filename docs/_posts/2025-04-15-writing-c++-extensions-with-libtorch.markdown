@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Writing C++ Extensions for Python with LibTorch"
-date:   2024-04-15 17:15
+date:   2025-04-15 17:15
 categories: ml
 usemathjax: true
 ---
