@@ -15,6 +15,13 @@ sangersteel@gmail.com | 914-708-9301 | github.com/sangstar | sangstar.github.io
 
 ## Work Experience
 ### Full-time positions
+
+**CoreWeave**
+*Machine Learning Engineer* \
+October 2023 - Current
+Machine Learning Engineer for CoreWeave. Helping to develop AI software
+tools for customers.
+
 **Chattr**  
 *Machine Learning Engineer* \
 Tampa, Fl \
